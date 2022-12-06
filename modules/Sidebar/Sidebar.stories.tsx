@@ -1,5 +1,5 @@
 import { Meta, StoryObj } from '@storybook/react';
-import { Default as SidebarLink } from '../SidebarLink/SidebarLink.stories';
+import { Default as SidebarLink } from './SidebarLink/SidebarLink.stories';
 
 import Sidebar from './Sidebar';
 

@@ -1,6 +1,6 @@
 import React from 'react';
-import Navbar from '../../shared/Navbar';
-import Sidebar from '../../shared/Sidebar';
+import Navbar from '../../Navbar';
+import Sidebar from '../../Sidebar';
 import { StyledLayout } from './styled';
 
 interface IPrimaryProps {

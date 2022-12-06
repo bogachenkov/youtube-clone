@@ -8,11 +8,12 @@ export const StyledLink = styled(Link)`
   color: #fff;
   text-transform: capitalize;
   text-decoration: none;
-  font-size: 1.17rem;
+  font-size: 1.1rem;
   font-weight: 500;
   line-height: 1;
   letter-spacing: .5px;
   white-space: nowrap;
+  padding: 9px 0 8px;
 
   & > *:first-of-type {
     transition: .3s;

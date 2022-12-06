@@ -1,4 +1,6 @@
 import React from 'react';
+import ControlsSection from './ControlsSection';
+import SearchSection from './SearchSection';
 import { StyledNavbar } from './styled';
 
 interface INavbarProps {
@@ -8,7 +10,9 @@ interface INavbarProps {
 const Navbar:React.FC<INavbarProps> = (props) => {
   return (
     <StyledNavbar>
-      <input type="text" />
+      <div style={{ width: '1px' }}></div>
+      <SearchSection />
+      <ControlsSection />
     </StyledNavbar>
   );
 }

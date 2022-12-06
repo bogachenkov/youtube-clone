@@ -14,12 +14,8 @@ export const StyledSection = styled.nav`
   white-space: nowrap;
   padding: 10px 0;
 
-  & ${StyledLink} {
-    padding: 9px 0;
-  }
-
   & ${StyledSectionName} {
-    margin: 1.1em 0 1.2em;
+    margin: 1.2em 0;
     display: var(--sidebar-items-display);
   }
 `;

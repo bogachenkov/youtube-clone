@@ -26,7 +26,7 @@ const GlobalStyle = createGlobalStyle`
     --color-grayLight: #AEB1B9;
     --color-light: #F1F2F3;
 
-    --sidebar-icon-size: 2.2em;
+    --sidebar-icon-size: 2.1em;
     --sidebar-items-display: initial;
 
     font-size: 10px;
@@ -35,6 +35,7 @@ const GlobalStyle = createGlobalStyle`
   body {
     font-family: 'Montserrat', sans-serif;
     background-color: var(--color-background-gray);
+    padding-right: 30px;
   }
 `;
 

@@ -1,9 +1,9 @@
 import Link from 'next/link';
 import React, { useState } from 'react';
-import SIDEBAR_SECTIONS from '../../../const/navigation';
-import HamburgerMenu from '../HamburgerMenu';
-import Logo from '../Logo';
-import SidebarSection from '../SidebarSection';
+import SIDEBAR_SECTIONS from '../../const/navigation';
+import HamburgerMenu from '../shared/HamburgerMenu';
+import Logo from '../shared/Logo';
+import SidebarSection from './SidebarSection';
 import { StyledLogoLink, StyledSidebar, StyledSidebarHeader } from './styled';
 
 interface ISidebarProps {
@@ -15,7 +15,7 @@ const Sidebar:React.FC<ISidebarProps> = (props) => {
   return (
     <StyledSidebar
       style={{
-        ['--sidebar-width' as string]: `${isOpen ? 'auto' : 'calc(var(--sidebar-padding-h) * 2 + var(--sidebar-icon-size))'}`,
+        ['--sidebar-width' as string]: `${isOpen ? '200px' : 'calc(var(--sidebar-padding-h) * 2 + var(--sidebar-icon-size))'}`,
         ['--sidebar-items-display' as string]: `${isOpen ? 'initial' : 'none'}`,
       }}
     >

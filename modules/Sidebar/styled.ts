@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import styled from 'styled-components';
-import { StyledHamburgerButton } from '../HamburgerMenu/styled';
+import { StyledHamburgerButton } from '../shared/HamburgerMenu/styled';
 
 export const StyledSidebarHeader = styled.header`
   max-width: 100%;
@@ -13,7 +13,8 @@ export const StyledLogoLink = styled(Link)`
 `;
 
 export const StyledSidebar = styled.aside`
-  --sidebar-padding-h: 2.7em;
+  --sidebar-padding-h: 3em;
+  height: 100vh;
   width: var(--sidebar-width);
   overflow: hidden;
   padding: 3.9em var(--sidebar-padding-h) 0;
@@ -21,7 +22,7 @@ export const StyledSidebar = styled.aside`
   background-color: var(--color-background-blue);
 
   & ${StyledHamburgerButton} {
-    margin-right: .9em;
+    margin-right: 1.4em;
   }
 
   & ${StyledSidebarHeader} {
