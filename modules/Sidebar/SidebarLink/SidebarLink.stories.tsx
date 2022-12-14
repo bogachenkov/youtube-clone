@@ -23,13 +23,13 @@ function sleep(ms: number) {
 type Story = StoryObj<typeof SidebarLink>;
 
 export const Default:Story = {
-  args: SIDEBAR_ITEMS.main[0],
+  args: SIDEBAR_ITEMS[0].links[0],
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
 
     const getLink = (name: string) => canvas.findByRole('link', { name });
 
-    const homeLink = await getLink(SIDEBAR_ITEMS.main[0].label);
+    const homeLink = await getLink(SIDEBAR_ITEMS[0].links[0].label);
     await userEvent.hover(homeLink);
     await sleep(2000);
     await userEvent.click(homeLink);
