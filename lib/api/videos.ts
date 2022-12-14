@@ -83,6 +83,7 @@ class VideosAPI {
     } catch (e) {
       const error = e as Error;
       console.error(error.message);
+      res.status(504).json({ items: [] })
     }
   }
 }
