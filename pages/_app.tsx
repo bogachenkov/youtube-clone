@@ -1,7 +1,9 @@
+import 'regenerator-runtime/runtime';
 import { NextPage } from 'next';
+import { QueryClient, QueryClientProvider, Hydrate } from '@tanstack/react-query';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
-import { ReactElement, ReactNode } from 'react';
+import { ReactElement, ReactNode, useState } from 'react';
 import Primary from '../modules/layouts/Primary';
 import GlobalStyle from '../styles/globalStyles';
 
@@ -13,17 +15,23 @@ type AppPropsWithLayout = AppProps & {
   Component: NextPageWithLayout
 }
 
+export function reportWebVitals(metric: any) {
+  if (metric.label === 'custom') {
+    console.log(metric);
+  }
+}
+
 export default function App({ Component, pageProps }: AppPropsWithLayout) {
+  const [queryClient] = useState(() => new QueryClient());
 
   const getLayout = Component.getLayout || ((page) => <Primary>{page}</Primary>);
 
   return getLayout(
-    <>
-      <Head>
-        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-      </Head>
-      <GlobalStyle />
-      <Component {...pageProps} />
-    </>
+    <QueryClientProvider client={queryClient}>
+      <Hydrate state={pageProps.dehydratedState}>
+        <GlobalStyle />
+        <Component {...pageProps} />
+      </Hydrate>
+    </QueryClientProvider>
   )
 }

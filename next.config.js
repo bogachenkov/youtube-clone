@@ -10,8 +10,15 @@ const nextConfig = {
       {
         protocol: 'https',
         hostname: 'storage.jewheart.com',
-        port: ''
-      }
+      },
+      {
+        protocol: 'https',
+        hostname: 'storage.googleapis.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'i.ytimg.com',
+      },
     ]
   }
 }

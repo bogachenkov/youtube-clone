@@ -34,6 +34,7 @@ const GlobalStyle = createGlobalStyle`
 
   body {
     font-family: 'Montserrat', sans-serif;
+    color: var(--color-light);
     background-color: var(--color-background-gray);
     padding-right: 30px;
   }

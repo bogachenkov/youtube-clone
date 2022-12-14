@@ -1,8 +1,8 @@
-import { SearchOutlined, TuneOutlined } from '@mui/icons-material';
+import { TuneOutlined } from '@mui/icons-material';
+import dynamic from 'next/dynamic';
 import React from 'react';
-import Input from '../../shared/Input';
 import { StyledSearchSection, StyledIconWrap } from './styled';
-
+const VoiceSearch = dynamic(() => import('../../shared/VoiceSearch'), { ssr: false })
 interface ISearchSectionProps {
   children?: React.ReactNode;
 }
@@ -10,7 +10,7 @@ interface ISearchSectionProps {
 const SearchSection:React.FC<ISearchSectionProps> = (props) => {
   return (
     <StyledSearchSection>
-      <Input type="search" placeholder='Search' IconLeft={SearchOutlined} />
+      <VoiceSearch />
       <StyledIconWrap>
         <TuneOutlined fontSize='inherit' />
       </StyledIconWrap>

@@ -1,5 +1,5 @@
 import { SvgIconComponent } from '@mui/icons-material';
-import React, { InputHTMLAttributes } from 'react';
+import React, { forwardRef, InputHTMLAttributes } from 'react';
 import { StyledIconWrap, StyledInput, StyledInputWrap } from './styled';
 
 interface IInputProps extends InputHTMLAttributes<HTMLInputElement> {
@@ -7,10 +7,12 @@ interface IInputProps extends InputHTMLAttributes<HTMLInputElement> {
   IconLeft?: SvgIconComponent;
 }
 
-const Input:React.FC<IInputProps> = ({
+type Ref = HTMLInputElement;
+
+const Input = forwardRef<Ref, IInputProps>(({
   IconLeft,
   ...props
-}) => {
+}, ref) => {
   return (
     <StyledInputWrap
       style={{
@@ -28,9 +30,9 @@ const Input:React.FC<IInputProps> = ({
           </StyledIconWrap>
         )
       }
-      <StyledInput {...props} />
+      <StyledInput {...props} ref={ref} />
     </StyledInputWrap>
   );
-}
+});
 
 export default Input;

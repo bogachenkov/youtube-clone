@@ -1,7 +1,7 @@
 import React from 'react';
 import Navbar from '../../Navbar';
 import Sidebar from '../../Sidebar';
-import { StyledLayout } from './styled';
+import { StyledLayout, StyledMain } from './styled';
 
 interface IPrimaryProps {
   children?: React.ReactNode;
@@ -12,9 +12,9 @@ const Primary:React.FC<IPrimaryProps> = (props) => {
     <StyledLayout>
       <Sidebar />
       <Navbar />
-      <main>
+      <StyledMain>
         {props.children}
-      </main>
+      </StyledMain>
     </StyledLayout>
   );
 }
