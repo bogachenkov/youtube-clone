@@ -1,13 +1,9 @@
 import axios from "axios"
-import { IVideo } from "../../types/Video";
+import { YoutubeApiResponse } from "../api/videos";
 import { getServerUrl } from "../utils/getServerUrl";
-
-interface IVideoResponse {
-  videos: IVideo[];
-}
 
 export const getVideos = async () => {
   const serverUrl = getServerUrl();
-  const response = await axios.get<IVideoResponse>(`${serverUrl}/api/videos`);
-  return response.data.videos;
+  const response = await axios.get<YoutubeApiResponse>(`${serverUrl}/api/videos`);
+  return response.data.items;
 }
