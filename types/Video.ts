@@ -4,23 +4,15 @@ export interface IVideoThumbnail {
   url: string;
 }
 
-export interface IVideo {
-  etag: string;
+export type IVideoPreview = {
   id: string;
-  kind: string;
   snippet: {
     categoryId: string;
     channelId: string;
     channelTitle: string;
     title: string;
-    description: string;
     liveBroadcastContent: boolean;
-    localized: {
-      description: string;
-      title: string;
-    };
     publishedAt: string;
-    tags: string[];
     thumbnails: {
       default: IVideoThumbnail,
       standart: IVideoThumbnail,
@@ -30,15 +22,32 @@ export interface IVideo {
     }
   };
   contentDetails: {
+    duration: string;
+  };
+  statistics: {
+    viewCount: number,
+  }
+}
+
+export type IVideo = IVideoPreview & {
+  etag: string;
+  kind: string;
+  snippet: {
+    description: string;
+    localized: {
+      description: string;
+      title: string;
+    };
+    tags: string[];
+  };
+  contentDetails: {
     caption: boolean;
     definition: string;
     dimension: string;
-    duration: string;
     licensedContent: boolean;
     projection: string;
   };
   statistics: {
-    viewCount: number,
     likeCount: number,
     favoriteCount: number,
     commentCount: number;

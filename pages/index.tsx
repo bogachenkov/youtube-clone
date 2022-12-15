@@ -15,9 +15,6 @@ const HomePage:NextPage<HomePageProps> = () => {
       <GridContainer>
         {
           !!data && data.map(vid => (
-            // <video key={vid.title} src={vid.source} poster={vid.thumb} controls>
-            //   Sorry
-            // </video>
             <VideoCard key={vid.id} video={vid} />
           ))
         }
@@ -26,15 +23,15 @@ const HomePage:NextPage<HomePageProps> = () => {
   )
 }
 
-// export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
-//   const queryClient = new QueryClient();
-//   await queryClient.prefetchQuery(['videos'], VideosAPI.fetchDefaultVideos);
+export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
+  const queryClient = new QueryClient();
+  await queryClient.prefetchQuery(['videos'], VideosAPI.fetchDefaultVideos);
 
-//   return {
-//     props: {
-//       dehydratedState: dehydrate(queryClient)
-//     }
-//   }
-// }
+  return {
+    props: {
+      dehydratedState: dehydrate(queryClient)
+    }
+  }
+}
 
 export default HomePage;

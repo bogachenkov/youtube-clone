@@ -1,8 +1,7 @@
 import React from 'react';
 import { getRelativeDate } from '../../../lib/utils/getRelativeDate';
 import { intToString } from '../../../lib/utils/intToString';
-import { youtubeDurationFormat } from '../../../lib/utils/youtubeDuration';
-import { IVideo } from '../../../types/Video';
+import { IVideoPreview } from '../../../types/Video';
 import Spacer from '../Spacer';
 import Text from '../Text';
 import Title from '../Title';
@@ -11,7 +10,7 @@ import { StyledChannelName, StyledDetailsRow, StyledThumb, StyledVideoCard } fro
 
 interface IVideoCardProps {
   children?: React.ReactNode;
-  video: IVideo;
+  video: IVideoPreview;
 }
 
 const VideoCard:React.FC<IVideoCardProps> = ({
