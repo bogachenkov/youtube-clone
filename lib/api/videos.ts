@@ -1,5 +1,4 @@
 import axios from "axios";
-import { NextApiResponse } from "next";
 import qs from 'qs';
 import { IVideo } from "../../types/Video";
 import redis from "../redis";
@@ -8,8 +7,6 @@ import { handleAxiosError } from "../utils/handleAxiosError";
 export type YoutubeApiResponse = {
   items: IVideo[]
 }
-
-
 class VideosAPI {
 
   static async searchVideos() {
@@ -18,7 +15,7 @@ class VideosAPI {
         params: {
           part: ['snippet'],
           maxResults: '30',
-          key: process.env.YOUTUBE_KEY,
+          key: process.env.NEXT_PUBLIC_YOUTUBE_KEY,
           q: 'lofi'
         },
         paramsSerializer: {
@@ -43,7 +40,7 @@ class VideosAPI {
         params: {
           part: ['snippet', 'statistics', 'contentDetails'],
           id: ids,
-          key: process.env.YOUTUBE_KEY,
+          key: process.env.NEXT_PUBLIC_YOUTUBE_KEY,
         },
         paramsSerializer: {
           serialize(params) {
@@ -61,14 +58,13 @@ class VideosAPI {
     }
   }
   
-  static async fetchDefaultVideos(res: NextApiResponse<YoutubeApiResponse>) {
+  static async fetchDefaultVideos() {
     try {
       const cache = await redis.get<IVideo[]>('all_videos_cache');
 
       if (cache) {
         console.log('Fetching data from CACHE');
-        res.status(200).json({ items: cache });
-        return;
+        return cache;
       }
       
       console.log('Fetching data from API');
@@ -79,11 +75,11 @@ class VideosAPI {
       await redis.set('all_videos_cache', JSON.stringify(result.data.items), {
         ex: 60 * 60 * 24
       });
-      res.status(200).json({ items: result.data.items });
+      return result.data.items;
     } catch (e) {
       const error = e as Error;
       console.error(error.message);
-      res.status(504).json({ items: [] })
+      return [];
     }
   }
 }

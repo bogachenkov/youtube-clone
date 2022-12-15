@@ -1,6 +1,6 @@
 import { dehydrate, QueryClient, useQuery } from "@tanstack/react-query";
 import { GetServerSideProps, NextPage } from "next";
-import { getVideos } from "../lib/queries/getVideos";
+import VideosAPI from "../lib/api/videos";
 import Container from "../modules/shared/Container";
 import GridContainer from "../modules/shared/GridContainer";
 import VideoCard from "../modules/shared/VideoCard";
@@ -9,7 +9,7 @@ interface HomePageProps {
 }
 
 const HomePage:NextPage<HomePageProps> = () => {
-  const { data } = useQuery({ queryKey: ['videos'], queryFn: getVideos })
+  const { data } = useQuery({ queryKey: ['videos'], queryFn: VideosAPI.fetchDefaultVideos })
   return (
     <Container>
       <GridContainer>
@@ -28,7 +28,7 @@ const HomePage:NextPage<HomePageProps> = () => {
 
 export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
   const queryClient = new QueryClient();
-  await queryClient.prefetchQuery(['videos'], getVideos);
+  await queryClient.prefetchQuery(['videos'], VideosAPI.fetchDefaultVideos);
 
   return {
     props: {
