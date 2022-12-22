@@ -1,32 +1,24 @@
 import React from 'react';
 
-import VolumeUpOutlinedIcon from '@mui/icons-material/VolumeUpOutlined';
-import VolumeOffOutlinedIcon from '@mui/icons-material/VolumeOffOutlined';
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 import FullscreenOutlinedIcon from '@mui/icons-material/FullscreenOutlined';
 import FullscreenExitIcon from '@mui/icons-material/FullscreenExit';
 
 import { StyledVideoControlsRight } from './styled';
+import VolumeControl from '@modules/shared/VolumeControl';
+import { usePlayerAPI, usePlayerFullscreen } from '@lib/providers/player-api';
 
 interface IVideoControlsRightProps {
   children?: React.ReactNode;
-  toggleMute: VoidFunction;
-  toggleFullscreen: VoidFunction;
-  isMuted: boolean;
-  isFullscreen: boolean;
 }
 
-const VideoControlsRight:React.FC<IVideoControlsRightProps> = ({
-  isMuted,
-  isFullscreen,
-  toggleMute,
-  toggleFullscreen
-}) => {
+const VideoControlsRight:React.FC<IVideoControlsRightProps> = () => {
+  const { toggleFullscreen } = usePlayerAPI();
+  const isFullscreen = usePlayerFullscreen();
+
   return (
     <StyledVideoControlsRight gap={'2.2em'}>
-      <button onClick={toggleMute}>
-        {isMuted ? <VolumeOffOutlinedIcon fontSize='inherit' /> : <VolumeUpOutlinedIcon fontSize='inherit' />}
-      </button>
+      <VolumeControl />
       <button>
         <SettingsOutlinedIcon fontSize='inherit' />
       </button>

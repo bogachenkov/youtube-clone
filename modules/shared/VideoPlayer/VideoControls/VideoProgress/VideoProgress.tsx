@@ -1,28 +1,24 @@
+import { usePlayerAPI, usePlayerTimings } from '@lib/providers/player-api';
 import React from 'react';
-import { TimeRanges } from '../../VideoPlayer';
 import { StyledVideoProgress } from './styled';
 
 interface IVideoProgressProps {
   children?: React.ReactNode;
-  timeRanges: TimeRanges;
-  onTimeChange: (value: number) => void;
 }
 
 export const PercentMultiplier = 3;
 
-const VideoProgress:React.FC<IVideoProgressProps> = ({
-  timeRanges: {
-    played,
-    buffered,
-    duration
-  },
-  onTimeChange
-}) => {
+const VideoProgress:React.FC<IVideoProgressProps> = () => {
+  const { updateTimings } = usePlayerAPI();
+  const { played, duration, buffered } = usePlayerTimings();
+
   const val = played === 0 ? 0 : Math.floor((played / duration) * 100 * PercentMultiplier);
 
   const handleChange:React.ChangeEventHandler<HTMLInputElement> = (e) => {
     const value = (Number(e.target.value) / PercentMultiplier / 100) * duration;
-    onTimeChange(value);
+    updateTimings({
+      timeValue: value
+    });
   }
 
   return (

@@ -5,17 +5,18 @@ import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import PauseOutlinedIcon from '@mui/icons-material/PauseOutlined';
 
 import { StyledPlayControls } from './styled';
+import { usePlayerAPI, usePlayerPlaying } from '@lib/providers/player-api';
 
 interface IPlayControlsProps {
   children?: React.ReactNode;
-  isPlaying: boolean;
-  togglePlaying: VoidFunction;
 }
 
-const PlayControls:React.FC<IPlayControlsProps> = ({
-  isPlaying,
-  togglePlaying
-}) => {
+const PlayControls:React.FC<IPlayControlsProps> = () => {
+  const { togglePlaying } = usePlayerAPI();
+  const isPlaying = usePlayerPlaying();
+
+  console.log(isPlaying);
+
   return (
     <StyledPlayControls gap={3}>
       <button>
@@ -31,4 +32,4 @@ const PlayControls:React.FC<IPlayControlsProps> = ({
   );
 }
 
-export default PlayControls;
+export default React.memo(PlayControls);

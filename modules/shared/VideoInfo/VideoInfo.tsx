@@ -61,7 +61,7 @@ const VideoInfo:React.FC<IVideoInfoProps> = (props) => {
           <Title size={13}>
             <Row gap={5}>
               {channel?.snippet.title}
-              {channel?.status.longUploadsStatus !== 'eligible' && <DoneOutlinedIcon fontSize='small' />}
+              {channel?.status.longUploadsStatus === 'eligible' && <DoneOutlinedIcon fontSize='small' />}
             </Row>
           </Title>
           <Spacer vertical={5} />

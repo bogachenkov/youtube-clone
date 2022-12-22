@@ -19,7 +19,7 @@ const VideoDescription:React.FC<IVideoDescriptionProps> = ({
   desc
 }) => {
   const [isOpen, setIsOpen] = useToggle();
-  const { ref, style } = useAccordion(isOpen, 0);
+  const { ref, style } = useAccordion({ isOpen });
 
   const [previewFirstLine, previewSecondLine, ...restDesc] = desc.split(/\r?\n/).filter(element => element);
 
