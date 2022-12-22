@@ -12,5 +12,16 @@ export interface IChannel {
       medium: IThumbnail,
       high: IThumbnail
     }
+  };
+  statistics: {
+    viewCount: number;
+    subscriberCount: number;
+    videoCount: number;
+  };
+  status: {
+    privacyStatus: 'public' | 'private';
+    isLinked: boolean;
+    longUploadsStatus: 'allowed' | 'disallowed' | 'eligible';
+    madeForKids: boolean;
   }
 }

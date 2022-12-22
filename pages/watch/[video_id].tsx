@@ -61,7 +61,7 @@ export const getStaticProps: GetStaticProps = async ({
   };
 
   const queryClient = new QueryClient();
-  await queryClient.prefetchQuery(['watch', params?.video_id], () => api.video({
+  await queryClient.prefetchQuery(['watch', params?.video_id], () => api.videoById({
     part: ['snippet', 'contentDetails', 'statistics'],
     id: [params.video_id!]
   }));

@@ -34,7 +34,8 @@ const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    font-family: ${montserrat.style.fontFamily};
+    /* font-family: ${montserrat.style.fontFamily}; */
+    font-family: 'Montserrat', sans-serif;
     color: var(--color-light);
     letter-spacing: .1px;
     background-color: var(--color-background-gray);

@@ -3,6 +3,7 @@ import { IVideoPreview, IVideo } from "@ts-types/Video";
 import { handleAxiosError } from "@utils/handleAxiosError";
 import qs from 'qs';
 import _ from "lodash";
+import { IChannel } from "@ts-types/Channel";
 
 const ax = axios.create({
   baseURL: 'https://www.googleapis.com/youtube/v3',
@@ -23,9 +24,12 @@ ax.interceptors.request.use(config => {
   return config;
 });
 
-
 export type YoutubeVideosResponse = {
-  items: IVideo[]
+  items: IVideo[];
+}
+
+export type YoutubeChannelResponse = {
+  items: IChannel[];
 }
 
 type YoutubeVideoPart = 'contentDetails' |
@@ -42,7 +46,7 @@ type YoutubeVideoPart = 'contentDetails' |
                         'suggestions' |
                         'topicDetails';
 
-type YoutubeChannelPart = 'snippet' | 'id';
+type YoutubeChannelPart = 'snippet' | 'id' | 'statistics' | 'status';
 
 interface YoutubeCommonParams {
   location?: string;
@@ -115,9 +119,9 @@ class YoutubeAPI {
     }
   }
 
-  async channel(params?: YoutubeChannelParams) {
+  async channelByID(params?: YoutubeChannelParams) {
     try {
-      const { data: { items } } = await ax.get<YoutubeVideosResponse>('/channels', {
+      const { data: { items } } = await ax.get<YoutubeChannelResponse>('/channels', {
         params
       });
       return items[0];
@@ -139,12 +143,21 @@ class YoutubeAPI {
     }
   }
 
-  async video(params?: YoutubeVideoParams) {
+  async videoById(params?: YoutubeVideoParams) {
     try {
       const { data: { items } } = await ax.get<YoutubeVideosResponse>('/videos', {
         params
       });
-      return items[0];
+      const video = items[0];
+      console.log(video.snippet.channelId);
+      const channel = await this.channelByID({
+        id: [video.snippet.channelId],
+        part: ['snippet', 'statistics', 'status']
+      });
+      return {
+        video,
+        channel
+      };
     } catch (error) {
       handleAxiosError(error);
       return null;

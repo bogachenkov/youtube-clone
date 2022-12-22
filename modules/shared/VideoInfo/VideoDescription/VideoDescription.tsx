@@ -21,16 +21,16 @@ const VideoDescription:React.FC<IVideoDescriptionProps> = ({
   const [isOpen, setIsOpen] = useToggle();
   const { ref, style } = useAccordion(isOpen, 0);
 
-  const lines = desc.split(/\r?\n/).filter(element => element).slice(0, 3).join('\n');
-  console.log(lines);
+  const [previewFirstLine, previewSecondLine, ...restDesc] = desc.split(/\r?\n/).filter(element => element);
+
   return (
     <div>
       <StyledVideoDescription size={13}>
-        {lines}
+        {[previewFirstLine, previewSecondLine].join('\n')}
       </StyledVideoDescription>
       <a.div style={style}>
         <StyledVideoDescription size={13} ref={ref}>
-          {desc}
+          {restDesc.join('\n')}
         </StyledVideoDescription>
       </a.div>
       <Spacer vertical={13} />
