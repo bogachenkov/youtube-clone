@@ -1,5 +1,5 @@
 import React from 'react';
-import { youtubeDurationFormat } from '../../../lib/utils/youtubeDuration';
+import { youtubeDurationFormat } from '@utils/youtubeDuration';
 import { StyledVideoDuration } from './styled';
 
 interface IVideoDurationProps {

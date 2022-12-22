@@ -1,16 +1,9 @@
-import { VIDEOS_DATA } from "../const/data";
+import UnderConsruction from "@shared/UnderConsruction";
 
 export default function LibraryPage() {
   return (
     <div>
-      {/* <Sidebar /> */}
-      {
-        VIDEOS_DATA.map(vid => (
-          <video key={vid.title} src={vid.source} poster={vid.thumb} controls>
-            Sorry
-          </video>
-        ))
-      }
+      <UnderConsruction />
     </div>
   )
 }

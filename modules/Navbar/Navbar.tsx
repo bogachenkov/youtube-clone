@@ -1,6 +1,6 @@
 import React from 'react';
-import ControlsSection from './ControlsSection';
-import SearchSection from './SearchSection';
+import ControlsSection from '@modules/Navbar/ControlsSection';
+import SearchSection from '@modules/Navbar/SearchSection';
 import { StyledNavbar } from './styled';
 
 interface INavbarProps {

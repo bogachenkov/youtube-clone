@@ -1,12 +1,13 @@
 import React from 'react';
-import { getRelativeDate } from '../../../lib/utils/getRelativeDate';
-import { intToString } from '../../../lib/utils/intToString';
-import { IVideoPreview } from '../../../types/Video';
-import Spacer from '../Spacer';
-import Text from '../Text';
-import Title from '../Title';
-import VideoDuration from '../VideoDuration';
-import { StyledChannelName, StyledDetailsRow, StyledThumb, StyledVideoCard } from './styled';
+import { getRelativeDate } from '@utils/getRelativeDate';
+import { intToString } from '@utils/intToString';
+import { IVideoPreview } from '@ts-types/Video';
+import Row from '@shared/Row';
+import Spacer from '@shared/Spacer';
+import Text from '@shared/Text';
+import Title from '@shared/Title';
+import VideoDuration from '@shared/VideoDuration';
+import { StyledChannelName, StyledThumb, StyledVideoCard, StyledVideoCardLink } from './styled';
 
 interface IVideoCardProps {
   children?: React.ReactNode;
@@ -15,6 +16,7 @@ interface IVideoCardProps {
 
 const VideoCard:React.FC<IVideoCardProps> = ({
   video: {
+    id,
     snippet: {
       title,
       channelTitle,
@@ -30,27 +32,34 @@ const VideoCard:React.FC<IVideoCardProps> = ({
   }
 }) => {
   return (
-    <StyledVideoCard>
-      <header>
-        <StyledThumb 
-          alt={'Title'} 
-          src={thumbnails.medium.url}
-          fill
-        />
-        <VideoDuration duration={duration} />
-      </header>
-      <Spacer vertical={16} />
-      <Title level={3} size={15}>
-        {title}
-      </Title>
-      <Spacer vertical={10} />
-      <StyledDetailsRow>
-        <StyledChannelName size={12}>
-          <strong>{channelTitle}</strong>
-        </StyledChannelName>
-        <Text size={12}>{intToString(viewCount)} views | {getRelativeDate(publishedAt)}</Text>
-      </StyledDetailsRow>
-    </StyledVideoCard>
+    <StyledVideoCardLink href={`/watch/${id}`}>
+      <StyledVideoCard>
+        <header>
+          <StyledThumb 
+            alt={'Title'} 
+            src={thumbnails.medium.url}
+            fill
+            sizes="(max-width: 768px) 100vw,
+                (max-width: 1200px) 50vw,
+                33vw"
+            placeholder='blur'
+            blurDataURL={thumbnails.standart ? thumbnails.standart.url : thumbnails.default.url}
+          />
+          <VideoDuration duration={duration} />
+        </header>
+        <Spacer vertical={16} />
+        <Title level={3} size={15}>
+          {title}
+        </Title>
+        <Spacer vertical={10} />
+        <Row gap={'1.5em'} align='flex-start'>
+          <StyledChannelName size={12}>
+            <strong>{channelTitle}</strong>
+          </StyledChannelName>
+          <Text size={12}>{intToString(viewCount)} views | {getRelativeDate(publishedAt)}</Text>
+        </Row>
+      </StyledVideoCard>
+    </StyledVideoCardLink>
   );
 }
 

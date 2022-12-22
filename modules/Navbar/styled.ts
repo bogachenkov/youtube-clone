@@ -6,4 +6,8 @@ export const StyledNavbar = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background-color: var(--color-background-gray);
 `;

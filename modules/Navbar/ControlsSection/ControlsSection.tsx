@@ -1,6 +1,6 @@
 import { GridViewOutlined, NotificationsOutlined, VideoCallOutlined } from '@mui/icons-material';
 import React from 'react';
-import Avatar from '../../shared/Avatar';
+import Avatar from '@shared/Avatar';
 import { StyledControlsSection } from './styled';
 
 interface IControlsSectionProps {

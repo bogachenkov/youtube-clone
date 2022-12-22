@@ -1,5 +1,5 @@
 import { ReactElement } from "react";
-import { VIDEOS_DATA } from "../const/data";
+import { VIDEOS_DATA } from "@const/data";
 
 export default function SignPage() {
   return (

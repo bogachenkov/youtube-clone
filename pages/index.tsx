@@ -1,27 +1,21 @@
-import { dehydrate, QueryClient, useQuery } from "@tanstack/react-query";
+import { dehydrate, QueryClient } from "@tanstack/react-query";
 import { GetServerSideProps, NextPage } from "next";
-import VideosAPI from "../lib/api/videos";
-import Container from "../modules/shared/Container";
-import GridContainer from "../modules/shared/GridContainer";
-import VideoCard from "../modules/shared/VideoCard";
+import VideosAPI from "@api/videos";
+import HomePageVideos from "@modules/HomePageVideos";
+import Container from "@shared/Container";
 
 interface HomePageProps {
 }
 
 const HomePage:NextPage<HomePageProps> = () => {
-  const { data } = useQuery({ queryKey: ['videos'], queryFn: VideosAPI.fetchDefaultVideos })
   return (
     <Container>
-      <GridContainer>
-        {
-          !!data && data.map(vid => (
-            <VideoCard key={vid.id} video={vid} />
-          ))
-        }
-      </GridContainer>
+      <HomePageVideos />
     </Container>
   )
 }
+
+// TODO: This one breaks the Vercel's serverless function down (timeout)
 
 export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
   const queryClient = new QueryClient();

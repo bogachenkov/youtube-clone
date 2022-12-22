@@ -1,6 +1,6 @@
 import axios from "axios";
-import { IVideoPreview, IVideo } from "../../types/Video";
-import { handleAxiosError } from "../utils/handleAxiosError";
+import { IVideoPreview, IVideo } from "@ts-types/Video";
+import { handleAxiosError } from "@utils/handleAxiosError";
 import qs from 'qs';
 import _ from "lodash";
 
@@ -16,7 +16,7 @@ const ax = axios.create({
 ax.interceptors.request.use(config => {
   config.params = {
     part: ['snippet'],
-    maxResults: 50,
+    maxResults: 32,
     key: process.env.NEXT_PUBLIC_YOUTUBE_KEY,
     ...config.params,
   };
@@ -42,6 +42,8 @@ type YoutubeVideoPart = 'contentDetails' |
                         'suggestions' |
                         'topicDetails';
 
+type YoutubeChannelPart = 'snippet' | 'id';
+
 interface YoutubeCommonParams {
   location?: string;
   maxResults?: number;
@@ -52,9 +54,19 @@ export interface YoutubeSearchParams extends YoutubeCommonParams {
   q: string;
 }
 
-export interface YoutubeVideosParams extends YoutubeCommonParams {
+export interface YoutubeVideoListParams extends YoutubeCommonParams {
   part: YoutubeVideoPart[];
   id?: string[];
+}
+
+export interface YoutubeChannelParams extends YoutubeCommonParams {
+  part: YoutubeChannelPart[];
+  id: [string];
+}
+
+export interface YoutubeVideoParams extends YoutubeCommonParams {
+  part: YoutubeVideoPart[];
+  id: [string];
 }
 
 class YoutubeAPI {
@@ -81,9 +93,20 @@ class YoutubeAPI {
         params, 
       });
       const id = response.data.items.map((i: any) => i.id.videoId);
-      const { data: { items } } = await this.videos({
+      return await this.videoList({
         part: ['snippet', 'statistics', 'contentDetails'],
         id
+      });
+    } catch (error) {
+      handleAxiosError(error);
+      return [];
+    }
+  }
+
+  async videoList(params?: YoutubeVideoListParams) {
+    try {
+      const { data: { items } } = await ax.get<YoutubeVideosResponse>('/videos', {
+        params
       });
       return this.formatYoutubeResponse(items);
     } catch (error) {
@@ -92,18 +115,39 @@ class YoutubeAPI {
     }
   }
 
-  async videos(params?: YoutubeVideosParams) {
+  async channel(params?: YoutubeChannelParams) {
     try {
-      return await ax.get<YoutubeVideosResponse>('/videos', {
+      const { data: { items } } = await ax.get<YoutubeVideosResponse>('/channels', {
         params
       });
+      return items[0];
     } catch (error) {
       handleAxiosError(error);
-      return {
-        data: {
-          items: []
-        }
-      }
+      return null;
+    }
+  }
+
+  async comments(params?: YoutubeChannelParams) {
+    try {
+      const { data: { items } } = await ax.get<YoutubeVideosResponse>('/commentThreads', {
+        params
+      });
+      return items[0];
+    } catch (error) {
+      handleAxiosError(error);
+      return null;
+    }
+  }
+
+  async video(params?: YoutubeVideoParams) {
+    try {
+      const { data: { items } } = await ax.get<YoutubeVideosResponse>('/videos', {
+        params
+      });
+      return items[0];
+    } catch (error) {
+      handleAxiosError(error);
+      return null;
     }
   }
 }

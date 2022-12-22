@@ -1,13 +1,13 @@
 import { createGlobalStyle } from "styled-components";
 import { normalize } from 'styled-normalize';
 
-// import { Montserrat } from '@next/font/google';
+import { Montserrat } from '@next/font/google';
 
-// const montserrat = Montserrat({
-//   weight: ["300", "500", "700", "800"]
-// });
+const montserrat = Montserrat({
+  subsets: ['latin']
+});
 
-/* font-family: ${montserrat.style.fontFamily}; */
+export const baseRem = 10;
 
 const GlobalStyle = createGlobalStyle`
   ${normalize}
@@ -17,6 +17,7 @@ const GlobalStyle = createGlobalStyle`
   }
 
   :root {
+    --base-rem: ${baseRem}px;
     --color-red: #FF0000;
     --color-black: #0A0B0C;
     --color-background-blue: #101113;
@@ -29,12 +30,13 @@ const GlobalStyle = createGlobalStyle`
     --sidebar-icon-size: 2.1em;
     --sidebar-items-display: initial;
 
-    font-size: 10px;
+    font-size: var(--base-rem);
   }
 
   body {
-    font-family: 'Montserrat', sans-serif;
+    font-family: ${montserrat.style.fontFamily};
     color: var(--color-light);
+    letter-spacing: .1px;
     background-color: var(--color-background-gray);
     padding-right: 30px;
   }

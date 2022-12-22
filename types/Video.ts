@@ -1,4 +1,4 @@
-export interface IVideoThumbnail {
+export interface IThumbnail {
   height: number;
   width: number;
   url: string;
@@ -14,11 +14,11 @@ export type IVideoPreview = {
     liveBroadcastContent: boolean;
     publishedAt: string;
     thumbnails: {
-      default: IVideoThumbnail,
-      standart: IVideoThumbnail,
-      medium: IVideoThumbnail,
-      high: IVideoThumbnail,
-      maxres?: IVideoThumbnail
+      default: IThumbnail,
+      standart: IThumbnail,
+      medium: IThumbnail,
+      high: IThumbnail,
+      maxres?: IThumbnail
     }
   };
   contentDetails: {

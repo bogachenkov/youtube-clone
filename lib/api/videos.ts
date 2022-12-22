@@ -1,6 +1,6 @@
-import { IVideo, IVideoPreview } from "../../types/Video";
-import redis from "../redis";
-import YoutubeAPI from "./youtube";
+import { IVideo, IVideoPreview } from "@ts-types/Video";
+import redis from "@lib/redis";
+import YoutubeAPI from "@api/youtube";
 
 export type YoutubeApiResponse = {
   items: IVideo[]
@@ -22,7 +22,6 @@ class VideosAPI {
         q: 'christmas lofi'
       });
 
-      console.log(items)
       await redis.set('homepage_cache', JSON.stringify(items), {
         ex: 60 * 60 * 24
       });

@@ -15,6 +15,8 @@ export const StyledLogoLink = styled(Link)`
 export const StyledSidebar = styled.aside`
   --sidebar-padding-h: 3em;
   height: 100vh;
+  position: sticky;
+  top: 0;
   width: var(--sidebar-width);
   overflow: hidden;
   padding: 3.9em var(--sidebar-padding-h) 0;

@@ -1,6 +1,6 @@
 import React from 'react';
-import { SidebarSectionType } from '../../../const/navigation';
-import SidebarLink from '../SidebarLink';
+import { SidebarSectionType } from '@const/navigation';
+import SidebarLink from '@modules/Sidebar/SidebarLink';
 import { StyledSection, StyledSectionName } from './styled';
 
 interface ISidebarSectionProps extends SidebarSectionType {

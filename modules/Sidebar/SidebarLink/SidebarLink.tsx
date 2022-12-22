@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 import React from 'react';
-import { SectionLinkType } from '../../../const/navigation';
+import { SectionLinkType } from '@const/navigation';
 import { StyledLink, StyledLinkIconWrapper, StyledLinkLabel } from './styled';
 
 

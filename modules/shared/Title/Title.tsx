@@ -1,31 +1,35 @@
-import React from 'react';
+import React, { ComponentPropsWithoutRef } from 'react';
+import { baseRem } from 'styles/globalStyles';
 import { StyledTitle } from './styled';
 
-interface ITitleProps {
+interface ITitleProps extends  ComponentPropsWithoutRef<'h1'> {
   children?: React.ReactNode;
   size?: number;
   level?: 1 | 2 | 3 | 4 | 5 | 6;
 }
 
-const Title:React.FC<ITitleProps> = ({
+const Title = React.forwardRef<HTMLTitleElement, ITitleProps>(({
   size = 24,
   level = 2,
   children,
+  style,
   ...props
-}) => {
+}, ref) => {
   const tag = `h${level}` as keyof JSX.IntrinsicElements;
 
   return (
     <StyledTitle 
       as={tag}
       style={{
-        ['--title-f-size' as string]: `${size/10}rem`
+        ['--title-f-size' as string]: `${size/baseRem}rem`,
+        ...style
       }}
       {...props}
+      ref={ref}
     >
       {children}
     </StyledTitle>
   );
-}
+})
 
 export default Title;

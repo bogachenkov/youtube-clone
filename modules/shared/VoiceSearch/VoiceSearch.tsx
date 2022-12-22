@@ -1,7 +1,7 @@
 import { KeyboardVoiceOutlined, SearchOutlined } from '@mui/icons-material';
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
 import React, { forwardRef, useEffect } from 'react';
-import Input from '../Input';
+import Input from '@shared/Input';
 import { StyledVoiceButton, StyledVoiceSearch } from './styled';
 
 interface IVoiceSearchProps {

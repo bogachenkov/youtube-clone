@@ -1,11 +1,18 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import styled from 'styled-components';
 import Text from '../Text';
 import { StyledTitle } from '../Title/styled';
 import { StyledVideoDuration } from '../VideoDuration/styled';
 
+export const StyledVideoCardLink = styled(Link)`
+  text-decoration: none;
+  color: inherit;
+`;
+
 export const StyledVideoCard = styled.div`
   & > header {
+    width: 100%;
     position: relative;
     aspect-ratio: 302 / 175;
     border-radius: 10px;
@@ -38,9 +45,7 @@ export const StyledChannelName = styled(Text)`
 
 export const StyledThumb = styled(Image)`
   width: 100%;
-`;
-
-export const StyledDetailsRow = styled.footer`
-  display: flex;
-  gap: 1.5em;
+  object-fit: cover;
+  object-position: center;
+  overflow: hidden;
 `;
