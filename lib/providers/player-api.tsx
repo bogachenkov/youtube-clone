@@ -37,7 +37,7 @@ type API = {
   togglePlaying: VoidFunction;
   toggleMute: VoidFunction;
   toggleFullscreen: VoidFunction;
-  setVolume: (volume: number) => void;
+  updateVolume: (volume: number) => void;
   updateTimings: (args: UpdateTimingsArgs) => void;
 };
 
@@ -63,7 +63,7 @@ const PlayerAPIContext = createContext<API>({} as API);
 
 export const PlayerDataProvider = ({ children }: { children: ReactNode }) => {
   const [isPlaying, togglePlaying] = useToggle(true);
-  const [isMuted, toggleMute] = useToggle(true);
+  const [isMuted, setMute] = useState(true);
   const [isFullscreen, setFullscreen] = useState(false);
 
   const [volume, setVolume] = useState(50);
@@ -134,11 +134,22 @@ export const PlayerDataProvider = ({ children }: { children: ReactNode }) => {
       }); 
     };
 
+    const updateVolume = (val: number) => {
+      if (!videoRef.current) return;
+      videoRef.current.volume = val / 100;
+      setVolume(val);
+      setMute(mute => {
+        if (mute && val > 0) return false;
+        if (!mute && val === 0) return true;
+        return mute;
+      })
+    }
+
     return { 
       togglePlaying,
-      toggleMute,
+      toggleMute: () => setMute(mute => !mute),
       toggleFullscreen,
-      setVolume,
+      updateVolume,
       updateTimings
     };
   }, []);

@@ -21,4 +21,4 @@ const VideoControls:React.FC<IVideoControlsProps> = () => {
   );
 }
 
-export default VideoControls;
+export default React.memo(VideoControls);

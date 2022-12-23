@@ -32,4 +32,4 @@ const PlayControls:React.FC<IPlayControlsProps> = () => {
   );
 }
 
-export default React.memo(PlayControls);
+export default PlayControls;

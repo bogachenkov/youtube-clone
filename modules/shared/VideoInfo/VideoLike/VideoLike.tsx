@@ -24,7 +24,7 @@ const VideoLike:React.FC<IVideoLikeProps> = ({
   return (
     <StyledLikeButton
       style={{
-        ['--like-button-color' as string]: isVideoLiked ? 'red' : 'var(--color-white)'
+        ['--like-button-color' as string]: isVideoLiked ? 'red' : 'var(--color-light)'
       }}
       onClick={() => toggleLike(video_id as string)}
     >

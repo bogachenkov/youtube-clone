@@ -6,7 +6,7 @@ export const StyledMetadataControls = styled(Row)`
     padding: 0;
     background: none;
     border: none;
-    color: var(--color-white);
+    color: var(--color-light);
     font-size: 2.6rem;
     display: inline-flex;
     align-items: center;

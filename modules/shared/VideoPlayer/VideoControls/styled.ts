@@ -16,7 +16,7 @@ export const StyledVideoControls = styled.div`
   & button {
     background: none;
     border: none;
-    color: var(--color-white);
+    color: var(--color-light);
     padding: 0;
     line-height: 1;
     display: inline-flex;

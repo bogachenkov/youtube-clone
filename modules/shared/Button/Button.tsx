@@ -13,7 +13,7 @@ const getButtonColor = (theme: IButtonProps['theme']) => {
     case 'primary':
       return ({
         bg: 'red',
-        color: 'var(--color-white)'
+        color: 'var(--color-light)'
       });
     case 'secondary':
       return ({
@@ -23,7 +23,7 @@ const getButtonColor = (theme: IButtonProps['theme']) => {
     default:
       return ({
         bg: 'red',
-        color: 'var(--color-white)'
+        color: 'var(--color-light)'
       });
   }
 }
