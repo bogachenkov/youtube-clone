@@ -7,6 +7,8 @@ export const StyledButton = styled.button`
   font-weight: 600;
   color: var(--button-text-color);
   background-color: var(--button-bg-color);
-  padding: .9em 1.5em;
+  padding: var(--button-padding);
   border-radius: .55em;
+  /* display: inline-flex;
+  align-items: center; */
 `;

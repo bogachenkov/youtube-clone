@@ -8,17 +8,18 @@ import Spacer from "@shared/Spacer";
 import VideoInfo from "@shared/VideoInfo";
 import VideoPageGrid from "@shared/VideoPageGrid";
 import VideoPlayer from "@shared/VideoPlayer";
+import CommentsSection from "@modules/shared/CommentsSection";
 
 export interface UrlParams extends ParsedUrlQuery {
   video_id?: string;
 };
 
-interface HomePageProps {
+interface VideoPageProps {
 }
 
 const api = new YoutubeAPI();
 
-const VideoPage:NextPage<HomePageProps> = () => {
+const VideoPage:NextPage<VideoPageProps> = () => {
   return (
     <VideoPageGrid>
       <Container>
@@ -28,6 +29,14 @@ const VideoPage:NextPage<HomePageProps> = () => {
         />
         <Spacer vertical={32} />
         <VideoInfo />
+        <Spacer vertical={20} />
+        <hr style={{
+          height: 3,
+          border: 'none',
+          background: 'var(--color-grayDark)'
+        }} />
+        <Spacer vertical={24} />
+        <CommentsSection />
       </Container>
       <Container>
       

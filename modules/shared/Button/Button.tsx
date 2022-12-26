@@ -5,25 +5,36 @@ import { StyledButton } from './styled';
 interface IButtonProps extends ComponentPropsWithoutRef<'button'>  {
   children?: React.ReactNode;
   fontSize?: number;
-  theme?: 'primary' | 'secondary';
+  theme?: 'primary' | 'secondary' | 'text';
 }
 
-const getButtonColor = (theme: IButtonProps['theme']) => {
+const DEFAULT_PADDING = '.9em 1.5em';
+const DEFAULT_TEXT_COLOR = 'var(--color-light)';
+
+type ButtonTheme = {
+  bg: string;
+  color?: string;
+  padding?: number;
+}
+
+const getButtonThemeData = (theme: IButtonProps['theme']):ButtonTheme => {
   switch (theme) {
     case 'primary':
       return ({
         bg: 'red',
-        color: 'var(--color-light)'
       });
     case 'secondary':
       return ({
         bg: 'var(--color-grayDark)',
-        color: 'var(--color-light)'
+      });
+    case 'text':
+      return ({
+        bg: 'transparent',
+        padding: 0
       });
     default:
       return ({
         bg: 'red',
-        color: 'var(--color-light)'
       });
   }
 }
@@ -35,12 +46,14 @@ const Button = React.forwardRef<HTMLButtonElement, IButtonProps>(({
   style,
   ...props
 }, ref) => {
+  const buttonThemeData = getButtonThemeData(theme);
   return (
     <StyledButton
       style={{
         ['--button-f-size' as string]: `${fontSize/baseRem}rem`,
-        ['--button-bg-color' as string]: getButtonColor(theme).bg,
-        ['--button-text-color' as string]: getButtonColor(theme).color,
+        ['--button-bg-color' as string]: buttonThemeData.bg,
+        ['--button-text-color' as string]: buttonThemeData.color ?? DEFAULT_TEXT_COLOR,
+        ['--button-padding' as string]: buttonThemeData.padding ?? DEFAULT_PADDING,
         ...style
       }}
       ref={ref}

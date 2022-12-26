@@ -4,6 +4,7 @@ import { handleAxiosError } from "@utils/handleAxiosError";
 import qs from 'qs';
 import _ from "lodash";
 import { IChannel } from "@ts-types/Channel";
+import { ICommentThread } from "@ts-types/Comment";
 
 const ax = axios.create({
   baseURL: 'https://www.googleapis.com/youtube/v3',
@@ -32,6 +33,10 @@ export type YoutubeChannelResponse = {
   items: IChannel[];
 }
 
+export type YoutubeCommentThreadResponse = {
+  items: ICommentThread[];
+}
+
 type YoutubeVideoPart = 'contentDetails' |
                         'fileDetails' |
                         'id' |
@@ -47,6 +52,8 @@ type YoutubeVideoPart = 'contentDetails' |
                         'topicDetails';
 
 type YoutubeChannelPart = 'snippet' | 'id' | 'statistics' | 'status';
+
+type YoutubeCommentThreadPart = 'id' | 'snippet' | 'replies';
 
 interface YoutubeCommonParams {
   location?: string;
@@ -66,6 +73,10 @@ export interface YoutubeVideoListParams extends YoutubeCommonParams {
 export interface YoutubeChannelParams extends YoutubeCommonParams {
   part: YoutubeChannelPart[];
   id: [string];
+}
+export interface YoutubeCommentThreadsParams extends YoutubeCommonParams {
+  part: YoutubeCommentThreadPart[];
+  videoId: string;
 }
 
 export interface YoutubeVideoParams extends YoutubeCommonParams {
@@ -131,31 +142,42 @@ class YoutubeAPI {
     }
   }
 
-  async comments(params?: YoutubeChannelParams) {
+  async commentThreads(params?: YoutubeCommentThreadsParams) {
     try {
-      const { data: { items } } = await ax.get<YoutubeVideosResponse>('/commentThreads', {
+      const { data: { items } } = await ax.get<YoutubeCommentThreadResponse>('/commentThreads', {
         params
       });
-      return items[0];
+      return items;
     } catch (error) {
       handleAxiosError(error);
-      return null;
+      return [];
     }
   }
 
-  async videoById(params?: YoutubeVideoParams) {
+  async videoById(params: YoutubeVideoParams) {
     try {
       const { data: { items } } = await ax.get<YoutubeVideosResponse>('/videos', {
         params
       });
+
       const video = items[0];
-      console.log(video.snippet.channelId);
+
+      let comments: ICommentThread[] = [];
+
+      if (video.statistics.commentCount > 0) {
+        comments = await this.commentThreads({
+          videoId: params.id[0],
+          part: ['snippet', 'replies']
+        });
+      }
+
       const channel = await this.channelByID({
         id: [video.snippet.channelId],
         part: ['snippet', 'statistics', 'status']
       });
       return {
         video,
+        comments,
         channel
       };
     } catch (error) {

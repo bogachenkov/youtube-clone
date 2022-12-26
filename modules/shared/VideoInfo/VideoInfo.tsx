@@ -1,8 +1,5 @@
-import { useQuery } from '@tanstack/react-query';
 import dynamic from 'next/dynamic';
-import { useRouter } from 'next/router';
 import React from 'react';
-import YoutubeAPI from '@api/youtube';
 import DoneOutlinedIcon from '@mui/icons-material/DoneOutlined';
 
 import { } from './styled';
@@ -16,6 +13,7 @@ import Avatar from '../Avatar';
 import Expand from '../Expand';
 import Text from '../Text';
 import { intToString } from '@lib/utils/intToString';
+import { useVideoData } from '@lib/hooks/useVideoData';
 const SubscribeButton = dynamic(() => import('./SubscribeButton'), { ssr: false })
 
 
@@ -23,17 +21,8 @@ interface IVideoInfoProps {
   children?: React.ReactNode;
 }
 
-const api = new YoutubeAPI();
-
 const VideoInfo:React.FC<IVideoInfoProps> = (props) => {
-  const { query } = useRouter()
-  const { data } = useQuery({ 
-    queryKey: ['watch', query.video_id], 
-    queryFn: () => api.videoById({
-      part: ['snippet', 'contentDetails', 'statistics'],
-      id: [query.video_id as string]
-    })
-  });
+  const data = useVideoData();
 
   // TODO: Video loading skeleton
   if (!data) return (

@@ -7,7 +7,6 @@ import { StyledVolumeProgress, StyleProgressWrapper } from './styled';
 import { usePlayerAPI, usePlayerMuted, usePlayerVolume } from '@lib/providers/player-api';
 import Row from '../Row';
 import useAccordion from '@lib/hooks/useAccordion';
-import { useToggle } from '@lib/hooks/useToggle';
 import { animated } from 'react-spring';
 
 interface IVolumeControlProps {
