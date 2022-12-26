@@ -2,6 +2,7 @@ import { IComment, ICommentThread } from '@ts-types/Comment';
 import create from 'zustand';
 import { persist } from 'zustand/middleware';
 import { v4 as uuid } from 'uuid';
+import CommentThread from '@lib/api/commentThread';
 
 type CommentArgs = {
   commentText: string;
@@ -10,7 +11,7 @@ type CommentArgs = {
 
 interface ICommentsState {
   comments: ICommentThread[];
-  addComment: (args: CommentArgs) => void;
+  addCommentThread: (args: CommentArgs) => void;
   removeComment: (id: string) => void;
 }
 
@@ -18,41 +19,11 @@ export const useCommentsStore = create<ICommentsState>()(
   persist(
     (set, get) => ({
       comments: [],
-      addComment: ({
+      addCommentThread: ({
         commentText,
         videoId
       }) => {
-        const newComment:ICommentThread = {
-          id: uuid(),
-          replies: {
-            comments: []
-          },
-          snippet: {
-            canReply: true,
-            isPublic: true,
-            totalReplyCount: 0,
-            topLevelComment: {
-              id: uuid(),
-              snippet: {
-                authorDisplayName: 'John Doe',
-                authorChannelId: {
-                  value: 'johndoeexample'
-                },
-                authorProfileImageUrl: 'someurl',
-                authorChannelUrl: 'johndoeexample',
-                canRate: true,
-                likeCount: 0,
-                parentId: 'parentId',
-                textDisplay: commentText,
-                textOriginal: commentText,
-                videoId,
-                publishedAt: (new Date()).toISOString(),
-                updatedAt: (new Date()).toISOString()
-              }
-            }
-          }
-        };
-
+        const newComment = new CommentThread(commentText, videoId);
         set({
           comments: [...get().comments, newComment]
         })

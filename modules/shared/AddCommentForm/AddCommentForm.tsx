@@ -1,4 +1,5 @@
 import { useCommentsStore } from '@lib/store';
+import { useRouter } from 'next/router';
 import React, { useRef, useState } from 'react';
 import Avatar from '../Avatar';
 import Button from '../Button';
@@ -7,13 +8,18 @@ import { StyledCommentForm, StyledCommentInput } from './styled';
 
 interface IAddCommentFormProps {
   children?: React.ReactNode;
+  commentType?: 'thread' | 'comment';
 }
 
-const AddCommentForm:React.FC<IAddCommentFormProps> = (props) => {
+const AddCommentForm:React.FC<IAddCommentFormProps> = ({
+  commentType = 'thread'
+}) => {
   const [text, setText] = useState('');
-  const { addComment } = useCommentsStore();
+  const { addCommentThread } = useCommentsStore();
   const defaultValue = useRef(text);
   const inputRef = useRef<HTMLSpanElement>(null);
+  const { query } = useRouter();
+  const videoId = query.video_id as string;
 
   const handleInput:React.FormEventHandler<HTMLSpanElement> = (e) => {
     setText(e.currentTarget.innerHTML);
@@ -22,8 +28,8 @@ const AddCommentForm:React.FC<IAddCommentFormProps> = (props) => {
   const handleFormSubmit:React.FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
     const commentText = text.replace(/<div>/gi,'<br>').replace(/<\/div>/gi,'');
-    addComment({
-      videoId: '18yFKXsjlgI',
+    addCommentThread({
+      videoId,
       commentText
     });
     setText('');
