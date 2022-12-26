@@ -26,6 +26,7 @@ const getButtonThemeData = (theme: IButtonProps['theme']):ButtonTheme => {
     case 'secondary':
       return ({
         bg: 'var(--color-grayDark)',
+        color: 'var(--color-grayLight)'
       });
     case 'text':
       return ({

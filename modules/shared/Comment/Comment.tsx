@@ -58,9 +58,9 @@ const Comment:React.FC<ICommentProps> = ({
           </Text>
         </Row>
         <Spacer vertical={11} />
-        <Text size={13} color={'var(--color-light)'} weight='thin'>
-          {textDisplay}
-        </Text>
+        <Text size={13} color={'var(--color-light)'} weight='thin' dangerouslySetInnerHTML={{
+          __html: textDisplay
+        }} />
         <Spacer vertical={16} />
         <Row gap={22}>
           <Button theme='text'>
