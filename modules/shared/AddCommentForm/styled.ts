@@ -8,6 +8,7 @@ export const StyledCommentForm = styled.form`
   align-items: flex-start;
   gap: 1.4em;
   padding: 1.3em 2.8em;
+  width: 100%;
 `;
 
 export const StyledCommentInput = styled.span`

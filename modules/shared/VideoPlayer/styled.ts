@@ -1,5 +1,9 @@
 import styled from 'styled-components';
 
+export const StyledVideoWrapper = styled.div`
+  aspect-ratio: 16 / 9;
+`;
+
 export const StyledVideoPlayer = styled.div`
   position: relative;
   overflow: hidden;

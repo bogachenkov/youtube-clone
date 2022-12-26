@@ -1,25 +1,25 @@
+import { useVideoId } from '@lib/hooks/useVideoId';
 import { useCommentsStore } from '@lib/store';
-import { useRouter } from 'next/router';
 import React, { useRef, useState } from 'react';
 import Avatar from '../Avatar';
 import Button from '../Button';
-import Row from '../Row';
 import { StyledCommentForm, StyledCommentInput } from './styled';
 
 interface IAddCommentFormProps {
   children?: React.ReactNode;
-  commentType?: 'thread' | 'comment';
+  parentId?: string;
+  onSubmit?: VoidFunction;
 }
 
 const AddCommentForm:React.FC<IAddCommentFormProps> = ({
-  commentType = 'thread'
+  parentId,
+  onSubmit
 }) => {
   const [text, setText] = useState('');
-  const { addCommentThread } = useCommentsStore();
+  const { addCommentThread, addComment } = useCommentsStore();
   const defaultValue = useRef(text);
   const inputRef = useRef<HTMLSpanElement>(null);
-  const { query } = useRouter();
-  const videoId = query.video_id as string;
+  const videoId = useVideoId();
 
   const handleInput:React.FormEventHandler<HTMLSpanElement> = (e) => {
     setText(e.currentTarget.innerHTML);
@@ -28,13 +28,22 @@ const AddCommentForm:React.FC<IAddCommentFormProps> = ({
   const handleFormSubmit:React.FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
     const commentText = text.replace(/<div>/gi,'<br>').replace(/<\/div>/gi,'');
-    addCommentThread({
-      videoId,
-      commentText
-    });
+    if (parentId) {
+      addComment(
+        commentText,
+        videoId,
+        parentId
+      );
+    } else {
+      addCommentThread(
+        commentText,
+        videoId,
+      );
+    }
     setText('');
     defaultValue.current = '';
     if (inputRef.current) inputRef.current.innerHTML = '';
+    if (onSubmit) onSubmit();
   }
   return (
     <StyledCommentForm

@@ -10,6 +10,8 @@ import Row from '../Row';
 import Spacer from '../Spacer';
 import { useToggle } from '@lib/hooks/useToggle';
 import useAccordion from '@lib/hooks/useAccordion';
+import { useCommentsStore } from '@lib/store';
+import { sortByDate } from '@lib/utils/sortByDate';
 
 interface ICommentsThreadProps {
   children?: React.ReactNode;
@@ -28,24 +30,34 @@ const CommentsThread:React.FC<ICommentsThreadProps> = ({
       isPublic,
       topLevelComment
     },
+    id,
     replies
   } = thread;
+  const { comments } = useCommentsStore();
   const [showReplies, toggleReplies] = useToggle();
   const { ref, style } = useAccordion({
-    isOpen: showReplies
+    isOpen: showReplies,
+    duration: 150
   });
 
   if (!isPublic) return null;
 
+  const localReplies = comments.filter(comm => comm.snippet.parentId === id);
+  const withLocalReplies = sortByDate([
+    ...(!!replies ? replies.comments : []),
+    ...localReplies
+  ]);
+
+
   return (
-    <Comment comment={topLevelComment} canReply={canReply} margin={CommentMargin}>
+    <Comment isParent comment={topLevelComment} canReply={canReply} margin={CommentMargin}>
       {
-        totalReplyCount > 0 && (
+        withLocalReplies.length > 0 && (
           <>
             <Spacer vertical={8} />
             <Button theme='text' onClick={toggleReplies}>
               <Row gap={7}>
-                {showReplies ? 'Hide' : 'View'} {totalReplyCount} repl{totalReplyCount === 1 ? 'y' : 'ies'} 
+                {showReplies ? 'Hide' : 'View'} {totalReplyCount || withLocalReplies.length} repl{withLocalReplies.length === 1 ? 'y' : 'ies'} 
                 {
                   showReplies ?
                   <ExpandLessOutlinedIcon fontSize='large' /> :
@@ -57,7 +69,7 @@ const CommentsThread:React.FC<ICommentsThreadProps> = ({
               <div ref={ref}>
                 <Spacer vertical={12} />
                 {
-                  !!replies && replies.comments.map(comm => <Comment key={comm.id}  margin={CommentMargin / 2} comment={comm} />)
+                  withLocalReplies.map(comm => <Comment key={comm.id}  margin={CommentMargin / 2} comment={comm} />)
                 }
               </div>
             </a.div>

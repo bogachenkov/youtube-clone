@@ -12,7 +12,8 @@ import CommentsThread from '../CommentsThread';
 import Spacer from '../Spacer';
 import AddCommentForm from '../AddCommentForm';
 import { useCommentsStore } from '@lib/store';
-import dayjs from 'dayjs';
+import { useVideoId } from '@lib/hooks/useVideoId';
+import { sortByDate } from '@lib/utils/sortByDate';
 
 interface ICommentsSectionProps {
   children?: React.ReactNode;
@@ -20,7 +21,8 @@ interface ICommentsSectionProps {
 
 const CommentsSection:React.FC<ICommentsSectionProps> = (props) => {
   const data = useVideoData();
-  const { comments } = useCommentsStore();
+  const { threads } = useCommentsStore();
+  const videoId = useVideoId();
 
   if (!data) return (
     <div>Loading...</div>
@@ -32,18 +34,12 @@ const CommentsSection:React.FC<ICommentsSectionProps> = (props) => {
     </Title>
   )
 
-  const localComments = comments.filter(comm => comm.snippet.topLevelComment.snippet.videoId === '18yFKXsjlgI');
+  const localComments = threads.filter(thread => thread.snippet.topLevelComment.snippet.videoId === videoId);
 
-  const withLocalComments = [
+  const withLocalComments = sortByDate([
     ...data.comments,
     ...localComments
-  ].sort((a,b) => {
-    const aDate = a.snippet.topLevelComment.snippet.publishedAt;
-    const bDate = b.snippet.topLevelComment.snippet.publishedAt;
-    if (dayjs(aDate).isBefore(bDate)) return 1;
-    if (dayjs(aDate).isSame(bDate)) return 0;
-    return -1;
-  })
+  ]);
 
   return (
     <section>

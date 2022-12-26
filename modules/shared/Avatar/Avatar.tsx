@@ -8,15 +8,17 @@ interface IAvatarProps {
 }
 
 const Avatar:React.FC<IAvatarProps> = ({
-  src = 'https://storage.jewheart.com/content/users/avatars/1864/avatar_1864_500.jpg?1558624002',
+  src = '/assets/avatar_default.jpg',
   size = 26,
 }) => {
   return (
-    <StyledAvatar 
+    <StyledAvatar
       alt='Avatar' 
       src={src} 
       height={size} 
-      width={size} 
+      width={size}
+      loading={'lazy'}
+      priority={false}
     />
   );
 }

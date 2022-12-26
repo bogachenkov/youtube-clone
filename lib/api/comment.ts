@@ -3,13 +3,14 @@ import { v4 } from "uuid";
 
 class Comment implements IComment {
   id: string;
+  readonly kind = 'youtube#comment';
   snippet = {
     videoId: '',
     textDisplay: '',
     textOriginal: '',
     parentId: '',
     authorDisplayName: 'John Doe',
-    authorProfileImageUrl: 'johndoeavatar',
+    authorProfileImageUrl: '/assets/avatar_default.jpg',
     authorChannelUrl: 'johndoeunofficial',
     authorChannelId: {
       value: 'johndoeunofficial',
@@ -28,5 +29,7 @@ class Comment implements IComment {
     this.snippet.textOriginal = commentText;
   }
 }
+
+export type CommentArgs = ConstructorParameters<typeof Comment>;
 
 export default Comment;

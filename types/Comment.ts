@@ -1,4 +1,5 @@
 export interface IComment {
+  kind: "youtube#comment";
   id: string;
   snippet: {
     videoId: string;
@@ -19,6 +20,7 @@ export interface IComment {
 }
 
 export interface ICommentThread {
+  kind: "youtube#commentThread";
   id: string;
   snippet: {
     topLevelComment: IComment;

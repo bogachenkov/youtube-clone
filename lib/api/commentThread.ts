@@ -4,6 +4,7 @@ import Comment from "./comment";
 
 class CommentThread implements ICommentThread {
   id: string;
+  readonly kind = 'youtube#commentThread';
   snippet: ICommentThread['snippet'];
   replies = {
     comments: []
@@ -20,4 +21,7 @@ class CommentThread implements ICommentThread {
     }
   }
 }
+
+export type CommentThreadArgs = ConstructorParameters<typeof CommentThread>;
+
 export default CommentThread;

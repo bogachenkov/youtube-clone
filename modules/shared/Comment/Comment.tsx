@@ -1,5 +1,6 @@
 import { IComment } from '@ts-types/Comment';
 import React from 'react';
+import { animated as a } from 'react-spring';
 import Avatar from '../Avatar';
 import Row from '../Row';
 import Text from '../Text';
@@ -12,21 +13,28 @@ import { getRelativeDate } from '@lib/utils/getRelativeDate';
 import Button from '../Button';
 import { intToString } from '@utils/intToString';
 import { isNumber } from 'lodash';
+import { useToggle } from '@lib/hooks/useToggle';
+import AddCommentForm from '../AddCommentForm';
+import useAccordion from '@lib/hooks/useAccordion';
+import Expand from '../Expand';
 
 interface ICommentProps {
   children?: React.ReactNode;
   comment: IComment;
   canReply?: boolean;
+  isParent?: boolean;
   margin?: number | string;
 }
 
 const Comment:React.FC<ICommentProps> = ({
   comment,
   canReply = true,
+  isParent = false,
   margin = 0,
   children
 }) => {
   const {
+    id,
     snippet: {
       authorProfileImageUrl,
       authorDisplayName,
@@ -34,9 +42,16 @@ const Comment:React.FC<ICommentProps> = ({
       publishedAt,
       likeCount,
       canRate,
-      textDisplay
+      textDisplay,
+      parentId
     }
   } = comment;
+  const [showForm, toggleShowForm] = useToggle();
+  const { style, ref } = useAccordion({
+    isOpen: showForm,
+    duration: 100
+  });
+
   return (
     <StyledComment 
       style={{
@@ -45,9 +60,8 @@ const Comment:React.FC<ICommentProps> = ({
       gap={16} 
       align='flex-start'
     >
-      {/* <Avatar src={authorProfileImageUrl} /> */}
-      <Avatar size={33} />
-      <div>
+      <Avatar size={33} src={authorProfileImageUrl} />
+      <Expand>
         <Spacer vertical={5} />
         <Row gap={16}>
           <Text size={13} color={'var(--color-light)'} weight='bold'>
@@ -63,27 +77,36 @@ const Comment:React.FC<ICommentProps> = ({
         }} />
         <Spacer vertical={16} />
         <Row gap={22}>
-          <Button theme='text'>
+          <Button theme='text' disabled={!canRate}>
             <Row gap={8}>
               <ThumbUpOutlinedIcon fontSize='medium' />
               {intToString(likeCount)}
             </Row>
           </Button>
           <Row gap={10}>
-            <Button theme='text'>
+            <Button theme='text' disabled={!canRate}>
               <ThumbDownOutlinedIcon fontSize='medium' />
             </Button>
             {
               canReply && (
-                <Button theme='text'>
-                  Reply
+                <Button theme='text' onClick={toggleShowForm}>
+                  {showForm ? 'Cancel' : 'Reply'}
                 </Button>
               )
             }
           </Row>
         </Row>
+        <a.div style={style}>
+          <div ref={ref}>
+            <Spacer vertical={16} />
+            <AddCommentForm
+              parentId={parentId || id}
+              onSubmit={toggleShowForm}
+            />
+          </div>
+        </a.div>
         {children}
-      </div>
+      </Expand>
     </StyledComment>
   );
 }
