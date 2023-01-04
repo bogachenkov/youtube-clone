@@ -26,6 +26,7 @@ const GlobalStyle = createGlobalStyle`
     --color-grayDark: #1D1F22;
     --color-grayLight: #AEB1B9;
     --color-light: #F1F2F3;
+    --color-sign-bg: #0d0c16;
 
     --sidebar-icon-size: 2.1em;
     --sidebar-items-display: initial;
@@ -39,7 +40,7 @@ const GlobalStyle = createGlobalStyle`
     color: var(--color-light);
     letter-spacing: .1px;
     background-color: var(--color-background-gray);
-    padding-right: 30px;
+    /* padding-right: 30px; */
   }
 `;
 

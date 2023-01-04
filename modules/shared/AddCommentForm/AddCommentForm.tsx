@@ -16,7 +16,10 @@ const AddCommentForm:React.FC<IAddCommentFormProps> = ({
   onSubmit
 }) => {
   const [text, setText] = useState('');
-  const { addCommentThread, addComment } = useCommentsStore();
+  const { addCommentThread, addComment } = useCommentsStore(({ addComment, addCommentThread }) => ({
+    addComment,
+    addCommentThread
+  }));
   const defaultValue = useRef(text);
   const inputRef = useRef<HTMLSpanElement>(null);
   const videoId = useVideoId();

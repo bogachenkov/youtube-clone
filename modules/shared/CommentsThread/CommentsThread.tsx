@@ -33,7 +33,7 @@ const CommentsThread:React.FC<ICommentsThreadProps> = ({
     id,
     replies
   } = thread;
-  const { comments } = useCommentsStore();
+  const comments = useCommentsStore(store => store.comments);
   const [showReplies, toggleReplies] = useToggle();
   const { ref, style } = useAccordion({
     isOpen: showReplies,

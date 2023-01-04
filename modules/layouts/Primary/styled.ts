@@ -9,6 +9,7 @@ export const StyledLayout = styled.div`
   grid-auto-columns: auto 1fr;
   grid-template-rows: auto 1fr;
   column-gap: 3rem;
+  padding-right: 30px;
 `;
 
 export const StyledMain = styled.main`

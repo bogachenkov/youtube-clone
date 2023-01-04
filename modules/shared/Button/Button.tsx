@@ -5,6 +5,7 @@ import { StyledButton } from './styled';
 interface IButtonProps extends ComponentPropsWithoutRef<'button'>  {
   children?: React.ReactNode;
   fontSize?: number;
+  fontColor?: string;
   theme?: 'primary' | 'secondary' | 'text';
 }
 
@@ -44,6 +45,7 @@ const Button = React.forwardRef<HTMLButtonElement, IButtonProps>(({
   children,
   fontSize = 13,
   theme = 'primary',
+  fontColor,
   style,
   ...props
 }, ref) => {
@@ -53,7 +55,7 @@ const Button = React.forwardRef<HTMLButtonElement, IButtonProps>(({
       style={{
         ['--button-f-size' as string]: `${fontSize/baseRem}rem`,
         ['--button-bg-color' as string]: buttonThemeData.bg,
-        ['--button-text-color' as string]: buttonThemeData.color ?? DEFAULT_TEXT_COLOR,
+        ['--button-text-color' as string]: buttonThemeData.color ?? fontColor ?? DEFAULT_TEXT_COLOR,
         ['--button-padding' as string]: buttonThemeData.padding ?? DEFAULT_PADDING,
         ...style
       }}

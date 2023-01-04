@@ -21,7 +21,7 @@ interface ICommentsSectionProps {
 
 const CommentsSection:React.FC<ICommentsSectionProps> = (props) => {
   const data = useVideoData();
-  const { threads } = useCommentsStore();
+  const threads = useCommentsStore(store => store.threads);
   const videoId = useVideoId();
 
   if (!data) return (

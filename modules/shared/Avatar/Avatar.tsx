@@ -1,3 +1,4 @@
+import { DEFAULT_USER_AVATAR } from '@const/data';
 import React from 'react';
 import { StyledAvatar } from './styled';
 
@@ -8,7 +9,7 @@ interface IAvatarProps {
 }
 
 const Avatar:React.FC<IAvatarProps> = ({
-  src = '/assets/avatar_default.jpg',
+  src = DEFAULT_USER_AVATAR,
   size = 26,
 }) => {
   return (

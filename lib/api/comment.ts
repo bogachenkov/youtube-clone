@@ -1,3 +1,4 @@
+import { DEFAULT_USER_AVATAR } from "@const/data";
 import { IComment } from "@ts-types/Comment";
 import { v4 } from "uuid";
 
@@ -10,7 +11,7 @@ class Comment implements IComment {
     textOriginal: '',
     parentId: '',
     authorDisplayName: 'John Doe',
-    authorProfileImageUrl: '/assets/avatar_default.jpg',
+    authorProfileImageUrl: DEFAULT_USER_AVATAR,
     authorChannelUrl: 'johndoeunofficial',
     authorChannelId: {
       value: 'johndoeunofficial',
