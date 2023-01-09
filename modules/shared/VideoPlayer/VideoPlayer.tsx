@@ -32,7 +32,7 @@ const VideoPlayer:React.FC<IVideoPlayerProps> = ({
   const timeIntervalRef = useRef<NodeJS.Timer>();
 
   const { video, container } = usePlayerRefs();
-  const { updateTimings } = usePlayerAPI();
+  const { updateTimings, togglePlaying } = usePlayerAPI();
   const isMuted = usePlayerMuted();
 
   useEffect(() => {
@@ -66,6 +66,7 @@ const VideoPlayer:React.FC<IVideoPlayerProps> = ({
         ref={video}
         onPlay={handlePlay}
         onPause={handlePause}
+        onClick={togglePlaying}
         preload={'auto'}
         {...props} 
         controls={false}

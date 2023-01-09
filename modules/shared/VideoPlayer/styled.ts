@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { StyledVideoControls } from './VideoControls/styled';
 
 export const StyledVideoWrapper = styled.div`
   aspect-ratio: 16 / 9;
@@ -9,6 +10,12 @@ export const StyledVideoPlayer = styled.div`
   overflow: hidden;
   border-radius: 28px;
   aspect-ratio: 16 / 9;
+
+  &:hover {
+    & > ${StyledVideoControls} {
+      bottom: 0;
+    }
+  }
 `;
 
 export const StyledVideoElement = styled.video`

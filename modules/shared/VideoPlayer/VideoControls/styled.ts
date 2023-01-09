@@ -1,11 +1,12 @@
 import styled from 'styled-components';
 
 export const StyledVideoControls = styled.div`
+  --player-controls-height: 7.6rem;
   position: absolute;
   left: 0;
   right: 0;
-  bottom: 0;
-  height: 7.6rem;
+  bottom: -var(--player-controls-height);
+  height: var(--player-controls-height);
   padding: 0 2.5rem;
   background: rgba(0, 0, 0, .6);
   backdrop-filter: blur(10px);
