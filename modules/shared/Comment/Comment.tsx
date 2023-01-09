@@ -17,6 +17,8 @@ import { useToggle } from '@lib/hooks/useToggle';
 import AddCommentForm from '../AddCommentForm';
 import useAccordion from '@lib/hooks/useAccordion';
 import Expand from '../Expand';
+import { useSignIn } from '@lib/hooks/useSignInPush';
+import { useAuthStore } from '@lib/store';
 
 interface ICommentProps {
   children?: React.ReactNode;
@@ -29,7 +31,6 @@ interface ICommentProps {
 const Comment:React.FC<ICommentProps> = ({
   comment,
   canReply = true,
-  isParent = false,
   margin = 0,
   children
 }) => {
@@ -38,7 +39,6 @@ const Comment:React.FC<ICommentProps> = ({
     snippet: {
       authorProfileImageUrl,
       authorDisplayName,
-      authorChannelId,
       publishedAt,
       likeCount,
       canRate,
@@ -51,6 +51,8 @@ const Comment:React.FC<ICommentProps> = ({
     isOpen: showForm,
     duration: 100
   });
+  const user = useAuthStore(store => store.user);
+  const signIn = useSignIn();
 
   return (
     <StyledComment 
@@ -89,7 +91,7 @@ const Comment:React.FC<ICommentProps> = ({
             </Button>
             {
               canReply && (
-                <Button theme='text' onClick={toggleShowForm}>
+                <Button theme='text' onClick={!!user ? toggleShowForm : signIn.push}>
                   {showForm ? 'Cancel' : 'Reply'}
                 </Button>
               )
