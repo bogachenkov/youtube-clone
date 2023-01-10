@@ -4,8 +4,6 @@ import { persist } from 'zustand/middleware';
 import CommentThread, { CommentThreadArgs } from '@lib/api/commentThread';
 import Comment, { CommentArgs } from '@lib/api/comment';
 
-
-
 interface ICommentsState {
   threads: ICommentThread[];
   comments: IComment[],

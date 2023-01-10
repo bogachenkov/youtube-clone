@@ -89,7 +89,10 @@ class YoutubeAPI {
     return items.map(item => ({
       id: item.id,
       contentDetails: _.pick(item.contentDetails, 'duration'),
-      statistics: _.pick(item.statistics, 'viewCount'),
+      statistics: _.pick(item.statistics, [
+        'viewCount',
+        'likeCount'
+      ]),
       snippet: _.pick(item.snippet, [
         'categoryId',
         'channelId',

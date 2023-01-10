@@ -42,6 +42,11 @@ const GlobalStyle = createGlobalStyle`
     background-color: var(--color-background-gray);
     /* padding-right: 30px; */
   }
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
 `;
 
 export default GlobalStyle;

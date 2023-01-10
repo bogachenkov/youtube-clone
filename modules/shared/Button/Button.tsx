@@ -55,7 +55,7 @@ const Button = React.forwardRef<HTMLButtonElement, IButtonProps>(({
       style={{
         ['--button-f-size' as string]: `${fontSize/baseRem}rem`,
         ['--button-bg-color' as string]: buttonThemeData.bg,
-        ['--button-text-color' as string]: buttonThemeData.color ?? fontColor ?? DEFAULT_TEXT_COLOR,
+        ['--button-text-color' as string]: fontColor ?? buttonThemeData.color ?? DEFAULT_TEXT_COLOR,
         ['--button-padding' as string]: buttonThemeData.padding ?? DEFAULT_PADDING,
         ...style
       }}

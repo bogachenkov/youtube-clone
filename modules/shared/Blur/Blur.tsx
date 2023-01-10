@@ -3,6 +3,7 @@ import { StyledBlur } from './styled';
 
 interface IBlurProps {
   children?: React.ReactNode;
+  color?: string;
 }
 
 const Blur:React.FC<IBlurProps> = (props) => {

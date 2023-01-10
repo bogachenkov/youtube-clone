@@ -19,7 +19,7 @@ class VideosAPI {
       
       console.log('Fetching data from API');
       const items = await api.search({
-        q: 'christmas lofi'
+        q: 'ambience'
       });
 
       await redis.set('homepage_cache', JSON.stringify(items), {

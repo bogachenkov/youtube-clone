@@ -26,6 +26,7 @@ export type IVideoPreview = {
   };
   statistics: {
     viewCount: number,
+    likeCount: number;
   }
 }
 
