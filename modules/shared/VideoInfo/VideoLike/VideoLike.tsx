@@ -17,7 +17,7 @@ const VideoLike:React.FC<IVideoLikeProps> = ({
   likesCount
 }) => {
   const { query: {video_id} } = useRouter();
-  const {likedIds, toggleLike} = useLikesStore();
+  const { likedIds, toggleLike } = useLikesStore(store => store);
 
   const isVideoLiked = likedIds.includes(video_id as string);
 

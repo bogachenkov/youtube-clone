@@ -44,7 +44,7 @@ const VideoInfo:React.FC<IVideoInfoProps> = (props) => {
       />
       <Spacer vertical={32} />
       <Row align='flex-start' gap={16}>
-        <Avatar size={40} src={channel?.snippet.thumbnails.default.url} />
+        <Avatar size={40} src={channel?.snippet.thumbnails.default.url!} />
         <Expand>
           <Spacer vertical={5} />
           <Title size={13}>

@@ -1,6 +1,7 @@
 import { DEFAULT_USER_DATA } from '@const/data';
 import { User } from '@ts-types/User';
-import create from 'zustand';
+import { noop } from 'lodash';
+import { createHydratedStore, createPersistedStore } from './utils';
 
 interface IAuthState {
   user: User | null;
@@ -8,9 +9,15 @@ interface IAuthState {
   signOut: VoidFunction;
 }
 
-export const useAuthStore = create<IAuthState>(
+const defaultAuthState:IAuthState = {
+  user: null,
+  signIn: noop,
+  signOut: noop
+}
+
+const defaultAuthStore = createPersistedStore<IAuthState>(
   (set) => ({
-    user: null,
+    user: defaultAuthState.user,
     signIn: () => {
       set({
         user: DEFAULT_USER_DATA
@@ -18,8 +25,15 @@ export const useAuthStore = create<IAuthState>(
     },
     signOut: () => {
       set({
-        user: null
+        user: defaultAuthState.user
       })
     }
   }),
+  'auth-store'
 );
+
+
+export const useAuthStore = createHydratedStore(
+  defaultAuthState, 
+  defaultAuthStore
+) as typeof defaultAuthStore;

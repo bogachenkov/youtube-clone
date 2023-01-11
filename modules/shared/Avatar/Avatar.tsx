@@ -1,25 +1,29 @@
-import { DEFAULT_USER_AVATAR } from '@const/data';
-import React from 'react';
+import React, { useState } from 'react';
 import { StyledAvatar } from './styled';
 
 interface IAvatarProps {
   children?: React.ReactNode;
-  src?: string;
+  src: string;
   size?: number;
 }
 
+const placeholderUrl = 'https://www.misemacau.org/wp-content/uploads/2015/11/avatar-placeholder-01-300x250.png';
+
 const Avatar:React.FC<IAvatarProps> = ({
-  src = DEFAULT_USER_AVATAR,
+  src,
   size = 26,
 }) => {
+  const [imgSrc, setSrc] = useState(src);
+
   return (
     <StyledAvatar
       alt='Avatar' 
-      src={src} 
+      src={imgSrc} 
       height={size} 
       width={size}
-      loading={'lazy'}
-      priority={false}
+      onError={() => setSrc(placeholderUrl)}
+      placeholder='blur'
+      blurDataURL={placeholderUrl}
     />
   );
 }

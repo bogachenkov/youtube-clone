@@ -19,7 +19,7 @@ const UserSection:React.FC<IUserSectionProps> = (props) => {
     return (
       <>
         <NotificationsOutlined fontSize='inherit' />
-        <Avatar />
+        <Avatar src={user.authorProfileImageUrl} />
       </>
     )
   }

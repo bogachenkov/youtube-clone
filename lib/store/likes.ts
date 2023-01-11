@@ -1,5 +1,5 @@
-import create from 'zustand';
-import { persist } from 'zustand/middleware';
+import { noop } from 'lodash';
+import { createHydratedStore, createPersistedStore } from './utils';
 
 interface ILikesState {
   likedIds: string[];
@@ -10,17 +10,22 @@ const toggleLike = (ids: ILikesState['likedIds'], id: string) => {
   return ids.includes(id) ? ids.filter(i => i !== id) : [...ids, id]
 }
 
-export const useLikesStore = create<ILikesState>()(
-  persist(
-    (set, get) => ({
-      likedIds: [],
-      toggleLike: (id) => set({
-        likedIds: toggleLike(get().likedIds, id)
-      })
-    }),
-    {
-      name: 'likes-storage',
-      getStorage: () => sessionStorage,
-    }
-  )
+const defaultLikesState:ILikesState = {
+  likedIds: [],
+  toggleLike: noop
+}
+
+export const defaultLikesStore = createPersistedStore<ILikesState>(
+  (set, get) => ({
+    likedIds: [],
+    toggleLike: (id) => set({
+      likedIds: toggleLike(get().likedIds, id)
+    })
+  }),
+  'likes-store'
 );
+
+export const useLikesStore = createHydratedStore(
+  defaultLikesState, 
+  defaultLikesStore
+) as typeof defaultLikesStore;

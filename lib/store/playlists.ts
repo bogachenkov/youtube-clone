@@ -1,7 +1,9 @@
 import { IPlaylist } from '@ts-types/Playlist';
 import { IVideo } from '@ts-types/Video';
+import { noop } from 'lodash';
 import create from 'zustand';
 import { persist } from 'zustand/middleware';
+import { createHydratedStore, createPersistedStore } from './utils';
 
 interface IPlaylistState {
   playlists: IPlaylist[];
@@ -11,18 +13,26 @@ interface IPlaylistState {
   removeVideoFromPL: (playlistId: string, videoId: string) => void;
 }
 
-export const useLikesStore = create<IPlaylistState>()(
-  persist(
-    (set, get) => ({
-      playlists: [],
-      createPlayList: () => {},
-      removePlaylist: (id: string) => {},
-      addVideoToPL: () => {},
-      removeVideoFromPL: () => {},
-    }),
-    {
-      name: 'playlists-storage',
-      getStorage: () => sessionStorage,
-    }
-  )
-);
+const defaultPLState:IPlaylistState = {
+  playlists: [],
+  createPlayList: noop,
+  removePlaylist: noop,
+  addVideoToPL: noop,
+  removeVideoFromPL: noop
+}
+
+const defaultPLStore = createPersistedStore<IPlaylistState>(
+  (set, get) => ({
+    playlists: [],
+    createPlayList: () => {},
+    removePlaylist: (id: string) => {},
+    addVideoToPL: () => {},
+    removeVideoFromPL: () => {},
+  }),
+  'playlist-store'
+)
+
+export const usePlaylistStore = createHydratedStore(
+  defaultPLState,
+  defaultPLStore
+) as typeof defaultPLStore;

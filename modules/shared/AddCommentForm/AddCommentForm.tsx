@@ -91,7 +91,7 @@ const AddCommentForm:React.FC<IAddCommentFormProps> = ({
       onSubmit={handleFormSubmit}
     >
       {
-       isSignedIn && <Avatar size={34} />
+       isSignedIn && <Avatar src={user.authorProfileImageUrl} size={34} />
       }
       <StyledCommentInput
         ref={inputRef}

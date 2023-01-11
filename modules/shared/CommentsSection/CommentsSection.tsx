@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Row from '../Row';
 import Text from '../Text';
 import { StyledCommentBlock } from './styled';
@@ -27,6 +27,10 @@ const CommentsSection:React.FC<ICommentsSectionProps> = (props) => {
   if (!data) return (
     <div>Loading...</div>
   )
+
+  useEffect(() => {
+    console.log('Threads updated', threads);
+  }, [threads]);
 
   if (data.comments.length === 0) return (
     <Title>
