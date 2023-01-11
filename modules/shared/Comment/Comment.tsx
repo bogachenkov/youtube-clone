@@ -1,13 +1,11 @@
 import { IComment } from '@ts-types/Comment';
-import React from 'react';
+import React, { useMemo } from 'react';
 import { animated as a } from 'react-spring';
 import Avatar from '../Avatar';
 import Row from '../Row';
 import Text from '../Text';
 import { StyledComment } from './styled';
 
-import ThumbUpOutlinedIcon from '@mui/icons-material/ThumbUpOutlined';
-import ThumbDownOutlinedIcon from '@mui/icons-material/ThumbDownOutlined';
 import Spacer from '../Spacer';
 import { getRelativeDate } from '@lib/utils/getRelativeDate';
 import Button from '../Button';
@@ -18,7 +16,8 @@ import AddCommentForm from '../AddCommentForm';
 import useAccordion from '@lib/hooks/useAccordion';
 import Expand from '../Expand';
 import { useSignIn } from '@lib/hooks/useSignInPush';
-import { useAuthStore } from '@lib/store';
+import { useAuthStore, useCommentLikesStore } from '@lib/store';
+import IconWrapper from '../IconWrapper';
 
 interface ICommentProps {
   children?: React.ReactNode;
@@ -52,7 +51,20 @@ const Comment:React.FC<ICommentProps> = ({
     duration: 100
   });
   const user = useAuthStore(store => store.user);
+  const { likes, toggleLike } = useCommentLikesStore(store => store);
   const signIn = useSignIn();
+
+  const likedInfo = useMemo(() => {
+    const likeObj = likes.find(l => l.id === id);
+    const isLiked = likeObj && likeObj.liked === true;
+    const isDisliked = likeObj && likeObj.liked === false;
+
+    return {
+      isLiked,
+      isDisliked
+    }
+  }, [id, likes]);
+  
 
   return (
     <StyledComment 
@@ -79,15 +91,31 @@ const Comment:React.FC<ICommentProps> = ({
         }} />
         <Spacer vertical={16} />
         <Row gap={22}>
-          <Button theme='text' disabled={!canRate}>
+          <Button 
+            theme='text' 
+            disabled={!canRate} 
+            onClick={() => toggleLike(id, true)} 
+            fontColor={likedInfo.isLiked ? 'red' : 'inherit'}
+          >
             <Row gap={8}>
-              <ThumbUpOutlinedIcon fontSize='medium' />
-              {intToString(likeCount)}
+              <IconWrapper
+                size={15}
+                icon='ThumbUpOutlined'
+              />
+              {intToString(likeCount + (likedInfo.isLiked ? 1 : 0))}
             </Row>
           </Button>
           <Row gap={10}>
-            <Button theme='text' disabled={!canRate}>
-              <ThumbDownOutlinedIcon fontSize='medium' />
+            <Button 
+              theme='text' 
+              disabled={!canRate}
+              onClick={() => toggleLike(id, false)} 
+              fontColor={likedInfo.isDisliked ? 'red' : 'inherit'}
+            >
+              <IconWrapper
+                size={15}
+                icon='ThumbDownOutlined'
+              />
             </Button>
             {
               canReply && (
