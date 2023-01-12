@@ -1,14 +1,24 @@
 import styled from 'styled-components';
 
+export const StyledNavWrapper = styled.div`
+  width: 100%;
+  position: relative;
+  z-index: 0;
+`;
+
 export const StyledNav = styled.nav`
+  width: 100%;
   display: flex;
-  flex-shrink: 0;
+  /* flex-shrink: 0; */
   justify-content: flex-start;
   align-items: center;
   position: relative;
-  z-index: 0;
-  padding: .5rem 0;
+  z-index: 15;
+  padding: .5rem 0 .4rem;
   gap: 5rem;
+  overflow: hidden;
+  scroll-behavior: smooth;
+  padding-right: 6em;
 `;
 
 export const StyledTab = styled.button`
@@ -18,8 +28,9 @@ export const StyledTab = styled.button`
   font-size: 1.3rem;
   letter-spacing: .2px;
   padding: .45em .6em;
-  font-weight: 600;
+  font-weight: 500;
   cursor: pointer;
+  flex-shrink: 0;
 
   &:first-of-type {
     margin-left: -.6em;
@@ -27,6 +38,16 @@ export const StyledTab = styled.button`
 `;
 
 export const StyledUnderline = styled.div`
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 5;
+  height: 2px;
+  width: 100%;
+  background-color: var(--color-grayDark);
+`;
+
+export const StyledUnderlineThumb = styled.div`
   position: absolute;
   bottom: 0;
   left: 0;

@@ -15,4 +15,5 @@ export const StyledLayout = styled.div`
 
 export const StyledMain = styled.main`
   grid-area: content;
+  overflow-x: hidden;
 `;

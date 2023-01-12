@@ -1,7 +1,9 @@
 import { Tab } from '@hooks/useTabs';
+import useIsOverflowing from '@lib/hooks/useIsOverflowing';
 import React, { useEffect, useRef, useState } from 'react';
 import { easings, useSpring, useTransition, a } from 'react-spring';
-import { StyledNav, StyledTab, StyledUnderline } from './styled';
+import { StyledNav, StyledNavWrapper, StyledTab, StyledUnderline, StyledUnderlineThumb } from './styled';
+import TabsScroller from './TabsScroller';
 
 interface ITabsProps {
   children?: React.ReactNode;
@@ -10,7 +12,7 @@ interface ITabsProps {
   setSelectedTab: (input: [number, number]) => void;
 }
 
-const AnimatedUnderline = a(StyledUnderline);
+const AnimatedUnderlineThumb = a(StyledUnderlineThumb);
 
 const Tabs:React.FC<ITabsProps> = ({
   tabs,
@@ -27,12 +29,11 @@ const Tabs:React.FC<ITabsProps> = ({
 
   const navRef = useRef<HTMLDivElement>(null);
   const navRect = navRef.current?.getBoundingClientRect();
+  const isOverflowing = useIsOverflowing(navRef)
 
   const selectedRect = buttonRefs[selectedTabIndex]?.getBoundingClientRect();
 
   const [hoveredTabIndex, setHoveredTabIndex] = useState<number | null>(null);
-  const hoveredRect =
-    buttonRefs[hoveredTabIndex ?? -1]?.getBoundingClientRect();
 
   const onLeaveTabs = () => {
     setHoveredTabIndex(null);
@@ -46,17 +47,13 @@ const Tabs:React.FC<ITabsProps> = ({
     setSelectedTab([i, i > selectedTabIndex ? 1 : -1]);
   };
 
-  const stylesChangingOnUpdate =
-    hoveredRect && navRect
-      ? {
-          transform: `translate3d(${hoveredRect.left - navRect.left}px,${
-            hoveredRect.top - navRect.top
-          }px,0px)`,
-          width: hoveredRect.width,
-          height: hoveredRect.height,
-        }
-      : {};
+  const scrollLeft = () => {
+    navRef.current!.scrollLeft -= 150;
+  }
 
+  const scrollRight = () => {
+    navRef.current!.scrollLeft += 150;
+  }
 
   const underlineStyles = useSpring({
     to:
@@ -64,7 +61,7 @@ const Tabs:React.FC<ITabsProps> = ({
         ? {
             width: selectedRect.width * 0.8,
             transform: `translateX(calc(${
-              selectedRect.left - navRect.left
+              selectedRect.left - navRect.left + (navRef.current?.scrollLeft ?? 0)
             }px + 10%))`,
             opacity: 1,
           }
@@ -76,32 +73,41 @@ const Tabs:React.FC<ITabsProps> = ({
   });
 
   return (
-    <StyledNav
-      ref={navRef}
-      // className="flex flex-shrink-0 justify-center items-center relative z-0 py-2"
-      onPointerLeave={onLeaveTabs}
-    >
-      {tabs.map((item, i) => {
-        return (
-          <StyledTab
-            key={i}
-            style={{
-              ['--tab-font-color' as string]: (hoveredTabIndex === i || selectedTabIndex === i) ? '#FFF' : 'var(--color-gray)',
-            }}
-            ref={(el) => (buttonRefs[i] = el)}
-            onPointerEnter={() => onEnterTab(i)}
-            onFocus={() => onEnterTab(i)}
-            onClick={() => onSelectTab(i)}
-          >
-            {item.label}
-          </StyledTab>
-        );
-      })}
-
-      <AnimatedUnderline
-        style={underlineStyles}
-      />
-    </StyledNav>
+    <StyledNavWrapper>
+      <StyledNav
+        ref={navRef}
+        onPointerLeave={onLeaveTabs}
+      >
+        {tabs.map((item, i) => {
+          return (
+            <StyledTab
+              key={i}
+              style={{
+                ['--tab-font-color' as string]: (hoveredTabIndex === i || selectedTabIndex === i) ? '#FFF' : 'var(--color-gray)',
+              }}
+              ref={(el) => (buttonRefs[i] = el)}
+              onPointerEnter={() => onEnterTab(i)}
+              onFocus={() => onEnterTab(i)}
+              onClick={() => onSelectTab(i)}
+            >
+              {item.label}
+            </StyledTab>
+          );
+        })}
+        <AnimatedUnderlineThumb
+          style={underlineStyles}
+        />
+      </StyledNav>
+      <StyledUnderline />
+      {
+        isOverflowing && (
+          <TabsScroller
+            scrollLeft={scrollLeft}
+            scrollRight={scrollRight}
+          />
+        )
+      }
+    </StyledNavWrapper>
   );
 }
 

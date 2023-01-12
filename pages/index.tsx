@@ -3,15 +3,26 @@ import { GetServerSideProps, NextPage } from "next";
 import VideosAPI from "@api/videos";
 import HomePageVideos from "@modules/HomePageVideos";
 import Container from "@shared/Container";
+import { useTabs } from "@lib/hooks/useTabs";
+import Tabs from "@modules/shared/Tabs";
+import { CategoryTabs } from '@const/categories';
+import Spacer from "@modules/shared/Spacer";
 
 interface HomePageProps {
 }
 
 const HomePage:NextPage<HomePageProps> = () => {
+
+  const categoriesTabs = useTabs({ tabs: CategoryTabs, initialTabId: "All" });
+
   return (
-    <Container>
-      <HomePageVideos />
-    </Container>
+    <div>
+      <Tabs {...categoriesTabs.tabProps} />
+      <Spacer vertical={25} />
+      <Container>
+        <HomePageVideos />
+      </Container>
+    </div>
   )
 }
 
