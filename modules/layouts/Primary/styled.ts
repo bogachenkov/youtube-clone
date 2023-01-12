@@ -6,7 +6,7 @@ export const StyledLayout = styled.div`
     "sidebar navbar"
     "sidebar content"
   ;
-  grid-auto-columns: auto 1fr;
+  grid-auto-columns: auto minmax(0, 1fr);
   grid-template-rows: auto 1fr;
   column-gap: 3rem;
   row-gap: 1.5rem;
@@ -15,5 +15,5 @@ export const StyledLayout = styled.div`
 
 export const StyledMain = styled.main`
   grid-area: content;
-  overflow-x: hidden;
+  /* overflow-x: hidden; */
 `;

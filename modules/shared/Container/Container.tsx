@@ -1,15 +1,16 @@
 import React from 'react';
 import { StyledContainer } from './styled';
 
-interface IContainerProps {
+interface IContainerProps extends React.HTMLAttributes<HTMLDivElement> {
   children?: React.ReactNode;
 }
 
 const Container:React.FC<IContainerProps> = ({
-  children
+  children,
+  ...props
 }) => {
   return (
-    <StyledContainer>
+    <StyledContainer {...props}>
       {children}
     </StyledContainer>
   );
