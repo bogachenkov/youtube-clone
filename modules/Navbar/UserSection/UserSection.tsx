@@ -2,7 +2,6 @@ import { useAuthStore } from '@lib/store';
 import Avatar from '@modules/shared/Avatar';
 import Link from 'next/link';
 import React from 'react';
-import {} from './styled';
 import Button from '@modules/shared/Button';
 import { useSignIn } from '@lib/hooks/useSignInPush';
 import IconWrapper from '@modules/shared/IconWrapper';

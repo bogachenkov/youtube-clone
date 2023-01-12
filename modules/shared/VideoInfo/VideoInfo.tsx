@@ -1,8 +1,6 @@
 import dynamic from 'next/dynamic';
 import React from 'react';
 
-import { } from './styled';
-
 import Spacer from '@shared/Spacer';
 import Title from '@shared/Title';
 import VideoDescription from '@shared/VideoInfo/VideoDescription';

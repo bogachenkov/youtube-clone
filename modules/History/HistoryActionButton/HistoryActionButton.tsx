@@ -4,7 +4,6 @@ import IconWrapper from '@modules/shared/IconWrapper';
 import { IconName } from '@modules/shared/IconWrapper/IconWrapper';
 import Row from '@modules/shared/Row';
 import React from 'react';
-import {} from './styled';
 
 interface IHistoryActionButtonProps extends IButtonProps {
   icon: IconName;

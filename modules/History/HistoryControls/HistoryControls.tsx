@@ -3,7 +3,6 @@ import Spacer from '@modules/shared/Spacer';
 import React from 'react';
 import HistoryActions from '../HistoryActions';
 import SelectHistoryType from '../SelectHistoryType';
-import {} from './styled';
 
 interface IHistoryControlsProps {
   children?: React.ReactNode;

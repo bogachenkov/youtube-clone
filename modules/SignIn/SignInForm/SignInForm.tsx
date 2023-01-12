@@ -6,7 +6,6 @@ import Row from '@modules/shared/Row';
 import Spacer from '@modules/shared/Spacer';
 import { useRouter } from 'next/router';
 import React, { useEffect } from 'react';
-import {} from './styled';
 
 interface ISignInFormProps {
   children?: React.ReactNode;

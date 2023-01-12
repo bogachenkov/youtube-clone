@@ -1,5 +1,4 @@
 import React from 'react';
-import {} from './styled';
 
 interface ICategoryItemProps {
   children?: React.ReactNode;
