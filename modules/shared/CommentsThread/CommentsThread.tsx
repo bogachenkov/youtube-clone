@@ -3,8 +3,6 @@ import React from 'react';
 import Comment from '../Comment';
 import { animated as a } from 'react-spring';
 
-import ExpandMoreOutlinedIcon from '@mui/icons-material/ExpandMoreOutlined';
-import ExpandLessOutlinedIcon from '@mui/icons-material/ExpandLessOutlined';
 import Button from '../Button';
 import Row from '../Row';
 import Spacer from '../Spacer';
@@ -12,6 +10,7 @@ import { useToggle } from '@lib/hooks/useToggle';
 import useAccordion from '@lib/hooks/useAccordion';
 import { useCommentsStore } from '@lib/store';
 import { sortCommentsByDate } from '@lib/utils/sortCommentsByDate';
+import IconWrapper from '../IconWrapper';
 
 interface ICommentsThreadProps {
   children?: React.ReactNode;
@@ -60,8 +59,8 @@ const CommentsThread:React.FC<ICommentsThreadProps> = ({
                 {showReplies ? 'Hide' : 'View'} {totalReplyCount || withLocalReplies.length} repl{withLocalReplies.length === 1 ? 'y' : 'ies'} 
                 {
                   showReplies ?
-                  <ExpandLessOutlinedIcon fontSize='large' /> :
-                  <ExpandMoreOutlinedIcon fontSize='large' />
+                  <IconWrapper icon='ExpandLessOutlined' size={19} /> :
+                  <IconWrapper icon='ExpandMoreOutlined' size={19} />
                 }
               </Row>
             </Button>

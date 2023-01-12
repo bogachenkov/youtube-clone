@@ -1,14 +1,12 @@
 import React from 'react';
 import { animated as a } from 'react-spring';
 
-import ExpandMoreOutlinedIcon from '@mui/icons-material/ExpandMoreOutlined';
-import ExpandLessOutlinedIcon from '@mui/icons-material/ExpandLessOutlined';
-
 import useAccordion from '@hooks/useAccordion';
 import { useToggle } from '@hooks/useToggle';
 
 import { StyledMoreButton, StyledVideoDescription } from './styled';
 import Spacer from '@shared/Spacer';
+import IconWrapper from '@modules/shared/IconWrapper';
 
 interface IVideoDescriptionProps {
   children?: React.ReactNode;
@@ -37,7 +35,11 @@ const VideoDescription:React.FC<IVideoDescriptionProps> = ({
       <StyledMoreButton onClick={setIsOpen}>
         Show {isOpen ? 'Less' : 'More'} 
         {
-          isOpen ? <ExpandLessOutlinedIcon fontSize='large' /> : <ExpandMoreOutlinedIcon fontSize='large' />}
+          isOpen ?
+          <IconWrapper icon='ExpandLessOutlined' size={19} />
+          :
+          <IconWrapper icon='ExpandMoreOutlined' size={19} />
+        }
       </StyledMoreButton>
     </div>
   );

@@ -1,11 +1,8 @@
 import React from 'react';
-import SkipPreviousOutlinedIcon from '@mui/icons-material/SkipPreviousOutlined';
-import SkipNextOutlinedIcon from '@mui/icons-material/SkipNextOutlined';
-import PlayArrowIcon from '@mui/icons-material/PlayArrow';
-import PauseOutlinedIcon from '@mui/icons-material/PauseOutlined';
 
 import { StyledPlayControls } from './styled';
 import { usePlayerAPI, usePlayerPlaying } from '@lib/providers/player-api';
+import IconWrapper from '@modules/shared/IconWrapper';
 
 interface IPlayControlsProps {
   children?: React.ReactNode;
@@ -20,13 +17,18 @@ const PlayControls:React.FC<IPlayControlsProps> = () => {
   return (
     <StyledPlayControls gap={3}>
       <button>
-        <SkipPreviousOutlinedIcon fontSize='inherit' />
+        <IconWrapper icon='SkipPreviousOutlined' />
       </button>
       <button onClick={togglePlaying}>
-        {isPlaying ? <PauseOutlinedIcon fontSize='inherit' /> : <PlayArrowIcon fontSize='inherit' />}
+        {
+          isPlaying ?
+          <IconWrapper icon='PauseOutlined' />
+          :
+          <IconWrapper icon='PlayArrow' />
+        }
       </button>
       <button>
-        <SkipNextOutlinedIcon fontSize='inherit' />
+        <IconWrapper icon='SkipNextOutlined' />
       </button>
     </StyledPlayControls>
   );

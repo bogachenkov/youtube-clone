@@ -1,8 +1,8 @@
-import { GridViewOutlined, VideoCallOutlined } from '@mui/icons-material';
 import React from 'react';
 import { StyledControlsSection } from './styled';
 import { useAuthStore } from '@lib/store';
 import UserSection from '../UserSection';
+import IconWrapper from '@modules/shared/IconWrapper';
 
 interface IControlsSectionProps {
   children?: React.ReactNode;
@@ -14,9 +14,9 @@ const ControlsSection:React.FC<IControlsSectionProps> = (props) => {
   return (
     <StyledControlsSection>
       {
-        user ? <VideoCallOutlined fontSize='inherit' /> : null
+        user ? <IconWrapper icon='VideoCallOutlined' /> : null
       }
-      <GridViewOutlined fontSize='inherit' />
+      <IconWrapper icon='GridViewOutlined' />
       <UserSection />
     </StyledControlsSection>
   );

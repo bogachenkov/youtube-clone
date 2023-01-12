@@ -1,13 +1,11 @@
 import React, { useState } from 'react';
 
-import VolumeUpOutlinedIcon from '@mui/icons-material/VolumeUpOutlined';
-import VolumeOffOutlinedIcon from '@mui/icons-material/VolumeOffOutlined';
-
 import { StyledVolumeProgress, StyleProgressWrapper } from './styled';
 import { usePlayerAPI, usePlayerMuted, usePlayerVolume } from '@lib/providers/player-api';
 import Row from '../Row';
 import useAccordion from '@lib/hooks/useAccordion';
 import { animated } from 'react-spring';
+import IconWrapper from '../IconWrapper';
 
 interface IVolumeControlProps {
   children?: React.ReactNode;
@@ -31,7 +29,12 @@ const VolumeControl:React.FC<IVolumeControlProps> = (props) => {
   return (
     <Row align='stretch' gap={5} onMouseEnter={() => setIsOpen(true)} onMouseLeave={() => setIsOpen(false)}>
       <button onClick={toggleMute}>
-        {isMuted ? <VolumeOffOutlinedIcon fontSize='inherit' /> : <VolumeUpOutlinedIcon fontSize='inherit' />}
+        {
+        isMuted ?
+        <IconWrapper icon='VolumeOffOutlined' />
+        :
+        <IconWrapper icon='VolumeUpOutlined' />
+        }
       </button>
       <AnimatedRow style={style}>
         <StyleProgressWrapper ref={ref}>

@@ -1,11 +1,11 @@
 import { useAuthStore } from '@lib/store';
-import { NotificationsOutlined } from '@mui/icons-material';
 import Avatar from '@modules/shared/Avatar';
 import Link from 'next/link';
 import React from 'react';
 import {} from './styled';
 import Button from '@modules/shared/Button';
 import { useSignIn } from '@lib/hooks/useSignInPush';
+import IconWrapper from '@modules/shared/IconWrapper';
 
 interface IUserSectionProps {
   children?: React.ReactNode;
@@ -18,7 +18,7 @@ const UserSection:React.FC<IUserSectionProps> = (props) => {
   if (user) {
     return (
       <>
-        <NotificationsOutlined fontSize='inherit' />
+        <IconWrapper icon='NotificationsOutlined' />
         <Avatar src={user.authorProfileImageUrl} />
       </>
     )

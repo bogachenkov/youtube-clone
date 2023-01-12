@@ -2,9 +2,10 @@ import { useRouter } from 'next/router';
 import React from 'react';
 import { SectionLinkType } from '@const/navigation';
 import { StyledLink, StyledLinkIconWrapper, StyledLinkLabel } from './styled';
+import IconWrapper from '@modules/shared/IconWrapper';
 
 
-const SidebarLink:React.FC<SectionLinkType> = ({ href, label, Icon }) => {
+const SidebarLink:React.FC<SectionLinkType> = ({ href, label, icon }) => {
   const { pathname } = useRouter();
 
   return (
@@ -16,7 +17,7 @@ const SidebarLink:React.FC<SectionLinkType> = ({ href, label, Icon }) => {
       aria-label={label}
     >
       <StyledLinkIconWrapper>
-        <Icon fontSize='inherit' />
+        <IconWrapper icon={icon} />
       </StyledLinkIconWrapper>
       <StyledLinkLabel>
         {label}

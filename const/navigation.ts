@@ -1,29 +1,9 @@
-import {
-  SvgIconComponent,
-  HomeOutlined,
-  ExploreOutlined,
-  SubscriptionsOutlined,
-  VideoLibraryOutlined,
-  HistoryOutlined,
-  SlideshowOutlined,
-  PlaylistPlayOutlined,
-  WatchLaterOutlined,
-  ThumbUpOutlined,
-  SettingsOutlined,
-  FlagOutlined,
-  HelpOutlined,
-  FeedbackOutlined,
-  SportsEsportsOutlined,
-  StreamOutlined,
-  SpaOutlined,
-  SchoolOutlined,
-  SportsBaseballOutlined
-} from '@mui/icons-material';
+import { IconName } from "@modules/shared/IconWrapper/IconWrapper";
 
 export type SectionLinkType = {
   href: string;
   label: string;
-  Icon: SvgIconComponent
+  icon: IconName;
 }
 
 export type SidebarSectionType = {
@@ -36,21 +16,17 @@ const MAIN_SECTION:SidebarSectionType = {
     {
       href: '/',
       label: 'home',
-      Icon: HomeOutlined
+      icon: 'HomeOutlined'
     },
-    // {
-    //   label: 'shorts',
-    //   Icon: ''
-    // },
     {
       href: '/explore',
       label: 'explore',
-      Icon: ExploreOutlined
+      icon: 'ExploreOutlined'
     },
     {
       href: '/subscriptions',
       label: 'subscriptions',
-      Icon: SubscriptionsOutlined
+      icon: 'SubscriptionsOutlined'
     },
   ]
 }
@@ -60,31 +36,31 @@ const PERSONAL_SECTION:SidebarSectionType = {
     {
       href: '/library',
       label: 'library',
-      Icon: VideoLibraryOutlined
+      icon: 'VideoLibraryOutlined'
     },
     {
       href: '/history',
       label: 'history',
-      Icon: HistoryOutlined
+      icon: 'HistoryOutlined'
     },
     // {
     //   label: 'your videos',
-    //   Icon: SlideshowOutlined
+    //   icon: SlideshowOutlined
     // },
     {
       href: '/playlists',
       label: 'playlists',
-      Icon: PlaylistPlayOutlined
+      icon: 'PlaylistPlayOutlined'
     },
     {
       href: '/playlist?list=WL',
       label: 'watch later',
-      Icon: WatchLaterOutlined
+      icon: 'WatchLaterOutlined'
     },
     {
       href: '/playlist?list=LL',
       label: 'liked videos',
-      Icon: ThumbUpOutlined
+      icon: 'ThumbUpOutlined'
     }
   ]
 }
@@ -95,27 +71,27 @@ const MORE_FROM_YOUTUBE_SECTION:SidebarSectionType = {
     {
       href: '/gaming',
       label: 'gaming',
-      Icon: SportsEsportsOutlined
+      icon: 'SportsEsportsOutlined'
     },
     {
       href: '/streams',
       label: 'streams',
-      Icon: StreamOutlined
+      icon: 'StreamOutlined'
     },
     {
       href: 'fashionbeauty',
       label: 'fashion & beauty',
-      Icon: SpaOutlined
+      icon: 'SpaOutlined'
     },
     {
       href: '/learning',
       label: 'learning',
-      Icon: SchoolOutlined
+      icon: 'SchoolOutlined'
     },
     {
       href: '/sports',
       label: 'sports',
-      Icon: SportsBaseballOutlined
+      icon: 'SportsBaseballOutlined'
     },
   ]
 }
@@ -125,22 +101,22 @@ const SUPPORT_SECTION:SidebarSectionType = {
     {
       href: '/account',
       label: 'settings',
-      Icon: SettingsOutlined
+      icon: 'SettingsOutlined'
     },
     {
       href: '/reporthistory',
       label: 'report history',
-      Icon: FlagOutlined
+      icon: 'FlagOutlined'
     },
     {
       href: '/?modal=help',
       label: 'help',
-      Icon: HelpOutlined
+      icon: 'HelpOutlined'
     },
     {
       href: '/?modal=feedback',
       label: 'send feedback',
-      Icon: FeedbackOutlined
+      icon: 'FeedbackOutlined'
     }
   ]
 }

@@ -1,6 +1,6 @@
 import React, { InputHTMLAttributes } from 'react';
 import { StyledCheckbox, StyledCheckboxInput, StyledCheckboxLabel } from './styled';
-import CheckOutlinedIcon from '@mui/icons-material/CheckOutlined';
+import IconWrapper from '../IconWrapper';
 
 interface ICheckboxProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'type'> {
   children?: React.ReactNode;
@@ -18,7 +18,7 @@ const Checkbox:React.FC<ICheckboxProps> = ({
           type={'checkbox'}
           {...inputProps}
         />
-        <CheckOutlinedIcon fontSize='small' />
+        <IconWrapper icon='CheckOutlined' size={11} />
       </StyledCheckbox>
       {label}
     </StyledCheckboxLabel>

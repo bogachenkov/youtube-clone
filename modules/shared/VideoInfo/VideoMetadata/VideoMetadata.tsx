@@ -1,15 +1,12 @@
 import React from 'react';
 import dayjs from 'dayjs';
 
-import PlaylistAddOutlinedIcon from '@mui/icons-material/PlaylistAddOutlined';
-import ShareOutlinedIcon from '@mui/icons-material/ShareOutlined';
-import MoreHorizOutlinedIcon from '@mui/icons-material/MoreHorizOutlined';
-
 import Row from '@shared/Row';
 import Text from '@shared/Text';
 import { StyledMetadataControls } from './styled';
 import { thousandsSeparator } from '@utils/thousandsSeparator';
 import dynamic from 'next/dynamic';
+import IconWrapper from '@modules/shared/IconWrapper';
 const VideoLike = dynamic(() => import('@shared/VideoInfo/VideoLike'), { ssr: false });
 
 interface IVideoMetadataProps {
@@ -40,13 +37,13 @@ const VideoMetadata:React.FC<IVideoMetadataProps> = ({
           likesCount={likes}
         />
         <button>
-          <PlaylistAddOutlinedIcon fontSize='inherit' />
+          <IconWrapper icon='PlaylistAddOutlined' />
         </button>
         <button>
-          <ShareOutlinedIcon fontSize='inherit' />
+          <IconWrapper icon='ShareOutlined' />
         </button>
         <button>
-          <MoreHorizOutlinedIcon fontSize='inherit' />
+          <IconWrapper icon='MoreHorizOutlined' />
         </button>
       </StyledMetadataControls>
     </Row>

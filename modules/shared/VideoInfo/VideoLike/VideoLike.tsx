@@ -1,12 +1,11 @@
 import React from 'react';
 
-import ThumbUpOutlinedIcon from '@mui/icons-material/ThumbUpOutlined';
-
 import { StyledLikeButton } from './styled';
 import Text from '@shared/Text';
 import { intToString } from '@utils/intToString';
 import { useLikesStore } from '@store';
 import { useRouter } from 'next/router';
+import IconWrapper from '@modules/shared/IconWrapper';
 
 interface IVideoLikeProps {
   children?: React.ReactNode;
@@ -28,7 +27,7 @@ const VideoLike:React.FC<IVideoLikeProps> = ({
       }}
       onClick={() => toggleLike(video_id as string)}
     >
-      <ThumbUpOutlinedIcon fontSize='inherit' />
+      <IconWrapper icon='ThumbUpOutlined' />
       <Text size={16}>{intToString(likesCount + (isVideoLiked ? 1 : 0))}</Text>
     </StyledLikeButton>
   );

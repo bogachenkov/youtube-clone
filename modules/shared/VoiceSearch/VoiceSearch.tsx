@@ -1,8 +1,8 @@
-import { KeyboardVoiceOutlined } from '@mui/icons-material';
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
 import React, { forwardRef } from 'react';
 import Input from '@shared/Input';
 import { StyledVoiceButton, StyledVoiceSearch } from './styled';
+import IconWrapper from '../IconWrapper';
 
 interface IVoiceSearchProps {
   children?: React.ReactNode;
@@ -30,7 +30,7 @@ const VoiceSearch:React.FC = forwardRef<HTMLInputElement, IVoiceSearchProps>((pr
       {
         browserSupportsSpeechRecognition && (
           <StyledVoiceButton onClick={hanldeButtonClick}>
-            <KeyboardVoiceOutlined fontSize='inherit' />
+            <IconWrapper icon='KeyboardVoiceOutlined' />
           </StyledVoiceButton>
         )
       }

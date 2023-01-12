@@ -1,12 +1,9 @@
 import React from 'react';
 
-import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
-import FullscreenOutlinedIcon from '@mui/icons-material/FullscreenOutlined';
-import FullscreenExitIcon from '@mui/icons-material/FullscreenExit';
-
 import { StyledVideoControlsRight } from './styled';
 import VolumeControl from '@modules/shared/VolumeControl';
 import { usePlayerAPI, usePlayerFullscreen } from '@lib/providers/player-api';
+import IconWrapper from '@modules/shared/IconWrapper';
 
 interface IVideoControlsRightProps {
   children?: React.ReactNode;
@@ -20,10 +17,15 @@ const VideoControlsRight:React.FC<IVideoControlsRightProps> = () => {
     <StyledVideoControlsRight gap={'2.2em'}>
       <VolumeControl />
       <button>
-        <SettingsOutlinedIcon fontSize='inherit' />
+        <IconWrapper icon='SettingsOutlined' />
       </button>
       <button onClick={toggleFullscreen}>
-        {isFullscreen ? <FullscreenExitIcon fontSize='inherit' /> : <FullscreenOutlinedIcon fontSize='inherit' />}
+        {
+          isFullscreen ?
+          <IconWrapper icon='FullscreenExit' />
+          :
+          <IconWrapper icon='FullscreenOutlined' />
+        }
       </button>
     </StyledVideoControlsRight>
   );

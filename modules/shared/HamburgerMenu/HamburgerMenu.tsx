@@ -1,6 +1,6 @@
 import React from 'react';
-import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined';
 import { StyledHamburgerButton } from './styled';
+import IconWrapper from '../IconWrapper';
 
 interface IHamburgerMenuProps {
   children?: React.ReactNode;
@@ -12,7 +12,7 @@ const HamburgerMenu:React.FC<IHamburgerMenuProps> = ({
 }) => {
   return (
     <StyledHamburgerButton onClick={toggleMenu}>
-      <MenuOutlinedIcon fontSize='inherit' color='inherit' />
+      <IconWrapper icon='MenuOutlined' />
     </StyledHamburgerButton>
   );
 }

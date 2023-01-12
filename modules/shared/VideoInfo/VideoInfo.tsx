@@ -1,6 +1,5 @@
 import dynamic from 'next/dynamic';
 import React from 'react';
-import DoneOutlinedIcon from '@mui/icons-material/DoneOutlined';
 
 import { } from './styled';
 
@@ -14,8 +13,9 @@ import Expand from '../Expand';
 import Text from '../Text';
 import { intToString } from '@lib/utils/intToString';
 import { useVideoData } from '@lib/hooks/useVideoData';
-const SubscribeButton = dynamic(() => import('./SubscribeButton'), { ssr: false })
+import IconWrapper from '../IconWrapper';
 
+const SubscribeButton = dynamic(() => import('./SubscribeButton'), { ssr: false })
 
 interface IVideoInfoProps {
   children?: React.ReactNode;
@@ -50,7 +50,7 @@ const VideoInfo:React.FC<IVideoInfoProps> = (props) => {
           <Title size={13}>
             <Row gap={5}>
               {channel?.snippet.title}
-              {channel?.status.longUploadsStatus === 'eligible' && <DoneOutlinedIcon fontSize='small' />}
+              {channel?.status.longUploadsStatus === 'eligible' && <IconWrapper icon='DoneOutlined' />}
             </Row>
           </Title>
           <Spacer vertical={5} />

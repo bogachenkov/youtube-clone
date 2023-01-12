@@ -1,4 +1,4 @@
-import { TuneOutlined } from '@mui/icons-material';
+import IconWrapper from '@modules/shared/IconWrapper';
 import dynamic from 'next/dynamic';
 import React from 'react';
 import { StyledSearchSection, StyledIconWrap } from './styled';
@@ -12,7 +12,7 @@ const SearchSection:React.FC<ISearchSectionProps> = (props) => {
     <StyledSearchSection>
       <VoiceSearch />
       <StyledIconWrap>
-        <TuneOutlined fontSize='inherit' />
+        <IconWrapper icon='TuneOutlined' />
       </StyledIconWrap>
     </StyledSearchSection>
   );

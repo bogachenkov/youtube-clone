@@ -3,8 +3,6 @@ import Row from '../Row';
 import Text from '../Text';
 import { StyledCommentBlock } from './styled';
 
-import SortOutlinedIcon from '@mui/icons-material/SortOutlined';
-import ExpandMoreOutlinedIcon from '@mui/icons-material/ExpandMoreOutlined';
 import { useVideoData } from '@lib/hooks/useVideoData';
 import { thousandsSeparator } from '@utils/thousandsSeparator';
 import Title from '../Title';
@@ -14,6 +12,7 @@ import AddCommentForm from '../AddCommentForm';
 import { useCommentsStore } from '@lib/store';
 import { useVideoId } from '@lib/hooks/useVideoId';
 import { sortCommentsByDate } from '@lib/utils/sortCommentsByDate';
+import IconWrapper from '../IconWrapper';
 
 interface ICommentsSectionProps {
   children?: React.ReactNode;
@@ -47,12 +46,12 @@ const CommentsSection:React.FC<ICommentsSectionProps> = (props) => {
         <Text weight='bold' size={13} color='var(--color-light)'>
           {thousandsSeparator(data.video.statistics.commentCount + localComments.length)} Comments
         </Text>
-        <Row gap={8}>
-          <SortOutlinedIcon fontSize='large' />
+        <Row gap={6}>
+          <IconWrapper icon='SortOutlined' size={24} />
           <Text size={13} weight='bold' color='var(--color-light)'>
             SORT BY
           </Text>
-          <ExpandMoreOutlinedIcon fontSize='large' />
+          <IconWrapper icon='ExpandMoreOutlined' size={24} />
         </Row>
       </Row>
       <Spacer vertical={26} />
