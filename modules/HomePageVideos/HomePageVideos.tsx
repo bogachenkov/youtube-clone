@@ -1,19 +1,14 @@
-import { useQuery } from '@tanstack/react-query';
 import React from 'react';
-import VideosAPI from '@api/videos';
 import GridContainer from '@shared/GridContainer';
 import VideoCard from '@shared/VideoCard';
-import {} from './styled';
+import { useVideoCollection } from '@lib/hooks/useVideoCollection';
 
 interface IHomePageVideosProps {
   children?: React.ReactNode;
 }
 
 const HomePageVideos:React.FC<IHomePageVideosProps> = (props) => {
-  const { data } = useQuery({ 
-    queryKey: ['videos'], 
-    queryFn: VideosAPI.fetchDefaultVideos 
-  });
+  const data = useVideoCollection();
 
   return (
     <GridContainer>

@@ -11,7 +11,7 @@ import Spacer from '../Spacer';
 import { useToggle } from '@lib/hooks/useToggle';
 import useAccordion from '@lib/hooks/useAccordion';
 import { useCommentsStore } from '@lib/store';
-import { sortByDate } from '@lib/utils/sortByDate';
+import { sortCommentsByDate } from '@lib/utils/sortCommentsByDate';
 
 interface ICommentsThreadProps {
   children?: React.ReactNode;
@@ -43,7 +43,7 @@ const CommentsThread:React.FC<ICommentsThreadProps> = ({
   if (!isPublic) return null;
 
   const localReplies = comments.filter(comm => comm.snippet.parentId === id);
-  const withLocalReplies = sortByDate([
+  const withLocalReplies = sortCommentsByDate([
     ...(!!replies ? replies.comments : []),
     ...localReplies
   ]);

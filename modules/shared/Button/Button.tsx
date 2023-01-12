@@ -2,7 +2,7 @@ import React, { ComponentPropsWithoutRef } from 'react';
 import { baseRem } from 'styles/globalStyles';
 import { StyledButton } from './styled';
 
-interface IButtonProps extends ComponentPropsWithoutRef<'button'>  {
+export interface IButtonProps extends ComponentPropsWithoutRef<'button'>  {
   children?: React.ReactNode;
   fontSize?: number;
   fontColor?: string;
@@ -41,6 +41,7 @@ const getButtonThemeData = (theme: IButtonProps['theme']):ButtonTheme => {
   }
 }
 
+// trunk-ignore(eslint/react/display-name)
 const Button = React.forwardRef<HTMLButtonElement, IButtonProps>(({
   children,
   fontSize = 13,

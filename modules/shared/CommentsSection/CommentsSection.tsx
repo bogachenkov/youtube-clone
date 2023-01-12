@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Row from '../Row';
 import Text from '../Text';
 import { StyledCommentBlock } from './styled';
@@ -13,7 +13,7 @@ import Spacer from '../Spacer';
 import AddCommentForm from '../AddCommentForm';
 import { useCommentsStore } from '@lib/store';
 import { useVideoId } from '@lib/hooks/useVideoId';
-import { sortByDate } from '@lib/utils/sortByDate';
+import { sortCommentsByDate } from '@lib/utils/sortCommentsByDate';
 
 interface ICommentsSectionProps {
   children?: React.ReactNode;
@@ -28,10 +28,6 @@ const CommentsSection:React.FC<ICommentsSectionProps> = (props) => {
     <div>Loading...</div>
   )
 
-  useEffect(() => {
-    console.log('Threads updated', threads);
-  }, [threads]);
-
   if (data.comments.length === 0) return (
     <Title>
       Comments are disabled.
@@ -40,7 +36,7 @@ const CommentsSection:React.FC<ICommentsSectionProps> = (props) => {
 
   const localComments = threads.filter(thread => thread.snippet.topLevelComment.snippet.videoId === videoId);
 
-  const withLocalComments = sortByDate([
+  const withLocalComments = sortCommentsByDate([
     ...data.comments,
     ...localComments
   ]);

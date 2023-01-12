@@ -6,9 +6,12 @@ import YoutubeAPI from "@api/youtube";
 import Container from "@shared/Container";
 import Spacer from "@shared/Spacer";
 import VideoInfo from "@shared/VideoInfo";
-import VideoPageGrid from "@shared/VideoPageGrid";
+import TwoColumnGrid from "@modules/shared/TwoColumnGrid";
 import VideoPlayer from "@shared/VideoPlayer";
 import CommentsSection from "@modules/shared/CommentsSection";
+import { useEffect } from "react";
+import { useHistoryStore } from "@lib/store";
+import { useVideoId } from "@lib/hooks/useVideoId";
 
 export interface UrlParams extends ParsedUrlQuery {
   video_id?: string;
@@ -20,8 +23,16 @@ interface VideoPageProps {
 const api = new YoutubeAPI();
 
 const VideoPage:NextPage<VideoPageProps> = () => {
+  const addToHistory = useHistoryStore(store => store.addToHistory);
+  const isWatching = useHistoryStore(store => store.isWatching);
+  const id = useVideoId();
+
+  useEffect(() => {
+    if (isWatching) addToHistory!(id);
+  }, [isWatching, addToHistory, id]);
+
   return (
-    <VideoPageGrid>
+    <TwoColumnGrid secondCol="350px">
       <Container>
         <VideoPlayer
           controls
@@ -41,7 +52,7 @@ const VideoPage:NextPage<VideoPageProps> = () => {
       <Container>
       
       </Container>
-    </VideoPageGrid>
+    </TwoColumnGrid>
   )
 }
 

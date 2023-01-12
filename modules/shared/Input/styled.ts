@@ -20,8 +20,9 @@ export const StyledIconWrap = styled.div`
 
 export const StyledInput = styled.input`
   width: 100%;
-  border-radius: 1rem;
+  border-radius: var(--border-radius);
   border: none;
+  border-bottom: var(--border-bottom);
   background-color: var(--color-black);
   height: var(--input-height);
   padding: 0 var(--padding-left-default) 0 var(--padding-left-resulted);
