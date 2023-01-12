@@ -1,5 +1,7 @@
 import React from 'react';
 import BoringAvatar from "boring-avatars";
+import { StyledAvatarWrap } from './styled';
+import { baseRem } from 'styles/globalStyles';
 
 interface IAvatarProps {
   children?: React.ReactNode;
@@ -12,11 +14,18 @@ const Avatar:React.FC<IAvatarProps> = ({
   size = 26,
 }) => {
   return (
-    <BoringAvatar
-      size={size}
-      name={name}
-      variant="beam"
-    />
+    <StyledAvatarWrap
+      style={{
+        ['--avatar-size' as string]: `${size/baseRem}rem`
+      }}
+    >
+      <BoringAvatar
+        size={size}
+        name={name}
+        variant="beam"
+        square
+      />
+    </StyledAvatarWrap>
   );
 }
 
