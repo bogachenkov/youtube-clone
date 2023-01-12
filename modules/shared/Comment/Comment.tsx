@@ -36,7 +36,6 @@ const Comment:React.FC<ICommentProps> = ({
   const {
     id,
     snippet: {
-      authorProfileImageUrl,
       authorDisplayName,
       publishedAt,
       likeCount,
@@ -74,7 +73,7 @@ const Comment:React.FC<ICommentProps> = ({
       gap={16} 
       align='flex-start'
     >
-      <Avatar size={33} src={authorProfileImageUrl} />
+      <Avatar size={33} name={authorDisplayName} />
       <Expand>
         <Spacer vertical={5} />
         <Row gap={16}>

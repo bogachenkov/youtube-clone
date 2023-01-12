@@ -18,7 +18,7 @@ const UserSection:React.FC<IUserSectionProps> = (props) => {
     return (
       <>
         <IconWrapper icon='NotificationsOutlined' />
-        <Avatar src={user.authorProfileImageUrl} />
+        <Avatar name={user.authorDisplayName} />
       </>
     )
   }

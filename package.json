@@ -26,6 +26,7 @@
     "@upstash/redis": "^1.18.1",
     "add": "^2.0.6",
     "axios": "^1.2.1",
+    "boring-avatars": "^1.7.0",
     "dayjs": "^1.11.7",
     "eslint": "8.27.0",
     "eslint-config-next": "13.0.2",

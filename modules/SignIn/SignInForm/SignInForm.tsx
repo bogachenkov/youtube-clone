@@ -23,7 +23,7 @@ const SignInForm:React.FC<ISignInFormProps> = (props) => {
       const referer = router.query.referer?.toString();
       router.push(referer ?? '/');
     }
-  }, [user]);
+  }, [user, router]);
 
   const handleSubmit:React.FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
@@ -35,11 +35,13 @@ const SignInForm:React.FC<ISignInFormProps> = (props) => {
       <InputWithLabel
         label="Email or phone"
         type={'email'}
+        value={'johndoe@example.com'}
       />
       <Spacer vertical={39} />
       <InputWithLabel
         label="Enter Your password"
         type={'password'}
+        value={'iamjohndoe'}
       />
       <Spacer vertical={13} />
       <Row justify="space-between">
