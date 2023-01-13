@@ -19,7 +19,7 @@ export const useSubscriptionsStore = create<ISubscriptionsState>()(
       })
     }),
     {
-      name: 'subscriptions-storage',
+      name: 'subscriptions-store',
       getStorage: () => sessionStorage,
     }
   )

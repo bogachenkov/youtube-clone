@@ -1,33 +1,33 @@
 import { IPlaylist } from '@ts-types/Playlist';
-import { IVideo } from '@ts-types/Video';
 import { noop } from 'lodash';
-import create from 'zustand';
-import { persist } from 'zustand/middleware';
 import { createHydratedStore, createPersistedStore } from './utils';
 
 interface IPlaylistState {
-  playlists: IPlaylist[];
-  createPlayList: (name: string) => void;
-  removePlaylist: (id: string) => void;
-  addVideoToPL: (playlistId: string, video: IVideo) => void;
-  removeVideoFromPL: (playlistId: string, videoId: string) => void;
+  playlist: IPlaylist;
+  addVideoToPL: (videoId: string) => void;
+  removeVideoFromPL: (videoId: string) => void;
+  clearPlaylist: VoidFunction;
 }
 
 const defaultPLState:IPlaylistState = {
-  playlists: [],
-  createPlayList: noop,
-  removePlaylist: noop,
+  playlist: {
+    name: 'Demo',
+    id: 'demo',
+    videos: []
+  },
   addVideoToPL: noop,
-  removeVideoFromPL: noop
+  removeVideoFromPL: noop,
+  clearPlaylist: noop
 }
 
 const defaultPLStore = createPersistedStore<IPlaylistState>(
   (set, get) => ({
-    playlists: [],
-    createPlayList: () => {},
-    removePlaylist: (id: string) => {},
-    addVideoToPL: () => {},
-    removeVideoFromPL: () => {},
+    playlist: defaultPLState.playlist,
+    addVideoToPL: (videoId: string) => {},
+    removeVideoFromPL: (videoId: string) => {},
+    clearPlaylist: () => set({
+      playlist: defaultPLState.playlist
+    })
   }),
   'playlist-store'
 )

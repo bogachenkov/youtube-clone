@@ -7,5 +7,5 @@ export const useVideoCollection = () => {
     queryFn: VideosAPI.fetchDefaultVideos 
   });
 
-  return data;
+  return data ?? [];
 }

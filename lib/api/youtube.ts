@@ -18,7 +18,7 @@ const ax = axios.create({
 ax.interceptors.request.use(config => {
   config.params = {
     part: ['snippet'],
-    maxResults: 32,
+    maxResults: 16,
     key: process.env.NEXT_PUBLIC_YOUTUBE_KEY,
     ...config.params,
   };
