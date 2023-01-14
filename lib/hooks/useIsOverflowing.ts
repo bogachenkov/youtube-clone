@@ -1,4 +1,4 @@
-import { useLayoutEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 const useIsOverflowing = <T extends HTMLElement | null>(
   ref: React.MutableRefObject<T>, 
@@ -6,7 +6,7 @@ const useIsOverflowing = <T extends HTMLElement | null>(
 ) => {
   const [isOverflow, setIsOverflow] = useState(false);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (!ref.current) return;
     const { current } = ref;
     const { clientWidth, scrollWidth } = current;

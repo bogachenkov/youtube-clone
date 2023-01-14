@@ -1,15 +1,13 @@
 import styled from 'styled-components';
 import { StyledVideoControls } from './VideoControls/styled';
 
-export const StyledVideoWrapper = styled.div`
-  aspect-ratio: 16 / 9;
-`;
-
 export const StyledVideoPlayer = styled.div`
   position: relative;
   overflow: hidden;
   border-radius: 28px;
-  aspect-ratio: 16 / 9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   &:hover {
     & > ${StyledVideoControls} {
@@ -19,9 +17,8 @@ export const StyledVideoPlayer = styled.div`
 `;
 
 export const StyledVideoElement = styled.video`
-  width: 100%;
-  object-fit: contain;
-  object-position: center;
-  overflow-clip-margin: clip;
+  max-height: 80vh;
+  max-width: 100%;
   border-radius: 30px;
+  aspect-ratio: 16 / 9;
 `;

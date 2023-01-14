@@ -5,7 +5,7 @@ export const StyledVideoControls = styled.div`
   position: absolute;
   left: 0;
   right: 0;
-  bottom: -var(--player-controls-height);
+  bottom: calc(var(--player-controls-height) * -1);
   height: var(--player-controls-height);
   padding: 0 2.5rem;
   background: rgba(0, 0, 0, .6);

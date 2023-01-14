@@ -32,7 +32,7 @@ const VideoPage:NextPage<VideoPageProps> = () => {
   }, [isWatching, addToHistory, id]);
 
   return (
-    <TwoColumnGrid secondCol="350px">
+    <TwoColumnGrid secondCol="350px" firstCol="auto">
       <Container>
         <VideoPlayer
           controls
