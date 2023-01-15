@@ -7,16 +7,17 @@ export const StyledCategoryButton = styled.button`
   justify-content: flex-start;
   border: none;
   border-radius: 8px;
-  padding: 20px 10px 10px 10px;
+  padding: 20px;
   /* width: 152px;
   height: 140px; */
   aspect-ratio: 1.1 / 1;
-  background: var(--color-background-gray);
-  color: var(--cat-button-color);
+  background: var(--color-background-blue);
+  color: var(--color-light);
+  border: 1px solid var(--button-border-color);
   cursor: pointer;
-  transition: color .2s;
+  transition: all .2s;
 
   &:hover {
-    color: red;
+    transform: scale(1.1);
   }
 `;

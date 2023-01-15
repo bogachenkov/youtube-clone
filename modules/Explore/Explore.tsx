@@ -14,12 +14,10 @@ const Explore:React.FC<IExploreProps> = (props) => {
 
   return (
     <>
-      <Container>
-        <Categories
-          activeCategory={activeCategory} 
-          setActiveCategory={setActiveCategory}
-        />
-      </Container>
+      <Categories
+        activeCategory={activeCategory}
+        setActiveCategory={setActiveCategory}
+      />
       <Spacer vertical={30} />
       <Container>
         <Title size={33}>
