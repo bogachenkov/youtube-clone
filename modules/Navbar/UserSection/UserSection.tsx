@@ -1,10 +1,8 @@
 import { useAuthStore } from '@lib/store';
 import Avatar from '@modules/shared/Avatar';
-import Link from 'next/link';
 import React from 'react';
-import Button from '@modules/shared/Button';
-import { useSignIn } from '@lib/hooks/useSignInPush';
 import IconWrapper from '@modules/shared/IconWrapper';
+import SignInButton from '@modules/shared/SignInButton';
 
 interface IUserSectionProps {
   children?: React.ReactNode;
@@ -12,7 +10,6 @@ interface IUserSectionProps {
 
 const UserSection:React.FC<IUserSectionProps> = (props) => {  
   const user = useAuthStore(store => store.user);
-  const { path } = useSignIn();
 
   if (user) {
     return (
@@ -23,13 +20,7 @@ const UserSection:React.FC<IUserSectionProps> = (props) => {
     )
   }
 
-  return (
-    <Link href={path}>
-      <Button>
-        SIGN IN
-      </Button>
-    </Link>
-  )
+  return <SignInButton fontSize={14} />
 }
 
 export default UserSection;

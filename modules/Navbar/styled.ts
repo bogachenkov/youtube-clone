@@ -9,8 +9,9 @@ export const StyledNavbar = styled.header`
   position: -webkit-sticky;
   position: sticky;
   top: 0;
+  height: var(--navbar-height);
   padding: 1.5rem 0;
-  margin-top: 1.5rem;
+  margin-top: var(--navbar-margin);
   z-index: 1;
   background-color: var(--color-background-gray);
 `;

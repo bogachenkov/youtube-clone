@@ -48,17 +48,12 @@ const PERSONAL_SECTION:SidebarSectionType = {
     //   icon: SlideshowOutlined
     // },
     {
-      href: '/playlists',
+      href: '/playlist/Demo',
       label: 'playlists',
       icon: 'PlaylistPlayOutlined'
     },
     {
-      href: '/playlist?list=WL',
-      label: 'watch later',
-      icon: 'WatchLaterOutlined'
-    },
-    {
-      href: '/playlist?list=LL',
+      href: '/playlist/LL',
       label: 'liked videos',
       icon: 'ThumbUpOutlined'
     }
@@ -125,7 +120,7 @@ const SIDEBAR_SECTIONS = [
   MAIN_SECTION,
   PERSONAL_SECTION,
   // MORE_FROM_YOUTUBE_SECTION,
-  // SUPPORT_SECTION
+  SUPPORT_SECTION
  ] as const;
 
 export default SIDEBAR_SECTIONS;

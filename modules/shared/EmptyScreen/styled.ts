@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const StyledEmptyScreen = styled.div`
   height: 100%;
+  min-height: var(--content-full-height);
   width: 100%;
   display: flex;
   align-items: center;

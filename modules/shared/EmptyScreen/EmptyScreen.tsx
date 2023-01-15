@@ -6,13 +6,13 @@ import { StyledEmptyScreen, StyledEmptyScreenContent } from './styled';
 
 interface IEmptyScreenProps {
   children?: React.ReactNode;
-  emoji: string;
+  emojiCode: string;
   title: string;
   text: string;
 }
 
 const EmptyScreen:React.FC<IEmptyScreenProps> = ({
-  emoji,
+  emojiCode,
   title,
   text,
   children
@@ -22,7 +22,7 @@ const EmptyScreen:React.FC<IEmptyScreenProps> = ({
       <StyledEmptyScreenContent>
         <Title
           size={40}
-          dangerouslySetInnerHTML={{ __html: emoji }}
+          dangerouslySetInnerHTML={{ __html: `&#x${emojiCode}` }}
         />
         <Spacer vertical={26} />
         <Title size={36}>
