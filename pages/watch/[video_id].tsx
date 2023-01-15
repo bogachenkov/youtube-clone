@@ -12,6 +12,7 @@ import CommentsSection from "@modules/shared/CommentsSection";
 import { useEffect } from "react";
 import { useHistoryStore } from "@lib/store";
 import { useVideoId } from "@lib/hooks/useVideoId";
+import { homePageArgs } from "@const/queries";
 
 export interface UrlParams extends ParsedUrlQuery {
   video_id?: string;
@@ -57,7 +58,7 @@ const VideoPage:NextPage<VideoPageProps> = () => {
 }
 
 export const getStaticPaths:GetStaticPaths = async () => {
-  const videos = await VideosAPI.fetchDefaultVideos();
+  const videos = await VideosAPI.fetch(homePageArgs);
 
   return {
     paths: videos.map(video => ({

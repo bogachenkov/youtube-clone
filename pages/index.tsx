@@ -7,6 +7,7 @@ import { useTabs } from "@lib/hooks/useTabs";
 import Tabs from "@modules/shared/Tabs";
 import { CategoryTabs } from '@const/categories';
 import Spacer from "@modules/shared/Spacer";
+import { homeQuery } from "@const/queries";
 
 interface HomePageProps {
 }
@@ -26,11 +27,12 @@ const HomePage:NextPage<HomePageProps> = () => {
   )
 }
 
-// TODO: This one breaks the Vercel's serverless function down (timeout)
-
 export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
   const queryClient = new QueryClient();
-  await queryClient.prefetchQuery(['videos'], VideosAPI.fetchDefaultVideos);
+  await queryClient.prefetchQuery(
+    [homeQuery.key],
+    () => VideosAPI.fetch(homeQuery.config)
+  );
 
   return {
     props: {
