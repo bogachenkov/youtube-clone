@@ -1,48 +1,41 @@
 import { useHistoryStore } from "@lib/store";
 import { useVideoCollection } from "./useVideoCollection";
 
-import dayjs from "dayjs";
-import utc from 'dayjs/plugin/utc';
-import timezone from 'dayjs/plugin/timezone';
-
-import { sortByDate } from "@lib/utils/sortByDate";
 import { IVideoPreview } from "@ts-types/Video";
-import VideoCard from "@modules/shared/VideoCard";
-import { Tab, useTabs } from "./useTabs";
-import { getCalendarDate } from "@lib/utils/getCalendarDate";
-import { intersectionBy } from "lodash";
 
-dayjs.extend(utc)
-dayjs.extend(timezone)
+export interface IHistoryVideo extends IVideoPreview {
+  date: string;
+}
 
-const renderVideoCard = (v: IVideoPreview) => (
-  <VideoCard key={v.id} video={v} />
-);
-
-export const useHistoryCollection = (searchLine?: string) => {
-  const videoCollection = useVideoCollection();
+export const useHistoryCollection = (searchLine?: string):IHistoryVideo[] => {
+  const { data, isLoading } = useVideoCollection();
   const history = useHistoryStore(store => store.history);
 
-  const uniqueDates = Array.from(new Set(history.map(h => dayjs(h.date).tz('Europe/Moscow').format('YYYY-MM-DD')))).sort(sortByDate);
+  if (!data || isLoading) return [];
 
-  const tabs:Tab[] = uniqueDates.map((date) => {
-    const calendarDate:string = getCalendarDate(date);
-
-    const recordsForDate = history.filter(record => {
-      return dayjs(record.date).isSame(date, 'day');
+  const videos = history.reduce<IHistoryVideo[]>((result, { id, date }) => {
+    const video = data.find(v => {
+      return (v.id === id) && (
+        searchLine ?
+        (
+          v.snippet.title.toLowerCase().includes(searchLine.toLowerCase())
+          ||
+          v.snippet.channelTitle.toLowerCase().includes(searchLine.toLowerCase())
+        )
+        :
+        true
+      )
     });
 
-    const videosForDate = intersectionBy(videoCollection, recordsForDate, 'id');
-    const resultedArray = searchLine ? videosForDate.filter(
-      v => v.snippet.title.toLowerCase().includes(searchLine.toLowerCase())
-    ) : videosForDate;
-
-    return {
-      label: calendarDate,
-      id: calendarDate,
-      children: resultedArray.map(renderVideoCard)
+    if (video) {
+      result.push({
+        ...video,
+        date
+      });
     }
-  }).reverse();
 
-  return useTabs({ tabs, initialTabId: "Today" });
+    return result;
+  }, []);
+
+  return videos;
 }

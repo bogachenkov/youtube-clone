@@ -12,7 +12,6 @@ import CommentsSection from "@modules/shared/CommentsSection";
 import { useEffect } from "react";
 import { useHistoryStore } from "@lib/store";
 import { useVideoId } from "@lib/hooks/useVideoId";
-import { homePageArgs } from "@const/queries";
 
 export interface UrlParams extends ParsedUrlQuery {
   video_id?: string;
@@ -58,7 +57,13 @@ const VideoPage:NextPage<VideoPageProps> = () => {
 }
 
 export const getStaticPaths:GetStaticPaths = async () => {
-  const videos = await VideosAPI.fetch(homePageArgs);
+  const videos = await VideosAPI.fetch({
+    cacheConfig: {
+      name: 'homepage_cache'
+    },
+    query: 'ambience',
+    maxResults: 48
+  });
 
   return {
     paths: videos.map(video => ({

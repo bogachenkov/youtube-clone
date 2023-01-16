@@ -1,28 +1,35 @@
-import { FetchVideosArgs } from "@lib/api/videos";
+import VideosAPI from "@lib/api/videos";
+import { IVideoPreview } from "@ts-types/Video";
 
 export type Query = {
-  key: string,
-  config: FetchVideosArgs
+  queryKey: string[];
+  queryFn: () => Promise<IVideoPreview[]>;
 }
 
 export const homeQuery:Query = {
-  key: 'home',
-  config: {
-    cacheConfig: {
-      name: 'homepage_cache'
-    },
-    query: 'ambience',
-    maxResults: 48
-  }
+  queryKey: ['home'],
+  queryFn: () => {
+    console.log('QUERIENG');
+    return VideosAPI.fetch({
+      cacheConfig: {
+        name: 'homepage_cache'
+      },
+      query: 'ambience',
+      maxResults: 48
+    })
+  },
 }
 
 export const exploreQuery:Query = {
-  key: 'explore',
-  config: {
-    cacheConfig: {
-      name: 'explore_cache'
-    },
-    query: 'ambience',
-    maxResults: 12
+  queryKey: ['explore'],
+  queryFn: () => {
+    console.log('QUERIENG');
+    return VideosAPI.fetch({
+      cacheConfig: {
+        name: 'explore_cache'
+      },
+      query: 'ambience',
+      maxResults: 12
+    })
   }
 }

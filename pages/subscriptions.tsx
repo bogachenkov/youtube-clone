@@ -1,9 +1,13 @@
+import { useAuthStore } from "@lib/store";
 import Container from "@modules/shared/Container";
 import EmptyScreen from "@modules/shared/EmptyScreen";
 import SignInButton from "@modules/shared/SignInButton";
+import Subscriptions from "@modules/Subscriptions";
 
 export default function SubscriptionsPage() {
-  return (
+  const user = useAuthStore(store => store.user);
+
+  if (!user) return (
     <Container>
       <EmptyScreen
         emojiCode="1F62D"
@@ -13,5 +17,7 @@ export default function SubscriptionsPage() {
         <SignInButton fontSize={16} />
       </EmptyScreen>
     </Container>
-  )
+  );
+
+  return <Subscriptions />
 }

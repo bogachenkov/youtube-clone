@@ -1,4 +1,4 @@
-import { useHistoryCollection } from '@lib/hooks/useHistoryCollection';
+import { useHistoryTabs } from '@lib/hooks/useHistoryTabs';
 import Container from '@modules/shared/Container';
 import Sticky from '@modules/shared/Sticky';
 import Spacer from '@modules/shared/Spacer';
@@ -19,7 +19,7 @@ interface IHistoryProps {
 const History:React.FC<IHistoryProps> = (props) => {
   const [ search, setSearch ] = useState('');
   const user = useAuthStore(store => store.user);
-  const tabs = useHistoryCollection(search);
+  const tabs = useHistoryTabs(search);
 
   return (
     <TwoColumnGrid secondCol="350px">

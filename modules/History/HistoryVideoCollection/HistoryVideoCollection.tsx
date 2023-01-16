@@ -1,11 +1,11 @@
-import { useHistoryCollection } from '@lib/hooks/useHistoryCollection';
+import { useHistoryTabs } from '@lib/hooks/useHistoryTabs';
 import GridContainer from '@modules/shared/GridContainer';
 import Spacer from '@modules/shared/Spacer';
 import Tabs from '@modules/shared/Tabs';
 import React from 'react';
 
 interface IHistoryVideoCollectionProps {
-  tabs: ReturnType<typeof useHistoryCollection>
+  tabs: ReturnType<typeof useHistoryTabs>
 }
 
 const HistoryVideoCollection:React.FC<IHistoryVideoCollectionProps> = ({

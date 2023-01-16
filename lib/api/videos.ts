@@ -25,6 +25,7 @@ class VideosAPI {
       maxResults
     } = args;
     try {
+      console.log('WHAT');
       if (cacheConfig && (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test')) {
         const cache = await redis.get<IVideoPreview[]>(JSON.stringify(args));
 
@@ -45,31 +46,6 @@ class VideosAPI {
           ex: cacheConfig.expire ?? 60 * 60 * 24
         });
       }
-      return items;
-    } catch (e) {
-      const error = e as Error;
-      console.error('Redis error:', error);
-      return [];
-    }
-  }
-
-  static async fetchDefaultVideos() {
-    try {
-      const cache = await redis.get<IVideoPreview[]>('homepage_cache');
-
-      if (cache?.length) {
-        console.log('Fetching data from cache');
-        return cache;
-      }
-      
-      console.log('Fetching data from API');
-      const items = await api.search({
-        q: 'ambience'
-      });
-
-      await redis.set('homepage_cache', JSON.stringify(items), {
-        ex: 60 * 60 * 24
-      });
       return items;
     } catch (e) {
       const error = e as Error;

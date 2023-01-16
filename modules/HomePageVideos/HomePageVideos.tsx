@@ -8,7 +8,9 @@ interface IHomePageVideosProps {
 }
 
 const HomePageVideos:React.FC<IHomePageVideosProps> = (props) => {
-  const data = useVideoCollection();
+  const { data, isLoading } = useVideoCollection();
+
+  if (isLoading) return <h1>Loading...</h1>
 
   return (
     <GridContainer>

@@ -1,6 +1,5 @@
 import { dehydrate, QueryClient } from "@tanstack/react-query";
 import { GetServerSideProps, NextPage } from "next";
-import VideosAPI from "@api/videos";
 import HomePageVideos from "@modules/HomePageVideos";
 import Container from "@shared/Container";
 import { useTabs } from "@lib/hooks/useTabs";
@@ -29,10 +28,8 @@ const HomePage:NextPage<HomePageProps> = () => {
 
 export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
   const queryClient = new QueryClient();
-  await queryClient.prefetchQuery(
-    [homeQuery.key],
-    () => VideosAPI.fetch(homeQuery.config)
-  );
+
+  await queryClient.prefetchQuery(homeQuery);
 
   return {
     props: {
