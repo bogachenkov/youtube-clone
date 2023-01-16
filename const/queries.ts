@@ -1,15 +1,10 @@
 import VideosAPI from "@lib/api/videos";
+import { FetchQueryOptions } from "@tanstack/react-query";
 import { IVideoPreview } from "@ts-types/Video";
 
-export type Query = {
-  queryKey: string[];
-  queryFn: () => Promise<IVideoPreview[]>;
-}
-
-export const homeQuery:Query = {
+export const homeQuery:FetchQueryOptions<IVideoPreview[]> = {
   queryKey: ['home'],
   queryFn: () => {
-    console.log('QUERIENG');
     return VideosAPI.fetch({
       cacheConfig: {
         name: 'homepage_cache'
@@ -18,12 +13,12 @@ export const homeQuery:Query = {
       maxResults: 48
     })
   },
+  staleTime: 60 * 60 * 1000
 }
 
-export const exploreQuery:Query = {
+export const exploreQuery:FetchQueryOptions<IVideoPreview[]> = {
   queryKey: ['explore'],
   queryFn: () => {
-    console.log('QUERIENG');
     return VideosAPI.fetch({
       cacheConfig: {
         name: 'explore_cache'
@@ -31,5 +26,6 @@ export const exploreQuery:Query = {
       query: 'ambience',
       maxResults: 12
     })
-  }
+  },
+  staleTime: 60 * 60 * 1000
 }

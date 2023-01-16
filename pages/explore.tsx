@@ -1,7 +1,7 @@
 import { exploreQuery } from "@const/queries";
 import Explore from "@modules/Explore";
 import { dehydrate, QueryClient } from "@tanstack/react-query";
-import { GetServerSideProps } from "next";
+import { GetStaticProps } from "next";
 
 export default function ExplorePage() {
   return (
@@ -9,9 +9,9 @@ export default function ExplorePage() {
   )
 }
 
-export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
+export const getStaticProps: GetStaticProps = async () => {
   const queryClient = new QueryClient();
-  // await queryClient.prefetchQuery(exploreQuery);
+  await queryClient.prefetchQuery(exploreQuery);
 
   return {
     props: {

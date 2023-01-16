@@ -8,6 +8,7 @@ import { Tab } from "@lib/hooks/useTabs";
 import { sortByDate } from "./sortByDate";
 import { getCalendarDate } from "./getCalendarDate";
 import { IVideoPreview } from "@ts-types/Video";
+import { get } from "lodash";
 
 dayjs.extend(utc)
 dayjs.extend(timezone)
@@ -19,7 +20,7 @@ export const createTabsByDate = <T extends IVideoPreview>(
 ) => {
   const dates = Array.from(
     new Set(
-      collection.map(el => dayjs(el[dateKey as keyof T] as string).tz('Europe/Moscow').format('YYYY-MM-DD'))
+      collection.map(el => dayjs(get(el, dateKey) as string).tz('Europe/Moscow').format('YYYY-MM-DD'))
     )
   ).sort(sortByDate);
 
@@ -27,7 +28,7 @@ export const createTabsByDate = <T extends IVideoPreview>(
     const calendarDate:string = getCalendarDate(date);
 
     const elementsForDate = collection.filter(el => {
-      return dayjs(el[dateKey as keyof T] as string).isSame(date, 'day');
+      return dayjs(get(el, dateKey) as string).isSame(date, 'day');
     });
 
     return {

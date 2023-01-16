@@ -25,7 +25,6 @@ class VideosAPI {
       maxResults
     } = args;
     try {
-      console.log('WHAT');
       if (cacheConfig && (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test')) {
         const cache = await redis.get<IVideoPreview[]>(JSON.stringify(args));
 

@@ -12,8 +12,8 @@ import Text from '../Text';
 import { intToString } from '@lib/utils/intToString';
 import { useVideoData } from '@lib/hooks/useVideoData';
 import IconWrapper from '../IconWrapper';
+import SubscribeButton from './SubscribeButton';
 
-const SubscribeButton = dynamic(() => import('./SubscribeButton'), { ssr: false })
 
 interface IVideoInfoProps {
   children?: React.ReactNode;
@@ -58,7 +58,7 @@ const VideoInfo:React.FC<IVideoInfoProps> = (props) => {
           <Spacer vertical={10} />
           <VideoDescription desc={video.snippet.description} />
         </Expand>
-        <SubscribeButton />
+        <SubscribeButton id={video.snippet.channelId} />
       </Row>
     </>
   );
