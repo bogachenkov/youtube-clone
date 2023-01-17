@@ -3,6 +3,7 @@ import { createHydratedStore, createPersistedStore, IStateCreator } from './util
 
 interface ILikesState {
   likedIds: string[];
+  lastUpdate: string;
   toggleLike: (id: string) => void;
 }
 
@@ -12,13 +13,16 @@ const toggleLike = (ids: ILikesState['likedIds'], id: string) => {
 
 const defaultLikesState:ILikesState = {
   likedIds: [],
+  lastUpdate: new Date().toISOString(),
   toggleLike: noop
 }
 
 const storeCreator:IStateCreator<ILikesState> = (set, get) => ({
-  likedIds: [],
+  likedIds: defaultLikesState.likedIds,
+  lastUpdate: defaultLikesState.lastUpdate,
   toggleLike: (id) => set({
-    likedIds: toggleLike(get().likedIds, id)
+    likedIds: toggleLike(get().likedIds, id),
+    lastUpdate: new Date().toISOString()
   })
 })
 

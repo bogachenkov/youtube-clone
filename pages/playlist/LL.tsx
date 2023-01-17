@@ -1,9 +1,16 @@
+import { useLikedCollection } from "@lib/hooks/useLikedCollection";
+import { useAuthStore, useLikesStore } from "@lib/store";
+import Playlist from "@modules/Playlist";
 import Container from "@modules/shared/Container";
 import EmptyScreen from "@modules/shared/EmptyScreen";
 import SignInButton from "@modules/shared/SignInButton";
 
-export default function WatchLaterPage() {
-  return (
+export default function LikedVideosPage() {
+  const user = useAuthStore(store => store.user);
+  const lastUpdate = useLikesStore(store => store.lastUpdate);
+  const videos = useLikedCollection();
+
+  if (!user) return (
     <Container>
       <EmptyScreen
         emojiCode="1F44D"
@@ -13,5 +20,23 @@ export default function WatchLaterPage() {
         <SignInButton fontSize={16} />
       </EmptyScreen>
     </Container>
+  )
+
+  if (videos.length === 0) return (
+    <Container>
+      <EmptyScreen
+        emojiCode="1F44D"
+        title="Want To Rewatch?"
+        text="There no videos you've liked"
+      />
+    </Container>
+  )
+
+  return (
+    <Playlist
+      videos={videos}
+      name="Liked Videos"
+      lastUpdate={lastUpdate}
+    />
   )
 }

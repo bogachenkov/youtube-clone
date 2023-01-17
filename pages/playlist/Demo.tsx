@@ -1,9 +1,12 @@
+import { useAuthStore } from "@lib/store";
 import Container from "@modules/shared/Container";
 import EmptyScreen from "@modules/shared/EmptyScreen";
 import SignInButton from "@modules/shared/SignInButton";
 
 export default function DemoPlaylistPage() {
-  return (
+  const user = useAuthStore(store => store.user);
+
+  if (!user) return (
     <Container>
       <EmptyScreen
         emojiCode="270C"
@@ -14,4 +17,6 @@ export default function DemoPlaylistPage() {
       </EmptyScreen>
     </Container>
   )
+
+  return null;
 }

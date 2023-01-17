@@ -12,7 +12,7 @@ export const createPersistedStore = <T>(
     stateCreator,
     {
       name: key,
-      getStorage: () => sessionStorage,
+      getStorage: () => localStorage,
     }
   )
 );

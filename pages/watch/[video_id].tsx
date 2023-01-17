@@ -69,7 +69,7 @@ export const getStaticPaths:GetStaticPaths = async () => {
     paths: videos.map(video => ({
       params: { video_id: video.id }
     })),
-    fallback: false, // can also be true or 'blocking'
+    fallback: true, // can also be true or 'blocking'
   }
 }
 

@@ -1,4 +1,4 @@
-import { noop } from 'lodash';
+import { concat, noop } from 'lodash';
 import { createHydratedStore, createPersistedStore } from './utils';
 
 interface IHistoryState {
@@ -6,6 +6,7 @@ interface IHistoryState {
     id: string;
     date: string;
   }[];
+  lastUpdate: string;
   isWatching: boolean;
   addToHistory: (videoId: string) => void;
   clearHistory: VoidFunction;
@@ -14,6 +15,7 @@ interface IHistoryState {
 
 const defaultHistoryState:IHistoryState = {
   history: [],
+  lastUpdate: new Date().toISOString(),
   isWatching: true,
   addToHistory: noop,
   clearHistory: noop,
@@ -23,26 +25,33 @@ const defaultHistoryState:IHistoryState = {
 const defaultHistoryStore = createPersistedStore<IHistoryState>(
   (set, get) => ({
     history: defaultHistoryState.history,
+    lastUpdate: defaultHistoryState.lastUpdate,
     isWatching: defaultHistoryState.isWatching,
 
     addToHistory: (id) => {
       const history = get().history;
+      const date = new Date().toISOString();
+
+      const filteredHistory = concat(
+        {
+          id,
+          date
+        },
+        history,
+      ).filter((element, index, arr) => {
+        return arr.findIndex(el => el.id === element.id) === index;
+      });
+
       set({
-        history: [
-          ...history.filter((element, index) => {
-            return history.findIndex(el => el.id === element.id) === index;
-          }),
-          {
-            id,
-            date: new Date().toISOString()
-          }
-        ],
+        history: filteredHistory,
+        lastUpdate: date
       })
     },
 
     clearHistory: () => {
       set({
-        history: []
+        history: defaultHistoryState.history,
+        lastUpdate: defaultHistoryState.lastUpdate
       })
     },
 

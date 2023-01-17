@@ -13,6 +13,7 @@ import { useCommentsStore } from '@lib/store';
 import { useVideoId } from '@lib/hooks/useVideoId';
 import { sortCommentsByDate } from '@lib/utils/sortCommentsByDate';
 import IconWrapper from '../IconWrapper';
+import SortButton from '../SortButton';
 
 interface ICommentsSectionProps {
   children?: React.ReactNode;
@@ -46,13 +47,10 @@ const CommentsSection:React.FC<ICommentsSectionProps> = (props) => {
         <Text weight='bold' size={13} color='var(--color-light)'>
           {thousandsSeparator(data.video.statistics.commentCount + localComments.length)} Comments
         </Text>
-        <Row gap={6}>
-          <IconWrapper icon='SortOutlined' size={24} />
-          <Text size={13} weight='bold' color='var(--color-light)'>
-            SORT BY
-          </Text>
-          <IconWrapper icon='ExpandMoreOutlined' size={24} />
-        </Row>
+        <SortButton
+          text='SORT BY'
+          fontSize={13}
+        />
       </Row>
       <Spacer vertical={26} />
       {/* INPUT */}

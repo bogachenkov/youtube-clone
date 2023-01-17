@@ -1,6 +1,6 @@
-import { homeQuery, Query } from "@const/queries";
+import { homeQuery } from "@const/queries";
 import { useQuery } from "@tanstack/react-query";
 
-export const useVideoCollection = (query: Query = homeQuery) => {
+export const useVideoCollection = (query = homeQuery) => {
   return useQuery(query);
 }
