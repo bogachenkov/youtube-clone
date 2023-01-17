@@ -16,6 +16,7 @@ const TextWeight = {
   extraBold: 700
 }
 
+// trunk-ignore(eslint/react/display-name)
 const Text = React.forwardRef<HTMLParagraphElement, ITextProps>(({
   size = 10,
   weight = 'thin',
