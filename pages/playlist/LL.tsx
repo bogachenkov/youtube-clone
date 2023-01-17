@@ -8,7 +8,7 @@ import SignInButton from "@modules/shared/SignInButton";
 export default function LikedVideosPage() {
   const user = useAuthStore(store => store.user);
   const lastUpdate = useLikesStore(store => store.lastUpdate);
-  const videos = useLikedCollection();
+  const collection = useLikedCollection();
 
   if (!user) return (
     <Container>
@@ -22,7 +22,7 @@ export default function LikedVideosPage() {
     </Container>
   )
 
-  if (videos.length === 0) return (
+  if (collection.length === 0) return (
     <Container>
       <EmptyScreen
         emojiCode="1F44D"
@@ -34,7 +34,7 @@ export default function LikedVideosPage() {
 
   return (
     <Playlist
-      videos={videos}
+      collection={collection}
       name="Liked Videos"
       lastUpdate={lastUpdate}
     />

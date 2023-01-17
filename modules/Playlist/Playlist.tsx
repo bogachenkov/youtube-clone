@@ -10,14 +10,14 @@ import PlaylistMeta from './PlaylistMeta';
 
 interface IPlaylistProps {
   children?: React.ReactNode;
-  videos: IVideoPreview[];
+  collection: IVideoPreview[];
   name: string;
   isPrivate?: boolean;
   lastUpdate: string;
 }
 
 const Playlist:React.FC<IPlaylistProps> = ({
-  videos,
+  collection,
   name,
   isPrivate = true,
   lastUpdate
@@ -29,14 +29,14 @@ const Playlist:React.FC<IPlaylistProps> = ({
         <Container>
           <PlaylistCover
             alt={name}
-            href={`/watch/${videos[0].id}`}
-            cover={getHighResThumb(videos[0].snippet.thumbnails)}
+            href={`/watch/${collection[0].id}`}
+            cover={getHighResThumb(collection[0].snippet.thumbnails)}
           />
         </Container>
         <Container>
           <PlaylistMeta
             name={name}
-            totalVideos={videos.length}
+            totalVideos={collection.length}
             totalViews={0}
             lastUpdate={lastUpdate}
             isPrivate={isPrivate}
@@ -46,7 +46,7 @@ const Playlist:React.FC<IPlaylistProps> = ({
       <Spacer vertical={30} />
       <Container>
         <PlaylistCollection
-          collection={videos}
+          collection={collection}
         />
       </Container>
     </>

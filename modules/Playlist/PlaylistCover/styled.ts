@@ -1,5 +1,4 @@
 import Image from 'next/image';
-import Link from 'next/link';
 import styled from 'styled-components';
 
 export const StyledCoverWrap = styled.div`
@@ -15,7 +14,7 @@ export const StyledPlaylistCover = styled(Image)`
   object-position: center;
 `;
 
-export const StyledCoverLink = styled(Link)`
+export const StyledCoverLink = styled.span`
   position: absolute;
   bottom: 0;
   left: 0;
