@@ -15,11 +15,10 @@ export const StyledNav = styled.nav`
   align-items: center;
   position: relative;
   z-index: 15;
-  padding: .5rem 0 .4rem;
+  padding: .5rem var(--tabs-pad-right) .4rem 0;
   gap: 5rem;
   overflow: hidden;
   scroll-behavior: smooth;
-  padding-right: 6em;
 `;
 
 export const StyledTab = styled.button`

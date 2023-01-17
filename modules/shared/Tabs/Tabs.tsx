@@ -77,6 +77,9 @@ const Tabs:React.FC<ITabsProps> = ({
       <StyledNav
         ref={navRef}
         onPointerLeave={onLeaveTabs}
+        style={{
+          ['--tabs-pad-right' as string]: isOverflowing ? '6rem' : 0
+        }}
       >
         {tabs.map((item, i) => {
           return (
