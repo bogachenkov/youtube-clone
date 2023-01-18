@@ -1,6 +1,7 @@
 import { IVideo, IVideoPreview } from "@ts-types/Video";
 import redis from "@lib/redis";
 import YoutubeAPI from "@api/youtube";
+import { REVALIDATE_TIME } from "@const/index";
 
 export type YoutubeApiResponse = {
   items: IVideo[]
@@ -25,7 +26,7 @@ class VideosAPI {
       maxResults
     } = args;
     try {
-      if (cacheConfig && (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test')) {
+      if (cacheConfig) {
         const cache = await redis.get<IVideoPreview[]>(JSON.stringify(args));
 
         if (cache?.length) {
@@ -42,7 +43,7 @@ class VideosAPI {
 
       if (cacheConfig) {
         await redis.set(JSON.stringify(args), JSON.stringify(items), {
-          ex: cacheConfig.expire ?? 60 * 60 * 24
+          ex: cacheConfig.expire ?? REVALIDATE_TIME
         });
       }
       return items;

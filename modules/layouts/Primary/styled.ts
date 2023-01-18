@@ -16,5 +16,8 @@ export const StyledLayout = styled.div`
 export const StyledMain = styled.main`
   grid-area: content;
   padding-bottom: var(--content-padding-bottom);
+  width: 100%;
+  max-width: 1754px;
+  margin: 0 auto;
   /* overflow-x: hidden; */
 `;

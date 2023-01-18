@@ -1,6 +1,7 @@
 import VideosAPI from "@lib/api/videos";
 import { FetchQueryOptions } from "@tanstack/react-query";
 import { IVideoPreview } from "@ts-types/Video";
+import { REVALIDATE_TIME } from ".";
 
 export const homeQuery:FetchQueryOptions<IVideoPreview[]> = {
   queryKey: ['home'],
@@ -13,7 +14,7 @@ export const homeQuery:FetchQueryOptions<IVideoPreview[]> = {
       maxResults: 24
     })
   },
-  staleTime: 60 * 60 * 1000
+  staleTime: REVALIDATE_TIME
 }
 
 export const exploreQuery:FetchQueryOptions<IVideoPreview[]> = {
@@ -27,5 +28,5 @@ export const exploreQuery:FetchQueryOptions<IVideoPreview[]> = {
       maxResults: 12
     })
   },
-  staleTime: 60 * 60 * 1000
+  staleTime: REVALIDATE_TIME
 }

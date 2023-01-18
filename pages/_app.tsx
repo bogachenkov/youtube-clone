@@ -6,6 +6,7 @@ import { ReactElement, ReactNode, useState } from 'react';
 import Primary from '@modules/layouts/Primary';
 import GlobalStyle from '../styles/globalStyles';
 import { PlaylistDataProvider } from '@lib/providers/playlist-api';
+import { REVALIDATE_TIME } from '@const/index';
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: ReactElement) => ReactNode
@@ -22,7 +23,7 @@ type AppPropsWithLayout = AppProps & {
 // }
 
 export default function App({ Component, pageProps }: AppPropsWithLayout) {
-  const [queryClient] = useState(() => new QueryClient({ defaultOptions: { queries: { staleTime: 24 * 60 * 60 * 1000 } } }));
+  const [queryClient] = useState(() => new QueryClient({ defaultOptions: { queries: { staleTime: REVALIDATE_TIME } } }));
 
   const getLayout = Component.getLayout || ((page) => <Primary>{page}</Primary>);
 
