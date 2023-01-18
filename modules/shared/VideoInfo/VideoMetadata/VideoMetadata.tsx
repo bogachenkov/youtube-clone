@@ -6,9 +6,8 @@ import Text from '@shared/Text';
 import { StyledMetadataControls } from './styled';
 import { thousandsSeparator } from '@utils/thousandsSeparator';
 import dynamic from 'next/dynamic';
-import IconWrapper from '@modules/shared/IconWrapper';
-import Button from '@modules/shared/Button';
 import VideoPlaylistButton from '../VideoPlaylistButton';
+import DefaultIconButton from '@modules/shared/DefaultIconButton';
 const VideoLike = dynamic(() => import('@shared/VideoInfo/VideoLike'), { ssr: false });
 
 interface IVideoMetadataProps {
@@ -39,12 +38,18 @@ const VideoMetadata:React.FC<IVideoMetadataProps> = ({
           likesCount={likes}
         />
         <VideoPlaylistButton />
-        <Button theme='text'>
-          <IconWrapper icon='ShareOutlined' />
-        </Button>
-        <Button theme='text'>
-          <IconWrapper icon='MoreHorizOutlined' />
-        </Button>
+        <DefaultIconButton
+          title='Not Implemented'
+          theme='text'
+          icon='ShareOutlined'
+          size={26}
+        />
+        <DefaultIconButton
+          title='Not Implemented'
+          theme='text'
+          icon='MoreHorizOutlined'
+          size={26}
+        />
       </StyledMetadataControls>
     </Row>
   );

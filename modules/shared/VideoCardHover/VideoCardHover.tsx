@@ -9,21 +9,28 @@ import { StyledControlsRow, StyledHoverContainer, StyledVideoCardHover } from '.
 import { intToString } from '@utils/intToString';
 import Row from '../Row';
 import IconWrapper from '../IconWrapper';
+import { usePlaylistStore } from '@lib/store/playlist';
 
 interface IVideoCardHoverProps {
   children?: React.ReactNode;
   likeCount: number;
-  href: string;
+  id: string;
 }
 
 const VideoCardHover:React.FC<IVideoCardHoverProps> = ({
   likeCount,
-  href
+  id
 }) => {
+  const addToPlaylist = usePlaylistStore(store => store.addVideoToPL);
+  const removeFromPlaylist = usePlaylistStore(store => store.removeVideoFromPL);
+  const playlist = usePlaylistStore(store => store.videos);
+
+  const isInPlaylist = playlist.includes(id);
+
   return (
     <StyledVideoCardHover>
       <Blur />
-      <Link href={href} color='#FFF'>
+      <Link href={`/watch/${id}`} color='#FFF'>
         <StyledHoverContainer>
           <Spacer vertical={20} />
           <Row align='center' gap={4}>
@@ -41,17 +48,18 @@ const VideoCardHover:React.FC<IVideoCardHoverProps> = ({
         </StyledHoverContainer>
       </Link>
       <StyledControlsRow direction='column' align='flex-end' gap={8}>
-        <ControlButton  
+        {/* <ControlButton
           text='Watch later'
           icon='WatchLaterOutlined'
-        />
-        <ControlButton  
+        /> */}
+        {/* <ControlButton
           text='Add to queue'
           icon='PlaylistPlayOutlined'
-        />
-        <ControlButton  
-          text='Add to playlist'
-          icon='PlaylistAddOutlined'
+        /> */}
+        <ControlButton
+          text={isInPlaylist ? 'Remove from playlist' : 'Add to playlist'}
+          onClick={() => isInPlaylist ? removeFromPlaylist(id) : addToPlaylist(id)}
+          icon={isInPlaylist ? 'PlaylistRemove' : 'PlaylistAdd'}
         />
       </StyledControlsRow>
     </StyledVideoCardHover>

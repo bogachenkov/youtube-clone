@@ -48,7 +48,7 @@ const VideoCard:React.FC<IVideoCardProps> = ({
           placeholder='blur'
           blurDataURL={thumbnails.standart ? thumbnails.standart.url : thumbnails.default.url}
         />
-        <VideoCardHover likeCount={likeCount} href={videoHref} />
+        <VideoCardHover likeCount={likeCount} id={id} />
         <VideoDuration duration={duration} />
       </header>
       <Spacer vertical={16} />

@@ -16,7 +16,12 @@ const HistoryActionButton:React.FC<IHistoryActionButtonProps> = ({
   ...buttonProps
 }) => {
   return (
-    <Button {...buttonProps} theme="text">
+    <Button
+      {...buttonProps}
+      fontColor='var(--color-grayLight)'
+      theme="text"
+      hoverable
+    >
       <Row gap={14}>
         <IconWrapper size={23} icon={icon} />
         {text}

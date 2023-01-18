@@ -1,7 +1,10 @@
 import VideosAPI from "@lib/api/videos";
+import YoutubeAPI from "@lib/api/youtube";
 import { FetchQueryOptions } from "@tanstack/react-query";
-import { IVideoPreview } from "@ts-types/Video";
+import { IVideo, IVideoPreview } from "@ts-types/Video";
 import { REVALIDATE_TIME } from ".";
+
+const youtubeApi = new YoutubeAPI();
 
 export const homeQuery:FetchQueryOptions<IVideoPreview[]> = {
   queryKey: ['home'],
@@ -14,7 +17,8 @@ export const homeQuery:FetchQueryOptions<IVideoPreview[]> = {
       maxResults: 24
     })
   },
-  staleTime: REVALIDATE_TIME
+  staleTime: REVALIDATE_TIME,
+  cacheTime: REVALIDATE_TIME
 }
 
 export const exploreQuery:FetchQueryOptions<IVideoPreview[]> = {
@@ -28,5 +32,17 @@ export const exploreQuery:FetchQueryOptions<IVideoPreview[]> = {
       maxResults: 12
     })
   },
-  staleTime: REVALIDATE_TIME
+  staleTime: REVALIDATE_TIME,
+  cacheTime: REVALIDATE_TIME
 }
+
+
+export const watchQuery:(id: string) => FetchQueryOptions<ReturnType<typeof youtubeApi.videoById>> = (id: string) => ({
+  queryKey: ['watch', id],
+  queryFn: () => youtubeApi.videoById({
+    part: ['snippet', 'contentDetails', 'statistics'],
+    id: [id]
+  }),
+  staleTime: REVALIDATE_TIME,
+  cacheTime: REVALIDATE_TIME
+})

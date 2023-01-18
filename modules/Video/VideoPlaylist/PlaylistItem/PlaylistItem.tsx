@@ -1,5 +1,4 @@
 import { youtubeDurationFormat } from '@lib/utils/youtubeDuration';
-import Button from '@modules/shared/Button';
 import IconWrapper from '@modules/shared/IconWrapper';
 import Row from '@modules/shared/Row';
 import Spacer from '@modules/shared/Spacer';
@@ -8,7 +7,7 @@ import { IVideoPreview } from '@ts-types/Video';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
-import { StyledChannelName, StyledIndex, StyledPlaylistItem, StyledTitle } from './styled';
+import { StyledThumbDuration, StyledIndex, StyledPlaylistItem, StyledTitle, StyledThumb } from './styled';
 
 interface IPlaylistItemProps {
   children?: React.ReactNode;
@@ -56,7 +55,7 @@ const PlaylistItem:React.FC<IPlaylistItemProps> = ({
               (index + 1)
             }
           </StyledIndex>
-          <Row>
+          <StyledThumb>
             <Image
               alt={title} 
               src={thumbnails.medium.url}
@@ -66,16 +65,18 @@ const PlaylistItem:React.FC<IPlaylistItemProps> = ({
                 borderRadius: 7
               }}
             />
-            {/* {youtubeDurationFormat(duration)} */}
-          </Row>
+            <StyledThumbDuration color='var(--color-light)' weight='regular' size={8}>
+              {youtubeDurationFormat(duration)}
+            </StyledThumbDuration>
+          </StyledThumb>
           <div>
             <StyledTitle weight='bold' color='var(--color-light)' size={13}>
               {title}
             </StyledTitle>
             <Spacer vertical={7} />
-            <StyledChannelName size={11} weight='regular'>
+            <Text size={11} weight='regular'>
               {channelTitle}
-            </StyledChannelName>
+            </Text>
           </div>
         </Row>
       </StyledPlaylistItem>

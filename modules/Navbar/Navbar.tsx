@@ -1,8 +1,7 @@
 import React from 'react';
-const ControlsSection = dynamic(() => import('@modules/Navbar/ControlsSection'), { ssr: false });
+import ControlsSection from '@modules/Navbar/ControlsSection';
 import SearchSection from '@modules/Navbar/SearchSection';
 import { StyledNavbar } from './styled';
-import dynamic from 'next/dynamic';
 
 interface INavbarProps {
   children?: React.ReactNode;

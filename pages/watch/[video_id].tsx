@@ -13,6 +13,7 @@ import { useEffect } from "react";
 import { useHistoryStore } from "@lib/store";
 import { useVideoId } from "@lib/hooks/useVideoId";
 import VideoPlaylist from "@modules/Video/VideoPlaylist";
+import { homeQuery, watchQuery } from "@const/queries";
 
 export interface UrlParams extends ParsedUrlQuery {
   video_id?: string;
@@ -56,19 +57,14 @@ const VideoPage:NextPage<VideoPageProps> = () => {
 }
 
 export const getStaticPaths:GetStaticPaths = async () => {
-  const videos = await VideosAPI.fetch({
-    cacheConfig: {
-      name: 'homepage_cache'
-    },
-    query: 'ambience',
-    maxResults: 48
-  });
+  // @ts-ignore
+  const videos = await homeQuery.queryFn();
 
   return {
     paths: videos.map(video => ({
       params: { video_id: video.id }
     })),
-    fallback: true, // can also be true or 'blocking'
+    fallback: false, // can also be true or 'blocking'
   }
 }
 
@@ -86,10 +82,7 @@ export const getStaticProps: GetStaticProps = async ({
   };
 
   const queryClient = new QueryClient();
-  await queryClient.prefetchQuery(['watch', params?.video_id], () => api.videoById({
-    part: ['snippet', 'contentDetails', 'statistics'],
-    id: [params.video_id!]
-  }));
+  await queryClient.prefetchQuery(watchQuery(params.video_id));
 
   return {
     props: {

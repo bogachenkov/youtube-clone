@@ -1,8 +1,8 @@
 import { useAuthStore } from '@lib/store';
 import Avatar from '@modules/shared/Avatar';
 import React from 'react';
-import IconWrapper from '@modules/shared/IconWrapper';
 import SignInButton from '@modules/shared/SignInButton';
+import DefaultIconButton from '@modules/shared/DefaultIconButton';
 
 interface IUserSectionProps {
   children?: React.ReactNode;
@@ -14,7 +14,12 @@ const UserSection:React.FC<IUserSectionProps> = (props) => {
   if (user) {
     return (
       <>
-        <IconWrapper icon='NotificationsOutlined' />
+        <DefaultIconButton
+          size={24}
+          icon='NotificationsOutlined'
+          title='Not Implemented'
+          disabled
+        />
         <Avatar name={user.authorDisplayName} />
       </>
     )

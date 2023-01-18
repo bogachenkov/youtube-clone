@@ -22,12 +22,12 @@ const PlayControls:React.FC<IPlayControlsProps> = () => {
     <StyledPlayControls gap={3}>
       {
         canPlayPrev && (
-          <Button theme='text' onClick={playPrev}>
+          <Button title='Play previous' theme='text' onClick={playPrev}>
             <IconWrapper icon='SkipPreviousOutlined' />
           </Button>
         )
       }
-      <Button theme='text' onClick={togglePlaying}>
+      <Button title={isPlaying ? 'Pause' : 'Play'} theme='text' onClick={togglePlaying}>
         {
           isPlaying ?
           <IconWrapper icon='PauseOutlined' />
@@ -37,7 +37,7 @@ const PlayControls:React.FC<IPlayControlsProps> = () => {
       </Button>
       {
         canPlayNext && (
-          <Button theme='text' onClick={playNext}>
+          <Button title='Play next' theme='text' onClick={playNext}>
             <IconWrapper icon='SkipNextOutlined' />
           </Button>
         )

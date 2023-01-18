@@ -1,10 +1,11 @@
+import { IButtonProps } from '@modules/shared/Button';
 import IconWrapper from '@modules/shared/IconWrapper';
 import { IconName } from '@modules/shared/IconWrapper/IconWrapper';
 import Row from '@modules/shared/Row';
 import React from 'react';
 import { StyledButtonText, StyledControlButton } from './styled';
 
-interface IControlButtonProps {
+interface IControlButtonProps extends IButtonProps {
   children?: React.ReactNode;
   text: string;
   icon: IconName;
@@ -12,13 +13,15 @@ interface IControlButtonProps {
 
 const ControlButton:React.FC<IControlButtonProps> = ({
   text,
-  icon
+  icon,
+  ...buttonProps
 }) => {
   return (
     <StyledControlButton 
       theme='secondary' 
       fontColor='#FFF'
       fontSize={12}
+      {...buttonProps}
     >
       <Row gap={11} align='center'>
         <StyledButtonText>

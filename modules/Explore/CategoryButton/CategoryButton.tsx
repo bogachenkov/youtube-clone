@@ -2,6 +2,7 @@ import IconWrapper, { IconName } from '@modules/shared/IconWrapper/IconWrapper';
 import Spacer from '@modules/shared/Spacer';
 import Text from '@modules/shared/Text';
 import React from 'react';
+import Ink from 'react-ink';
 import { StyledCategoryButton } from './styled';
 
 export interface ICategory {
@@ -28,6 +29,7 @@ const CategoryButton:React.FC<ICategoryButtonProps> = ({
       }}
       onClick={onClick}
     >
+      <Ink />
       <IconWrapper size={32} icon={icon} />
       <Spacer vertical={18} />
       <Text weight='regular' size={13} color='inherit'>

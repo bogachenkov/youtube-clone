@@ -29,6 +29,7 @@ const HistoryActions:React.FC<IHistoryActionsProps> = (props) => {
       <HistoryActionButton
         icon='SettingsOutlined'
         text='Manage All History'
+        title='Not implemented'
       />
     </>
   );

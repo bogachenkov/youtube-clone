@@ -17,6 +17,7 @@ const PlaylistCollection:React.FC<IPlaylistCollectionProps> = () => {
     <StyledPlaylistWindow>
       <Scrollbar
         autoHide
+        initialScrollTop={(84 + 14) * (activeIndex - 1)}
         style={{
           height: 'calc(var(--item-height) * 4 + var(--collection-gap) * 3)'
         }}

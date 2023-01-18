@@ -48,7 +48,7 @@ const SignInForm:React.FC<ISignInFormProps> = (props) => {
         <Checkbox
           label='Remember me'
         />
-        <Button theme='text'>
+        <Button title='Not Implemented' theme='text'>
           Forgot password?
         </Button>
       </Row>

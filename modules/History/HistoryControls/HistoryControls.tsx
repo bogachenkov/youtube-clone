@@ -19,7 +19,7 @@ const HistoryControls:React.FC<IHistoryControlsProps> = ({
       <Input
         placeholder='Search watch history'
         iconLeft={'SearchOutlined'}
-        padH={0}
+        padLeft={0}
         theme='underline'
         value={search}
         onChange={e => setSearch(e.target.value)}

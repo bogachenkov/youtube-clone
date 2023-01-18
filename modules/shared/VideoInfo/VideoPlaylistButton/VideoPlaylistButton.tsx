@@ -1,7 +1,6 @@
 import { useVideoId } from '@lib/hooks/useVideoId';
 import { usePlaylistStore } from '@lib/store/playlist';
-import Button from '@modules/shared/Button';
-import IconWrapper from '@modules/shared/IconWrapper';
+import DefaultIconButton from '@modules/shared/DefaultIconButton';
 import React from 'react';
 
 interface IVideoPlaylistButtonProps {
@@ -22,15 +21,13 @@ const VideoPlaylistButton:React.FC<IVideoPlaylistButtonProps> = (props) => {
   }
 
   return (
-    <Button
+    <DefaultIconButton
+      size={26}
+      icon={isInPlaylistCollection ? 'PlaylistRemove' : 'PlaylistAdd'}
       theme='text'
       onClick={onPlaylistClick}
-    >
-      <IconWrapper
-        color={isInPlaylistCollection ? 'red' : 'inherit'}
-        icon={isInPlaylistCollection ? 'PlaylistRemove' : 'PlaylistAdd'}
-      />
-    </Button>
+      title={isInPlaylistCollection ? 'Remove from playlist' : 'Add to playlist'}
+    />
   );
 }
 

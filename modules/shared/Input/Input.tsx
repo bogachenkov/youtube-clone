@@ -7,7 +7,8 @@ import { StyledIconWrap, StyledInput, StyledInputWrap } from './styled';
 interface IInputProps extends InputHTMLAttributes<HTMLInputElement> {
   children?: React.ReactNode;
   iconLeft?: IconName;
-  padH?: number;
+  padLeft?: number;
+  padRight?: number;
   theme?: 'primary' | 'underline'
 }
 
@@ -16,15 +17,17 @@ type Ref = HTMLInputElement;
 // trunk-ignore(eslint/react/display-name)
 const Input = forwardRef<Ref, IInputProps>(({
   iconLeft,
-  padH = 25,
+  padLeft = 25,
+  padRight = 25,
   theme = 'primary',
   ...props
 }, ref) => {
   return (
     <StyledInputWrap
       style={{
-        ['--padding-left-default' as string]: `${padH/baseRem}rem`,
-        ['--border-radius' as string]: theme === 'primary' ? '1em' : 0,
+        ['--padding-left-default' as string]: `${padLeft/baseRem}rem`,
+        ['--padding-right-default' as string]: `${padRight/baseRem}rem`,
+        ['--border-radius' as string]: theme === 'primary' ? '.6em' : 0,
         ['--border-bottom' as string]: theme === 'primary' ? 'none' : '1px solid var(--color-gray)',
         ['--padding-left-resulted' as string]: `${
           !!iconLeft ?

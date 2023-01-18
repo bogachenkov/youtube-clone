@@ -25,6 +25,17 @@ export const StyledTitle = styled(Text)`
   text-overflow: ellipsis;
 `;
 
-export const StyledChannelName = styled(Text)`
+export const StyledThumb = styled.div`
+  position: relative;
+`;
 
+export const StyledThumbDuration = styled(Text)`
+  position: absolute;
+  bottom: 1px;
+  right: 0;
+  background-color: rgba(0, 0, 0, .35);
+  padding: .4em 1em;
+  letter-spacing: .1px;
+  backdrop-filter: blur(3px);
+  border-top-left-radius: 7px;
 `;

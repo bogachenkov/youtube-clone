@@ -2,7 +2,7 @@ import React from 'react';
 import { StyledControlsSection } from './styled';
 import { useAuthStore } from '@lib/store';
 import UserSection from '../UserSection';
-import IconWrapper from '@modules/shared/IconWrapper';
+import DefaultIconButton from '@modules/shared/DefaultIconButton';
 
 interface IControlsSectionProps {
   children?: React.ReactNode;
@@ -14,9 +14,24 @@ const ControlsSection:React.FC<IControlsSectionProps> = (props) => {
   return (
     <StyledControlsSection>
       {
-        user ? <IconWrapper icon='VideoCallOutlined' /> : null
+        user ?
+        (
+          <DefaultIconButton
+            size={24}
+            icon='VideoCallOutlined'
+            title='Not Implemented'
+            disabled
+          />
+        )
+        :
+        null
       }
-      <IconWrapper icon='GridViewOutlined' />
+      <DefaultIconButton
+        icon='GridViewOutlined'
+        size={24}
+        title='Not Implemented'
+        disabled
+      />
       <UserSection />
     </StyledControlsSection>
   );

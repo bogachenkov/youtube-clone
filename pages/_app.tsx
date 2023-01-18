@@ -23,7 +23,14 @@ type AppPropsWithLayout = AppProps & {
 // }
 
 export default function App({ Component, pageProps }: AppPropsWithLayout) {
-  const [queryClient] = useState(() => new QueryClient({ defaultOptions: { queries: { staleTime: REVALIDATE_TIME } } }));
+  const [queryClient] = useState(() => new QueryClient({
+    defaultOptions: {
+      queries: {
+        staleTime: REVALIDATE_TIME,
+        cacheTime: REVALIDATE_TIME
+      }
+    }
+  }));
 
   const getLayout = Component.getLayout || ((page) => <Primary>{page}</Primary>);
 

@@ -1,7 +1,7 @@
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
 import React, { forwardRef } from 'react';
 import Input from '@shared/Input';
-import { StyledVoiceButton, StyledVoiceSearch } from './styled';
+import { StyledVoiceSearch, StyledMicroButton } from './styled';
 import IconWrapper from '../IconWrapper';
 
 interface IVoiceSearchProps {
@@ -26,12 +26,20 @@ const VoiceSearch:React.FC = forwardRef<HTMLInputElement, IVoiceSearchProps>((pr
 
   return (
     <StyledVoiceSearch>
-      <Input type="search" placeholder='Search' iconLeft={'SearchOutlined'} ref={ref} />
+      <Input
+        type="text"
+        placeholder='Search'
+        iconLeft={'SearchOutlined'}
+        ref={ref}
+        padRight={60}
+      />
       {
         browserSupportsSpeechRecognition && (
-          <StyledVoiceButton onClick={hanldeButtonClick}>
-            <IconWrapper icon='KeyboardVoiceOutlined' />
-          </StyledVoiceButton>
+          <StyledMicroButton
+            size={23}
+            icon='KeyboardVoiceOutlined'
+            onClick={hanldeButtonClick}
+          />
         )
       }
     </StyledVoiceSearch>

@@ -92,8 +92,9 @@ const Comment:React.FC<ICommentProps> = ({
         <Row gap={22}>
           <Button 
             theme='text' 
-            disabled={!canRate} 
-            onClick={() => toggleLike(id, true)} 
+            disabled={!canRate}
+            onClick={() => toggleLike(id, true)}
+            title={likedInfo.isLiked ? 'Remove Like' : 'Like'}
             fontColor={likedInfo.isLiked ? 'red' : 'inherit'}
           >
             <Row gap={8}>
@@ -106,9 +107,10 @@ const Comment:React.FC<ICommentProps> = ({
           </Button>
           <Row gap={10}>
             <Button 
-              theme='text' 
+              theme='text'
               disabled={!canRate}
-              onClick={() => toggleLike(id, false)} 
+              onClick={() => toggleLike(id, false)}
+              title={likedInfo.isDisliked ? 'Remove Dislike' : 'Dislike'}
               fontColor={likedInfo.isDisliked ? 'red' : 'inherit'}
             >
               <IconWrapper

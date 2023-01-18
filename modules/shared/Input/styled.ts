@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const StyledInputWrap = styled.div`
   position: relative;
   flex: 1;
-  --input-height: 3.6rem;
+  --input-height: 4rem;
   --padding-left-default: 2.5rem;
   --icon-left-size: 2.4rem;
   --icon-left-padding: 0.4rem;
@@ -25,7 +25,7 @@ export const StyledInput = styled.input`
   border-bottom: var(--border-bottom);
   background-color: var(--color-black);
   height: var(--input-height);
-  padding: 0 var(--padding-left-default) 0 var(--padding-left-resulted);
+  padding: 0 var(--padding-right-default) 0 var(--padding-left-resulted);
   color: var(--color-grayLight);
   font-size: 1.3rem;
   font-weight: 500;

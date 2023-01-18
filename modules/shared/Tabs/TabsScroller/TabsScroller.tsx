@@ -17,10 +17,10 @@ const TabsScroller:React.FC<ITabsScrollerProps> = ({
   return (
     <StyledTabsScroller>
       <Row justify='flex-end' gap={2}>
-        <Button theme='text' onClick={scrollLeft} fontSize={15} >
+        <Button title='Scroll to left' theme='text' onClick={scrollLeft} fontSize={15} >
           <IconWrapper icon='ArrowBackIosNewOutlined' />
         </Button>
-        <Button theme='text' onClick={scrollRight} fontSize={15}>
+        <Button title='Scroll to right' theme='text' onClick={scrollRight} fontSize={15}>
           <IconWrapper icon='ArrowForwardIosOutlined' />
         </Button>
       </Row>

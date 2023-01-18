@@ -18,6 +18,7 @@ const SortButton:React.FC<ISortButtonProps> = ({
     <Button
       {...buttonProps}
       theme='text'
+      title='Not Implemented'
     >
       <Row gap={6}>
         <IconWrapper icon='SortOutlined' size={24} />

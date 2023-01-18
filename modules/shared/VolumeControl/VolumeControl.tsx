@@ -6,6 +6,7 @@ import Row from '../Row';
 import useAccordion from '@lib/hooks/useAccordion';
 import { animated } from 'react-spring';
 import IconWrapper from '../IconWrapper';
+import Button from '../Button';
 
 interface IVolumeControlProps {
   children?: React.ReactNode;
@@ -28,14 +29,18 @@ const VolumeControl:React.FC<IVolumeControlProps> = (props) => {
 
   return (
     <Row align='stretch' gap={5} onMouseEnter={() => setIsOpen(true)} onMouseLeave={() => setIsOpen(false)}>
-      <button onClick={toggleMute}>
+      <Button
+        theme='text'
+        onClick={toggleMute}
+        title={isMuted ? 'Unmute' : 'Mute'}
+      >
         {
         isMuted ?
         <IconWrapper icon='VolumeOffOutlined' />
         :
         <IconWrapper icon='VolumeUpOutlined' />
         }
-      </button>
+      </Button>
       <AnimatedRow style={style}>
         <StyleProgressWrapper ref={ref}>
           <StyledVolumeProgress 
