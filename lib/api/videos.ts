@@ -42,9 +42,7 @@ class VideosAPI {
       });
 
       if (cacheConfig) {
-        await redis.set(JSON.stringify(args), JSON.stringify(items), {
-          ex: cacheConfig.expire ?? REVALIDATE_TIME
-        });
+        await redis.set(JSON.stringify(args), JSON.stringify(items));
       }
       return items;
     } catch (e) {
