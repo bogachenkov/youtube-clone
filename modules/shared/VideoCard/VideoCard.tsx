@@ -39,7 +39,7 @@ const VideoCard:React.FC<IVideoCardProps> = ({
     <StyledVideoCard>
       <header>
         <StyledThumb 
-          alt={'Title'} 
+          alt={title}
           src={thumbnails.medium.url}
           fill
           sizes="(max-width: 768px) 100vw,

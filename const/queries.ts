@@ -9,8 +9,8 @@ export const homeQuery:FetchQueryOptions<IVideoPreview[]> = {
       cacheConfig: {
         name: 'homepage_cache'
       },
-      query: 'ambience',
-      maxResults: 48
+      query: 'fantasy forest ambience',
+      maxResults: 24
     })
   },
   staleTime: 60 * 60 * 1000
@@ -23,7 +23,7 @@ export const exploreQuery:FetchQueryOptions<IVideoPreview[]> = {
       cacheConfig: {
         name: 'explore_cache'
       },
-      query: 'ambience',
+      query: 'fantasy forest ambience',
       maxResults: 12
     })
   },

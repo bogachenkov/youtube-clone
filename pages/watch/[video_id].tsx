@@ -12,6 +12,7 @@ import CommentsSection from "@modules/shared/CommentsSection";
 import { useEffect } from "react";
 import { useHistoryStore } from "@lib/store";
 import { useVideoId } from "@lib/hooks/useVideoId";
+import VideoPlaylist from "@modules/Video/VideoPlaylist";
 
 export interface UrlParams extends ParsedUrlQuery {
   video_id?: string;
@@ -32,7 +33,7 @@ const VideoPage:NextPage<VideoPageProps> = () => {
   }, [isWatching, addToHistory, id]);
 
   return (
-    <TwoColumnGrid secondCol="350px" firstCol="auto">
+    <TwoColumnGrid secondCol="445px">
       <Container>
         <VideoPlayer
           controls
@@ -49,9 +50,7 @@ const VideoPage:NextPage<VideoPageProps> = () => {
         <Spacer vertical={24} />
         <CommentsSection />
       </Container>
-      <Container>
-      
-      </Container>
+      <VideoPlaylist />
     </TwoColumnGrid>
   )
 }

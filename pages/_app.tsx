@@ -5,6 +5,7 @@ import type { AppProps } from 'next/app';
 import { ReactElement, ReactNode, useState } from 'react';
 import Primary from '@modules/layouts/Primary';
 import GlobalStyle from '../styles/globalStyles';
+import { PlaylistDataProvider } from '@lib/providers/playlist-api';
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: ReactElement) => ReactNode
@@ -29,7 +30,9 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
     <QueryClientProvider client={queryClient}>
       <Hydrate state={pageProps.dehydratedState}>
         <GlobalStyle />
-        <Component {...pageProps} />
+        <PlaylistDataProvider>
+          <Component {...pageProps} />
+        </PlaylistDataProvider>
       </Hydrate>
     </QueryClientProvider>
   )

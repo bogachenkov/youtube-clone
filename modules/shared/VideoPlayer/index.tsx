@@ -1,8 +1,8 @@
 import { PlayerDataProvider } from '@lib/providers/player-api';
-import dynamic from 'next/dynamic';
 import { IVideoPlayerProps } from './VideoPlayer';
+import Player from './VideoPlayer';
 
-const Player = dynamic(() => import('./VideoPlayer'), { ssr: false });
+// const Player = dynamic(() => import('./VideoPlayer'), { ssr: false });
 
 const VideoPlayer:React.FC<IVideoPlayerProps> = (props) => {
   return (

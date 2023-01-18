@@ -7,6 +7,8 @@ export interface IButtonProps extends ComponentPropsWithoutRef<'button'>  {
   fontSize?: number;
   fontColor?: string;
   theme?: 'primary' | 'secondary' | 'text';
+  hoverable?: boolean;
+  hoverColor?: string;
 }
 
 const DEFAULT_PADDING = '.9em 1.5em';
@@ -48,16 +50,20 @@ const Button = React.forwardRef<HTMLButtonElement, IButtonProps>(({
   theme = 'primary',
   fontColor,
   style,
+  hoverable = false,
+  hoverColor = 'var(--color-light)',
   ...props
 }, ref) => {
   const buttonThemeData = getButtonThemeData(theme);
+  const buttonFontColor = fontColor ?? buttonThemeData.color ?? DEFAULT_TEXT_COLOR;
   return (
     <StyledButton
       style={{
         ['--button-f-size' as string]: `${fontSize/baseRem}rem`,
         ['--button-bg-color' as string]: buttonThemeData.bg,
-        ['--button-text-color' as string]: fontColor ?? buttonThemeData.color ?? DEFAULT_TEXT_COLOR,
+        ['--button-text-color' as string]: buttonFontColor,
         ['--button-padding' as string]: buttonThemeData.padding ?? DEFAULT_PADDING,
+        ['--button-hover-color' as string]: hoverable ? hoverColor : buttonFontColor,
         ...style
       }}
       ref={ref}

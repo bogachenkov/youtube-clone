@@ -1,6 +1,8 @@
+import { useVideoId } from '@lib/hooks/useVideoId';
 import { usePlayerAPI, usePlayerRefs, usePlayerMuted } from '@lib/providers/player-api';
+import { usePlaylistAPI, usePlaylistIndex } from '@lib/providers/playlist-api';
 import _ from 'lodash';
-import React, { useEffect, useRef, VideoHTMLAttributes } from 'react';
+import React, { useCallback, useEffect, useRef, VideoHTMLAttributes } from 'react';
 import { StyledVideoElement, StyledVideoPlayer } from './styled';
 import VideoControls from './VideoControls';
 
@@ -30,10 +32,24 @@ const VideoPlayer:React.FC<IVideoPlayerProps> = ({
   ...props
 }) => {
   const timeIntervalRef = useRef<NodeJS.Timer>();
+  const videoId = useVideoId();
 
   const { video, container } = usePlayerRefs();
   const { updateTimings, togglePlaying } = usePlayerAPI();
   const isMuted = usePlayerMuted();
+
+  const { playNext } = usePlaylistAPI();
+
+  const restartVideo = useCallback(() => {
+    video.current?.pause();
+    video.current!.currentTime = 0;
+    video.current?.load();
+  }, [video]);
+
+  useEffect(() => {
+    restartVideo();
+    clearInterval(timeIntervalRef.current);
+  }, [videoId, restartVideo]);
 
   useEffect(() => {
     return () => {
@@ -65,6 +81,7 @@ const VideoPlayer:React.FC<IVideoPlayerProps> = ({
         muted={isMuted} 
         ref={video}
         onPlay={handlePlay}
+        onEnded={playNext}
         onPause={handlePause}
         onClick={togglePlaying}
         preload={'auto'}

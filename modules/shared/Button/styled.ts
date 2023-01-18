@@ -11,4 +11,9 @@ export const StyledButton = styled.button`
   border-radius: .55em;
   /* display: inline-flex;
   align-items: center; */
+  transition: .2s;
+
+  &:hover {
+    color: var(--button-hover-color);
+  }
 `;

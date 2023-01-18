@@ -39,6 +39,7 @@ type API = {
   toggleFullscreen: VoidFunction;
   updateVolume: (volume: number) => void;
   updateTimings: (args: UpdateTimingsArgs) => void;
+  resetProgress: VoidFunction;
 };
 
 const PlayerPlayingContext = createContext<State["isPlaying"]>(
@@ -145,12 +146,21 @@ export const PlayerDataProvider = ({ children }: { children: ReactNode }) => {
       })
     }
 
+    const resetProgress = () => {
+      setTimings({
+        played: 0,
+        buffered: 0,
+        duration: 0
+      });
+    }
+
     return { 
       togglePlaying,
       toggleMute: () => setMute(mute => !mute),
       toggleFullscreen,
       updateVolume,
-      updateTimings
+      updateTimings,
+      resetProgress
     };
   }, []);
 
