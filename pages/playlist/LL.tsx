@@ -4,6 +4,7 @@ import Playlist from "@modules/Playlist";
 import Container from "@modules/shared/Container";
 import EmptyScreen from "@modules/shared/EmptyScreen";
 import SignInButton from "@modules/shared/SignInButton";
+import Head from "next/head";
 
 export default function LikedVideosPage() {
   const user = useAuthStore(store => store.user);
@@ -12,6 +13,9 @@ export default function LikedVideosPage() {
 
   if (!user) return (
     <Container>
+      <Head>
+        <title>Liked Videos - YouTube Clone</title>
+      </Head>
       <EmptyScreen
         emojiCode="1F44D"
         title="Want To Rewatch?"
@@ -24,6 +28,9 @@ export default function LikedVideosPage() {
 
   if (collection.length === 0) return (
     <Container>
+      <Head>
+        <title>Liked Videos - YouTube Clone</title>
+      </Head>
       <EmptyScreen
         emojiCode="1F44D"
         title="Want To Rewatch?"
@@ -33,10 +40,15 @@ export default function LikedVideosPage() {
   )
 
   return (
-    <Playlist
-      collection={collection}
-      name="Liked Videos"
-      lastUpdate={lastUpdate}
-    />
+    <>
+      <Head>
+        <title>Liked Videos - YouTube Clone</title>
+      </Head>
+      <Playlist
+        collection={collection}
+        name="Liked Videos"
+        lastUpdate={lastUpdate}
+      />
+    </>
   )
 }

@@ -7,6 +7,7 @@ import Tabs from "@modules/shared/Tabs";
 import { CategoryTabs } from '@const/categories';
 import Spacer from "@modules/shared/Spacer";
 import { homeQuery } from "@const/queries";
+import Head from "next/head";
 
 interface HomePageProps {
 }
@@ -17,6 +18,9 @@ const HomePage:NextPage<HomePageProps> = () => {
 
   return (
     <div>
+      <Head>
+        <title>YouTube Clone</title>
+      </Head>
       <Tabs {...categoriesTabs.tabProps} />
       <Spacer vertical={25} />
       <Container>

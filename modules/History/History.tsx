@@ -8,9 +8,6 @@ import React, { useState } from 'react';
 import HistoryControls from './HistoryControls';
 import HistoryVideoCollection from './HistoryVideoCollection';
 import EmptyScreen from '@modules/shared/EmptyScreen';
-import { useAuthStore } from '@lib/store';
-import SignInButton from '@modules/shared/SignInButton';
-import { isNull } from 'lodash';
 
 interface IHistoryProps {
   children?: React.ReactNode;
@@ -18,7 +15,6 @@ interface IHistoryProps {
 
 const History:React.FC<IHistoryProps> = (props) => {
   const [ search, setSearch ] = useState('');
-  const user = useAuthStore(store => store.user);
   const tabs = useHistoryTabs(search);
 
   return (
@@ -29,10 +25,8 @@ const History:React.FC<IHistoryProps> = (props) => {
             <EmptyScreen
               emojiCode='1F627'
               title='Keep Track Of What You Watch'
-              text={isNull(user) ? 'Watch history isn\'t viewable when signed out' : 'Your watch history is empty'}
-            >
-              { !user ? <SignInButton fontSize={16} /> : null }
-            </EmptyScreen>
+              text={'Your watch history is empty'}
+            />
           )
         }
         {

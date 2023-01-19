@@ -2,10 +2,16 @@ import { exploreQuery } from "@const/queries";
 import Explore from "@modules/Explore";
 import { dehydrate, QueryClient } from "@tanstack/react-query";
 import { GetStaticProps } from "next";
+import Head from "next/head";
 
 export default function ExplorePage() {
   return (
-    <Explore />
+    <>
+      <Head>
+        <title>Explore - YouTube Clone</title>
+      </Head>
+      <Explore />
+    </>
   )
 }
 

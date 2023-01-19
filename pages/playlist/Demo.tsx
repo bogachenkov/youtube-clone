@@ -5,6 +5,7 @@ import Playlist from "@modules/Playlist";
 import Container from "@modules/shared/Container";
 import EmptyScreen from "@modules/shared/EmptyScreen";
 import SignInButton from "@modules/shared/SignInButton";
+import Head from "next/head";
 
 export default function DemoPlaylistPage() {
   const user = useAuthStore(store => store.user);
@@ -14,6 +15,9 @@ export default function DemoPlaylistPage() {
 
   if (!user) return (
     <Container>
+      <Head>
+        <title>Playlist - YouTube Clone</title>
+      </Head>
       <EmptyScreen
         emojiCode="270C"
         title="Watch What You Want"
@@ -26,6 +30,9 @@ export default function DemoPlaylistPage() {
 
   if (collection.length === 0) return (
     <Container>
+      <Head>
+        <title>Playlist - YouTube Clone</title>
+      </Head>
       <EmptyScreen
         emojiCode="270C"
         title="Watch What You Want"
@@ -35,10 +42,15 @@ export default function DemoPlaylistPage() {
   )
 
   return (
-    <Playlist
-      collection={collection}
-      name={name}
-      lastUpdate={lastUpdate}
-    />
+    <>
+      <Head>
+        <title>Playlist - YouTube Clone</title>
+      </Head>
+      <Playlist
+        collection={collection}
+        name={name}
+        lastUpdate={lastUpdate}
+      />
+    </>
   )
 }

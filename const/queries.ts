@@ -16,11 +16,11 @@ export const homeQuery:FetchQueryOptions<IVideoPreview[]> = {
         name: 'homepage_cache'
       },
       query: 'fantasy forest ambience',
-      maxResults: 24
+      maxResults: 24,
     })
   },
   staleTime: REVALIDATE_TIME,
-  cacheTime: REVALIDATE_TIME
+  cacheTime: REVALIDATE_TIME,
 }
 
 export const exploreQuery:FetchQueryOptions<IVideoPreview[]> = {
@@ -35,7 +35,7 @@ export const exploreQuery:FetchQueryOptions<IVideoPreview[]> = {
     })
   },
   staleTime: REVALIDATE_TIME,
-  cacheTime: REVALIDATE_TIME
+  cacheTime: REVALIDATE_TIME,
 }
 
 
@@ -50,5 +50,5 @@ export const watchQuery:(id: string) => FetchQueryOptions<{
     id: [id]
   }),
   staleTime: REVALIDATE_TIME,
-  cacheTime: REVALIDATE_TIME
+  cacheTime: REVALIDATE_TIME,
 })

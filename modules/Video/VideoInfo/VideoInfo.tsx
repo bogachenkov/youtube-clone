@@ -12,6 +12,7 @@ import { intToString } from '@lib/utils/intToString';
 import { useVideoData } from '@lib/hooks/useVideoData';
 import IconWrapper from '../../shared/IconWrapper';
 import SubscribeButton from './SubscribeButton';
+import Head from 'next/head';
 
 
 interface IVideoInfoProps {
@@ -30,6 +31,9 @@ const VideoInfo:React.FC<IVideoInfoProps> = (props) => {
 
   return (
     <>
+      <Head>
+        <title>{video.snippet.title} - YouTube Clone</title>
+      </Head>
       <Title size={20}>
         {video.snippet.title}
       </Title>

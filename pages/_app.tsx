@@ -2,12 +2,13 @@ import 'regenerator-runtime/runtime';
 import { NextPage } from 'next';
 import { QueryClient, QueryClientProvider, Hydrate } from '@tanstack/react-query';
 import type { AppProps } from 'next/app';
-import { ReactElement, ReactNode, useState } from 'react';
+import { ReactElement, ReactNode, Suspense, useState } from 'react';
 import Primary from '@modules/layouts/Primary';
 import GlobalStyle from '../styles/globalStyles';
 import { PlaylistDataProvider } from '@lib/providers/playlist-api';
 import { REVALIDATE_TIME } from '@const/index';
 import 'react-tooltip/dist/react-tooltip.css';
+import SuspenseSpinner from '@modules/SuspenseSpinner';
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: ReactElement) => ReactNode
@@ -28,7 +29,8 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
     defaultOptions: {
       queries: {
         staleTime: REVALIDATE_TIME,
-        cacheTime: REVALIDATE_TIME
+        cacheTime: REVALIDATE_TIME,
+        suspense: true
       }
     }
   }));
@@ -36,13 +38,15 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
   const getLayout = Component.getLayout || ((page) => <Primary>{page}</Primary>);
 
   return getLayout(
-    <QueryClientProvider client={queryClient}>
-      <Hydrate state={pageProps.dehydratedState}>
-        <GlobalStyle />
-        <PlaylistDataProvider>
-          <Component {...pageProps} />
-        </PlaylistDataProvider>
-      </Hydrate>
-    </QueryClientProvider>
+    <Suspense fallback={<SuspenseSpinner />}>
+      <QueryClientProvider client={queryClient}>
+        <Hydrate state={pageProps.dehydratedState}>
+          <GlobalStyle />
+          <PlaylistDataProvider>
+            <Component {...pageProps} />
+          </PlaylistDataProvider>
+        </Hydrate>
+      </QueryClientProvider>
+    </Suspense>
   )
 }
