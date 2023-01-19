@@ -5,14 +5,12 @@ import { StyledCommentBlock } from './styled';
 
 import { useVideoData } from '@lib/hooks/useVideoData';
 import { thousandsSeparator } from '@utils/thousandsSeparator';
-import Title from '../Title';
 import CommentsThread from '../CommentsThread';
 import Spacer from '../Spacer';
 import AddCommentForm from '../AddCommentForm';
 import { useCommentsStore } from '@lib/store';
 import { useVideoId } from '@lib/hooks/useVideoId';
 import { sortCommentsByDate } from '@lib/utils/sortCommentsByDate';
-import IconWrapper from '../IconWrapper';
 import SortButton from '../SortButton';
 
 interface ICommentsSectionProps {
@@ -29,9 +27,9 @@ const CommentsSection:React.FC<ICommentsSectionProps> = (props) => {
   )
 
   if (data.comments.length === 0) return (
-    <Title>
+    <Text size={17} weight='regular' style={{ textAlign: 'center' }}>
       Comments are disabled.
-    </Title>
+    </Text>
   )
 
   const localComments = threads.filter(thread => thread.snippet.topLevelComment.snippet.videoId === videoId);

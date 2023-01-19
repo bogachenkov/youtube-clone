@@ -1,6 +1,8 @@
 import VideosAPI from "@lib/api/videos";
 import YoutubeAPI from "@lib/api/youtube";
 import { FetchQueryOptions } from "@tanstack/react-query";
+import { IChannel } from "@ts-types/Channel";
+import { ICommentThread } from "@ts-types/Comment";
 import { IVideo, IVideoPreview } from "@ts-types/Video";
 import { REVALIDATE_TIME } from ".";
 
@@ -37,7 +39,11 @@ export const exploreQuery:FetchQueryOptions<IVideoPreview[]> = {
 }
 
 
-export const watchQuery:(id: string) => FetchQueryOptions<ReturnType<typeof youtubeApi.videoById>> = (id: string) => ({
+export const watchQuery:(id: string) => FetchQueryOptions<{
+  video: IVideo;
+  comments: ICommentThread[];
+  channel: IChannel | null;
+} | null> = (id: string) => ({
   queryKey: ['watch', id],
   queryFn: () => youtubeApi.videoById({
     part: ['snippet', 'contentDetails', 'statistics'],

@@ -15,7 +15,6 @@ const SearchSection:React.FC<ISearchSectionProps> = (props) => {
         size={23}
         icon='TuneOutlined'
         title='Not Implemented'
-        disabled
       />
     </StyledSearchSection>
   );

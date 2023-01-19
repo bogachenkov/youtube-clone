@@ -7,6 +7,7 @@ import Primary from '@modules/layouts/Primary';
 import GlobalStyle from '../styles/globalStyles';
 import { PlaylistDataProvider } from '@lib/providers/playlist-api';
 import { REVALIDATE_TIME } from '@const/index';
+import 'react-tooltip/dist/react-tooltip.css';
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: ReactElement) => ReactNode

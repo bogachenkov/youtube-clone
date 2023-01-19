@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Tooltip } from 'react-tooltip';
 
 export const StyledButton = styled.button`
   cursor: pointer;
@@ -16,4 +17,9 @@ export const StyledButton = styled.button`
   &:hover {
     color: var(--button-hover-color);
   }
+`;
+
+export const StyledTooltip = styled(Tooltip)`
+  background-color: var(--color-grayDark);
+  font-size: 1.1rem;
 `;

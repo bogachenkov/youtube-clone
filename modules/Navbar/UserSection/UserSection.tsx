@@ -18,7 +18,6 @@ const UserSection:React.FC<IUserSectionProps> = (props) => {
           size={24}
           icon='NotificationsOutlined'
           title='Not Implemented'
-          disabled
         />
         <Avatar name={user.authorDisplayName} />
       </>

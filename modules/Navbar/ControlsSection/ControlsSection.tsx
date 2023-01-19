@@ -20,7 +20,6 @@ const ControlsSection:React.FC<IControlsSectionProps> = (props) => {
             size={24}
             icon='VideoCallOutlined'
             title='Not Implemented'
-            disabled
           />
         )
         :
@@ -30,7 +29,6 @@ const ControlsSection:React.FC<IControlsSectionProps> = (props) => {
         icon='GridViewOutlined'
         size={24}
         title='Not Implemented'
-        disabled
       />
       <UserSection />
     </StyledControlsSection>

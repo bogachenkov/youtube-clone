@@ -1,6 +1,7 @@
-import React, { ComponentPropsWithoutRef } from 'react';
+import React, { ComponentPropsWithoutRef, useId } from 'react';
+import { Tooltip } from 'react-tooltip';
 import { baseRem } from 'styles/globalStyles';
-import { StyledButton } from './styled';
+import { StyledButton, StyledTooltip } from './styled';
 
 export interface IButtonProps extends ComponentPropsWithoutRef<'button'>  {
   children?: React.ReactNode;
@@ -52,25 +53,42 @@ const Button = React.forwardRef<HTMLButtonElement, IButtonProps>(({
   style,
   hoverable = false,
   hoverColor = 'var(--color-light)',
+  title,
   ...props
 }, ref) => {
   const buttonThemeData = getButtonThemeData(theme);
   const buttonFontColor = fontColor ?? buttonThemeData.color ?? DEFAULT_TEXT_COLOR;
+
+  const buttonId = useId();
+
   return (
-    <StyledButton
-      style={{
-        ['--button-f-size' as string]: `${fontSize/baseRem}rem`,
-        ['--button-bg-color' as string]: buttonThemeData.bg,
-        ['--button-text-color' as string]: buttonFontColor,
-        ['--button-padding' as string]: buttonThemeData.padding ?? DEFAULT_PADDING,
-        ['--button-hover-color' as string]: hoverable ? hoverColor : buttonFontColor,
-        ...style
-      }}
-      ref={ref}
-      {...props}
-    >
-      {children}
-    </StyledButton>
+    <>
+      <StyledButton
+        style={{
+          ['--button-f-size' as string]: `${fontSize/baseRem}rem`,
+          ['--button-bg-color' as string]: buttonThemeData.bg,
+          ['--button-text-color' as string]: buttonFontColor,
+          ['--button-padding' as string]: buttonThemeData.padding ?? DEFAULT_PADDING,
+          ['--button-hover-color' as string]: hoverable ? hoverColor : buttonFontColor,
+          ...style
+        }}
+        ref={ref}
+        id={buttonId}
+        data-tooltip-content={title}
+        {...props}
+      >
+        {children}
+      </StyledButton>
+      {
+        title && (
+          <StyledTooltip
+            noArrow
+            anchorId={buttonId}
+            place='bottom'
+          />
+        )
+      }
+    </>
   );
 })
 

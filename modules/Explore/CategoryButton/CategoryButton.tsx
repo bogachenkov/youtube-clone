@@ -25,7 +25,7 @@ const CategoryButton:React.FC<ICategoryButtonProps> = ({
   return (
     <StyledCategoryButton
       style={{
-        ['--button-border-color' as string]: isActive ? 'red' : 'var(--color-background-blue)'
+        ['--button-border-color' as string]: isActive ? 'var(--color-gray)' : 'var(--color-background-blue)'
       }}
       onClick={onClick}
     >
