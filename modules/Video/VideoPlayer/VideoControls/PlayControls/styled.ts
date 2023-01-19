@@ -1,5 +1,5 @@
+import Row from '@modules/shared/Row';
 import styled from 'styled-components';
-import Row from '../../../Row';
 
 export const StyledPlayControls = styled(Row)`
   & button {

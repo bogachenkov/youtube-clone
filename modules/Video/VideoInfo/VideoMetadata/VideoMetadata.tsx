@@ -8,7 +8,7 @@ import { thousandsSeparator } from '@utils/thousandsSeparator';
 import dynamic from 'next/dynamic';
 import VideoPlaylistButton from '../VideoPlaylistButton';
 import DefaultIconButton from '@modules/shared/DefaultIconButton';
-const VideoLike = dynamic(() => import('@shared/VideoInfo/VideoLike'), { ssr: false });
+const VideoLike = dynamic(() => import('@modules/Video/VideoInfo/VideoLike'), { ssr: false });
 
 interface IVideoMetadataProps {
   children?: React.ReactNode;

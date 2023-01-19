@@ -9,9 +9,9 @@ const renderVideoCard = (v: IVideoPreview) => (
 );
 
 export const useHistoryTabs = (searchLine?: string) => {
-  const videos = useHistoryCollection(searchLine);
+  const collection = useHistoryCollection(searchLine);
 
-  const tabs = createTabsByDate(videos, 'date', renderVideoCard);
+  const tabs = createTabsByDate(collection, 'date', renderVideoCard);
 
   return useTabs({ tabs, initialTabId: "Today" });
 }

@@ -9,9 +9,9 @@ const renderVideoCard = (v: IVideoPreview) => (
 );
 
 export const useSubsTabs = () => {
-  const videos = useSubsCollection();
+  const collection = useSubsCollection();
 
-  const tabs = createTabsByDate(videos, 'snippet.publishedAt', renderVideoCard);
+  const tabs = createTabsByDate(collection, 'snippet.publishedAt', renderVideoCard);
 
   return useTabs({ tabs, initialTabId: "Today" });
 }

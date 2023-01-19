@@ -1,13 +1,11 @@
 import { dehydrate, QueryClient } from "@tanstack/react-query";
 import { GetStaticProps, GetStaticPaths, NextPage } from "next";
 import { ParsedUrlQuery } from "querystring";
-import VideosAPI from "@api/videos";
-import YoutubeAPI from "@api/youtube";
 import Container from "@shared/Container";
 import Spacer from "@shared/Spacer";
-import VideoInfo from "@shared/VideoInfo";
+import VideoInfo from "@modules/Video/VideoInfo";
 import TwoColumnGrid from "@modules/shared/TwoColumnGrid";
-import VideoPlayer from "@shared/VideoPlayer";
+import VideoPlayer from "@modules/Video/VideoPlayer";
 import CommentsSection from "@modules/shared/CommentsSection";
 import { useEffect } from "react";
 import { useHistoryStore } from "@lib/store";
@@ -21,8 +19,6 @@ export interface UrlParams extends ParsedUrlQuery {
 
 interface VideoPageProps {
 }
-
-const api = new YoutubeAPI();
 
 const VideoPage:NextPage<VideoPageProps> = () => {
   const addToHistory = useHistoryStore(store => store.addToHistory);

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import Text from '../../Text';
+import Text from '../../../shared/Text';
 
 export const StyledVideoDescription = styled(Text)`
   white-space: pre-line;

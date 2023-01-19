@@ -3,7 +3,6 @@ import Button, { IButtonProps } from '../Button/Button';
 import IconWrapper from '../IconWrapper';
 import Row from '../Row';
 import Text from '../Text';
-import {} from './styled';
 
 interface ISortButtonProps extends IButtonProps {
   children?: React.ReactNode;

@@ -1,17 +1,16 @@
-import dynamic from 'next/dynamic';
 import React from 'react';
 
 import Spacer from '@shared/Spacer';
 import Title from '@shared/Title';
-import VideoDescription from '@shared/VideoInfo/VideoDescription';
-import VideoMetadata from '@shared/VideoInfo/VideoMetadata';
+import VideoDescription from '@modules/Video/VideoInfo/VideoDescription';
+import VideoMetadata from '@modules/Video/VideoInfo/VideoMetadata';
 import Row from '@shared/Row';
-import Avatar from '../Avatar';
-import Expand from '../Expand';
-import Text from '../Text';
+import Avatar from '../../shared/Avatar';
+import Expand from '../../shared/Expand';
+import Text from '../../shared/Text';
 import { intToString } from '@lib/utils/intToString';
 import { useVideoData } from '@lib/hooks/useVideoData';
-import IconWrapper from '../IconWrapper';
+import IconWrapper from '../../shared/IconWrapper';
 import SubscribeButton from './SubscribeButton';
 
 

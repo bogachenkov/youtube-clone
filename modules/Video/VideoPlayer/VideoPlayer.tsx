@@ -1,6 +1,6 @@
 import { useVideoId } from '@lib/hooks/useVideoId';
 import { usePlayerAPI, usePlayerRefs, usePlayerMuted } from '@lib/providers/player-api';
-import { usePlaylistAPI, usePlaylistIndex } from '@lib/providers/playlist-api';
+import { usePlaylistAPI } from '@lib/providers/playlist-api';
 import _ from 'lodash';
 import React, { useCallback, useEffect, useRef, VideoHTMLAttributes } from 'react';
 import { StyledVideoElement, StyledVideoPlayer } from './styled';

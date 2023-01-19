@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import Row from '../../Row';
+import Row from '../../../shared/Row';
 
 export const StyledMetadataControls = styled(Row)`
   & > button {

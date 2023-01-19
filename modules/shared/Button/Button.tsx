@@ -1,5 +1,4 @@
 import React, { ComponentPropsWithoutRef, useId } from 'react';
-import { Tooltip } from 'react-tooltip';
 import { baseRem } from 'styles/globalStyles';
 import { StyledButton, StyledTooltip } from './styled';
 

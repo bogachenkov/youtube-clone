@@ -1,5 +1,5 @@
 import { dehydrate, QueryClient } from "@tanstack/react-query";
-import { GetServerSideProps, GetStaticProps, NextPage } from "next";
+import { GetStaticProps, NextPage } from "next";
 import HomePageVideos from "@modules/HomePageVideos";
 import Container from "@shared/Container";
 import { useTabs } from "@lib/hooks/useTabs";

@@ -162,7 +162,7 @@ export const PlayerDataProvider = ({ children }: { children: ReactNode }) => {
       updateTimings,
       resetProgress
     };
-  }, []);
+  }, [togglePlaying]);
 
   return (
     <PlayerAPIContext.Provider value={api}>

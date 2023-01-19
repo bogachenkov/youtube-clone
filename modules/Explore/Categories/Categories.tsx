@@ -1,5 +1,5 @@
 import React from 'react';
-import CategoryButton, { ICategory } from '../CategoryButton/CategoryButton';
+import CategoryButton, { ICategory } from '../CategoryButton';
 import { StyledExploreCategories } from './styled';
 
 interface ICategoriesProps {

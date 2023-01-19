@@ -1,7 +1,7 @@
 import { Tab } from '@hooks/useTabs';
 import useIsOverflowing from '@lib/hooks/useIsOverflowing';
 import React, { useEffect, useRef, useState } from 'react';
-import { easings, useSpring, useTransition, a } from 'react-spring';
+import { easings, useSpring, a } from 'react-spring';
 import { StyledNav, StyledNavWrapper, StyledTab, StyledUnderline, StyledUnderlineThumb } from './styled';
 import TabsScroller from './TabsScroller';
 

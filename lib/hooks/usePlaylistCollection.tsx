@@ -4,9 +4,9 @@ import { useVideoCollection } from "./useVideoCollection";
 
 export const usePlaylistCollection = () => {
   const { data, isLoading } = useVideoCollection();
-  const videos = usePlaylistStore(store => store.videos).map(v => ({ id: v }));
+  const collection = usePlaylistStore(store => store.videos).map(v => ({ id: v }));
 
   if (!data || isLoading) return [];
 
-  return intersectionBy(data, videos, 'id');
+  return intersectionBy(data, collection, 'id');
 }

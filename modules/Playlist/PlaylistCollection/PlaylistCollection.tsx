@@ -4,7 +4,6 @@ import Spacer from '@modules/shared/Spacer';
 import VideoCard from '@modules/shared/VideoCard';
 import { IVideoPreview } from '@ts-types/Video';
 import React from 'react';
-import {} from './styled';
 
 interface IPlaylistCollectionProps {
   collection: IVideoPreview[];

@@ -5,7 +5,6 @@ import Spacer from '@modules/shared/Spacer';
 import Text from '@modules/shared/Text';
 import Title from '@modules/shared/Title';
 import React from 'react';
-import {} from './styled';
 
 interface IPlaylistMetaProps {
   children?: React.ReactNode;

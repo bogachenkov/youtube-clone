@@ -13,8 +13,8 @@ export const useHistoryCollection = (searchLine?: string):IHistoryVideo[] => {
 
   if (!data || isLoading) return [];
 
-  const videos = history.reduce<IHistoryVideo[]>((result, { id, date }) => {
-    const video = data.find(v => {
+  const collection = history.reduce<IHistoryVideo[]>((result, { id, date }) => {
+    const item = data.find(v => {
       return (v.id === id) && (
         searchLine ?
         (
@@ -27,9 +27,9 @@ export const useHistoryCollection = (searchLine?: string):IHistoryVideo[] => {
       )
     });
 
-    if (video) {
+    if (item) {
       result.push({
-        ...video,
+        ...item,
         date
       });
     }
@@ -37,5 +37,5 @@ export const useHistoryCollection = (searchLine?: string):IHistoryVideo[] => {
     return result;
   }, []);
 
-  return videos;
+  return collection;
 }

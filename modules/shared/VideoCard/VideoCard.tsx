@@ -7,7 +7,7 @@ import Spacer from '@shared/Spacer';
 import Text from '@shared/Text';
 import Title from '@shared/Title';
 import VideoDuration from '@shared/VideoDuration';
-import { StyledChannelName, StyledThumb, StyledVideoCard, StyledVideoCardLink } from './styled';
+import { StyledChannelName, StyledThumb, StyledVideoCard } from './styled';
 import VideoCardHover from '../VideoCardHover';
 import Link from 'next/link';
 

@@ -2,7 +2,6 @@ import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognitio
 import React, { forwardRef } from 'react';
 import Input from '@shared/Input';
 import { StyledVoiceSearch, StyledMicroButton } from './styled';
-import IconWrapper from '../IconWrapper';
 
 interface IVoiceSearchProps {
   children?: React.ReactNode;
