@@ -1,4 +1,5 @@
 import { getHighResThumb } from '@lib/utils/getHighResThumb';
+import { LaptopOnly } from '@modules/MediaQuery';
 import Container from '@modules/shared/Container';
 import Spacer from '@modules/shared/Spacer';
 import TwoColumnGrid from '@modules/shared/TwoColumnGrid';
@@ -40,12 +41,16 @@ const Playlist:React.FC<IPlaylistProps> = ({
             totalViews={0}
             lastUpdate={lastUpdate}
             isPrivate={isPrivate}
+            href={`/watch/${collection[0].id}`}
           />
         </Container>
       </TwoColumnGrid>
-      <Spacer vertical={30} />
+      <LaptopOnly>
+        <Spacer vertical={30} />
+      </LaptopOnly>
       <Container>
         <PlaylistCollection
+          totalVideos={collection.length}
           collection={collection}
         />
       </Container>

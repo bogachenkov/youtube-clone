@@ -1,9 +1,11 @@
 import { useSignIn } from '@lib/hooks/useSignInPush';
 import { useVideoId } from '@lib/hooks/useVideoId';
 import { useAuthStore, useCommentsStore } from '@lib/store';
+import { FromTabletOnly, LaptopOnly, MobileOnly } from '@modules/MediaQuery';
 import React, { useRef, useState } from 'react';
 import Avatar from '../Avatar';
 import Button from '../Button';
+import IconWrapper from '../IconWrapper';
 import { StyledCommentForm, StyledCommentInput } from './styled';
 
 interface IAddCommentFormProps {
@@ -97,14 +99,19 @@ const AddCommentForm:React.FC<IAddCommentFormProps> = ({
         ref={inputRef}
         role="textbox"
         contentEditable
-        data-placeholder={isSignedIn ? `Commenting publicly as ${user.authorDisplayName}` : 'Add a comment'}
+        data-placeholder={isSignedIn ? `Commenting as ${user.authorDisplayName}` : 'Add a comment'}
         onInput={handleInput}
         onPaste={handlePaste}
         onFocus={handleFocus}
         dangerouslySetInnerHTML={{ __html: defaultValue.current }}  
       />
       <Button type='submit' fontSize={12} theme='secondary'>
-        COMMENT
+        <MobileOnly as='span'>
+          <IconWrapper size={17} icon='Send' />
+        </MobileOnly>
+        <FromTabletOnly as='span'>
+          COMMENT
+        </FromTabletOnly>
       </Button>
     </StyledCommentForm>
   );

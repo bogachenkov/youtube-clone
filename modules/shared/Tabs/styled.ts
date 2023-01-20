@@ -1,3 +1,4 @@
+import { device } from '@const/cssMedia';
 import styled from 'styled-components';
 
 export const StyledNavWrapper = styled.div`
@@ -5,6 +6,11 @@ export const StyledNavWrapper = styled.div`
   max-width: 100%;
   position: relative;
   z-index: 0;
+  padding: 0 2rem;
+
+  @media ${device.laptop} {
+    padding: 0;
+  }
 `;
 
 export const StyledNav = styled.nav`
@@ -15,17 +21,28 @@ export const StyledNav = styled.nav`
   align-items: center;
   position: relative;
   z-index: 15;
-  padding: .5rem var(--tabs-pad-right) .4rem 0;
+  padding: .5rem 0 .4rem 0;
   gap: 5rem;
-  overflow: hidden;
+  overflow: auto;
   scroll-behavior: smooth;
+  -ms-overflow-style: none; /* for Internet Explorer, Edge */
+  scrollbar-width: none; /* for Firefox */
+
+  &::-webkit-scrollbar {
+    display: none; /* for Chrome, Safari, and Opera */
+  }
+
+  @media ${device.laptop} {
+    overflow: hidden;
+    padding: .5rem var(--tabs-pad-right) .4rem 0;
+  }
 `;
 
 export const StyledTab = styled.button`
   border: none;
   background: transparent;
   color: var(--tab-font-color);
-  font-size: 1.3rem;
+  font-size: 13px;
   letter-spacing: .2px;
   padding: .45em .6em;
   font-weight: 500;

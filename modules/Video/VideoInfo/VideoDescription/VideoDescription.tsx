@@ -4,9 +4,10 @@ import { animated as a } from 'react-spring';
 import useAccordion from '@hooks/useAccordion';
 import { useToggle } from '@hooks/useToggle';
 
-import { StyledMoreButton, StyledVideoDescription } from './styled';
+import { StyledDescWrapper, StyledMoreButton, StyledVideoDescription } from './styled';
 import Spacer from '@shared/Spacer';
 import IconWrapper from '@modules/shared/IconWrapper';
+import { LaptopOnly, TabletOnly } from '@modules/MediaQuery';
 
 interface IVideoDescriptionProps {
   children?: React.ReactNode;
@@ -21,27 +22,40 @@ const VideoDescription:React.FC<IVideoDescriptionProps> = ({
 
   const [previewFirstLine, previewSecondLine, ...restDesc] = desc.split(/\r?\n/).filter(element => element);
 
+  const renderMoreButton = () => (
+    <StyledMoreButton onClick={setIsOpen}>
+      Show {isOpen ? 'Less' : 'More'}
+      {
+        isOpen ?
+        <IconWrapper icon='ExpandLessOutlined' size={19} />
+        :
+        <IconWrapper icon='ExpandMoreOutlined' size={19} />
+      }
+    </StyledMoreButton>
+  );
+
   return (
-    <div>
-      <StyledVideoDescription size={13}>
-        {[previewFirstLine, previewSecondLine].join('\n')}
-      </StyledVideoDescription>
-      <a.div style={style}>
-        <StyledVideoDescription size={13} ref={ref}>
-          {restDesc.join('\n')}
+    <StyledDescWrapper>
+      <LaptopOnly>
+        <StyledVideoDescription size={13}>
+          {[previewFirstLine, previewSecondLine].join('\n')}
         </StyledVideoDescription>
-      </a.div>
+      </LaptopOnly>
+      <>
+        <a.div style={style}>
+          <StyledVideoDescription size={13} ref={ref}>
+            <TabletOnly as={'span'}>
+              {desc}
+            </TabletOnly>
+            <LaptopOnly as={'span'}>
+              {restDesc.join('\n')}
+            </LaptopOnly>
+          </StyledVideoDescription>
+        </a.div>
+      </>
       <Spacer vertical={13} />
-      <StyledMoreButton onClick={setIsOpen}>
-        Show {isOpen ? 'Less' : 'More'} 
-        {
-          isOpen ?
-          <IconWrapper icon='ExpandLessOutlined' size={19} />
-          :
-          <IconWrapper icon='ExpandMoreOutlined' size={19} />
-        }
-      </StyledMoreButton>
-    </div>
+        {renderMoreButton()}
+    </StyledDescWrapper>
   );
 }
 

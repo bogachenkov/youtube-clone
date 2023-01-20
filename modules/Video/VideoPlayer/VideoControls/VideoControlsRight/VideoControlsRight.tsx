@@ -5,6 +5,7 @@ import VolumeControl from '@modules/shared/VolumeControl';
 import { usePlayerAPI, usePlayerFullscreen } from '@lib/providers/player-api';
 import IconWrapper from '@modules/shared/IconWrapper';
 import Button from '@modules/shared/Button';
+import { LaptopOnly } from '@modules/MediaQuery';
 
 interface IVideoControlsRightProps {
   children?: React.ReactNode;
@@ -16,10 +17,14 @@ const VideoControlsRight:React.FC<IVideoControlsRightProps> = () => {
 
   return (
     <StyledVideoControlsRight gap={'2.2em'}>
-      <VolumeControl />
-      <Button theme='text' title='Not Implemented'>
-        <IconWrapper icon='SettingsOutlined' />
-      </Button>
+      <LaptopOnly>
+        <VolumeControl />
+      </LaptopOnly>
+      <LaptopOnly>
+        <Button theme='text' title='Not Implemented'>
+          <IconWrapper icon='SettingsOutlined' />
+        </Button>
+      </LaptopOnly>
       <Button
         theme='text'
         onClick={toggleFullscreen}

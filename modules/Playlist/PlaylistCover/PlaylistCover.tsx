@@ -1,6 +1,6 @@
 import React from 'react';
 import { IThumbnail } from '@ts-types/Video';
-import { StyledCoverLink, StyledCoverWrap, StyledPlaylistCover } from './styled';
+import { StyledCoverLink, StyledCoverWrap, StyledMobilePlayButton, StyledPlaylistCover } from './styled';
 import IconWrapper from '@modules/shared/IconWrapper';
 import Link from 'next/link';
 
@@ -30,6 +30,11 @@ const PlaylistCover:React.FC<IPlaylistCoverProps> = ({
           <IconWrapper size={38} icon='PlayArrow' />
           Play All
         </StyledCoverLink>
+        <StyledMobilePlayButton
+          icon='PlayCircle'
+          size={72}
+          fontColor='red'
+        />
       </StyledCoverWrap>
     </Link>
   );

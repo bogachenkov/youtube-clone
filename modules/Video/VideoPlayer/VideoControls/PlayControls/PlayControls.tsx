@@ -19,7 +19,7 @@ const PlayControls:React.FC<IPlayControlsProps> = () => {
   const canPlayPrev = usePlaylistIndex() !== 0;
 
   return (
-    <StyledPlayControls gap={3}>
+    <StyledPlayControls>
       {
         canPlayPrev && (
           <Button title='Play previous' theme='text' onClick={playPrev}>

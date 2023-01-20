@@ -4,6 +4,7 @@ import Title from '@modules/shared/Title';
 import React, { useState } from 'react';
 import Categories from './Categories';
 import ExploreCollection from './ExploreCollection';
+import { StyledExploreTitle } from './styled';
 
 interface IExploreProps {
   children?: React.ReactNode;
@@ -20,9 +21,9 @@ const Explore:React.FC<IExploreProps> = (props) => {
       />
       <Spacer vertical={30} />
       <Container>
-        <Title size={33}>
+        <StyledExploreTitle>
           {activeCategory} Videos
-        </Title>
+        </StyledExploreTitle>
         <Spacer vertical={30} />
         <ExploreCollection />
       </Container>

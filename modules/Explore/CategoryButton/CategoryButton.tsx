@@ -24,14 +24,10 @@ const CategoryButton:React.FC<ICategoryButtonProps> = ({
 }) => {
   return (
     <StyledCategoryButton
-      style={{
-        ['--button-border-color' as string]: isActive ? 'var(--color-gray)' : 'var(--color-background-blue)'
-      }}
       onClick={onClick}
     >
       <Ink />
       <IconWrapper size={32} icon={icon} />
-      <Spacer vertical={18} />
       <Text weight='regular' size={13} color='inherit'>
         {label}
       </Text>

@@ -1,7 +1,14 @@
+import { device } from '@const/cssMedia';
 import styled from 'styled-components';
 import Row from '../../../shared/Row';
 
-export const StyledMetadataControls = styled(Row)`
+export const StyledSocialControls = styled(Row)`
+  justify-content: space-between;
+
+  @media ${device.laptop} {
+    justify-content: flex-start;
+  }
+
   & > button {
     padding: 0;
     background: none;
@@ -12,6 +19,8 @@ export const StyledMetadataControls = styled(Row)`
     align-items: center;
     gap: .4em;
     cursor: pointer;
+
+    
 
     &:first-of-type {
       font-size: 2rem;

@@ -1,6 +1,11 @@
 import styled from 'styled-components';
 import Text from '../../../shared/Text';
 
+export const StyledDescWrapper = styled.div`
+  max-width: 100%;
+  overflow: hidden;
+`;
+
 export const StyledVideoDescription = styled(Text)`
   white-space: pre-line;
   font-weight: 500;

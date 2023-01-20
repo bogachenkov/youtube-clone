@@ -1,3 +1,4 @@
+import { device } from '@const/cssMedia';
 import styled from 'styled-components';
 
 export const StyledCategoryButton = styled.button`
@@ -5,18 +6,21 @@ export const StyledCategoryButton = styled.button`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
+  gap: 8px;
   border: none;
   border-radius: 8px;
-  padding: 20px;
   /* width: 152px;
   height: 140px; */
-  aspect-ratio: 1.1 / 1;
+  aspect-ratio: 1 / 1;
   background: var(--color-background-blue);
   color: var(--color-light);
-  border: 1px solid var(--button-border-color);
   cursor: pointer;
   transition: all .2s;
+
+  @media ${device.laptop} {
+    gap: 18px;
+  }
 
   &:hover {
     transform: scale(1.1);

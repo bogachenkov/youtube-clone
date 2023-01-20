@@ -21,7 +21,8 @@ const Scrollbar:React.FC<IScrollbarProps> = ({
   const renderThumb = ({ style, ...props }: any) => {
     const thumbStyle = {
         backgroundColor: thumbColor,
-        borderRadius: 6
+        borderRadius: 6,
+        zIndex: 999,
     };
     return (
       <div

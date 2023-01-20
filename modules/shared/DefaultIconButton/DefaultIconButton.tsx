@@ -1,8 +1,9 @@
 import React from 'react';
 import Ink from 'react-ink';
+import { baseRem } from 'styles/globalStyles';
 import { IButtonProps } from '../Button';
 import IconWrapper, { IconName } from '../IconWrapper/IconWrapper';
-import { InkWrapper, StyledButton } from './styled';
+import { InkWrapper, StyledButton, StyledButtonIcon } from './styled';
 
 interface IProps extends Omit<IButtonProps, 'fontSize'> {
   icon: IconName;
@@ -22,15 +23,15 @@ export const DefaultIconButton:React.FC<IProps> = ({
       theme='text'
       fontSize={size}
       style={{
-        height: size,
-        width: size
+        height: `${size/baseRem}rem`,
+        width: `${size/baseRem}rem`
       }}
       {...props}
     >
       <InkWrapper>
         <Ink />
       </InkWrapper>
-      <IconWrapper icon={icon} />
+      <StyledButtonIcon icon={icon} />
     </StyledButton>
   )
 }

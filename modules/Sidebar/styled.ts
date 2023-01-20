@@ -1,3 +1,4 @@
+import { device } from '@const/cssMedia';
 import Link from 'next/link';
 import styled from 'styled-components';
 import { StyledHamburgerButton } from '../shared/HamburgerMenu/styled';
@@ -14,6 +15,7 @@ export const StyledLogoLink = styled(Link)`
 
 export const StyledSidebar = styled.aside`
   --sidebar-padding-h: 3em;
+  display: none;
   height: 100vh;
   position: sticky;
   top: 0;
@@ -29,5 +31,9 @@ export const StyledSidebar = styled.aside`
 
   & ${StyledSidebarHeader} {
     margin-bottom: 1.1em;
+  }
+
+  @media ${device.laptop} {
+    display: block;
   }
 `;

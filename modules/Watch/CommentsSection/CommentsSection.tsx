@@ -1,17 +1,17 @@
 import React from 'react';
-import Row from '../Row';
-import Text from '../Text';
-import { StyledCommentBlock } from './styled';
+import Row from '../../shared/Row';
+import Text from '../../shared/Text';
+import { StyledCommentBlock, StyledCommentsSection } from './styled';
 
 import { useVideoData } from '@lib/hooks/useVideoData';
 import { thousandsSeparator } from '@utils/thousandsSeparator';
-import CommentsThread from '../CommentsThread';
-import Spacer from '../Spacer';
-import AddCommentForm from '../AddCommentForm';
+import CommentsThread from '../../shared/CommentsThread';
+import Spacer from '../../shared/Spacer';
+import AddCommentForm from '../../shared/AddCommentForm';
 import { useCommentsStore } from '@lib/store';
 import { useVideoId } from '@lib/hooks/useVideoId';
 import { sortCommentsByDate } from '@lib/utils/sortCommentsByDate';
-import SortButton from '../SortButton';
+import SortButton from '../../shared/SortButton';
 
 interface ICommentsSectionProps {
   children?: React.ReactNode;
@@ -23,13 +23,17 @@ const CommentsSection:React.FC<ICommentsSectionProps> = (props) => {
   const videoId = useVideoId();
 
   if (!data) return (
-    <div>Loading...</div>
+    <StyledCommentsSection>
+      Loading...
+    </StyledCommentsSection>
   )
 
   if (data.comments.length === 0) return (
-    <Text size={17} weight='regular' style={{ textAlign: 'center' }}>
-      Comments are disabled.
-    </Text>
+    <StyledCommentsSection>
+      <Text size={17} weight='regular' style={{ textAlign: 'center' }}>
+        Comments are disabled.
+      </Text>
+    </StyledCommentsSection>
   )
 
   const localComments = threads.filter(thread => thread.snippet.topLevelComment.snippet.videoId === videoId);
@@ -40,7 +44,7 @@ const CommentsSection:React.FC<ICommentsSectionProps> = (props) => {
   ]);
 
   return (
-    <section>
+    <StyledCommentsSection>
       <Row gap={85}>
         <Text weight='bold' size={13} color='var(--color-light)'>
           {thousandsSeparator(data.video.statistics.commentCount + localComments.length)} Comments
@@ -51,7 +55,6 @@ const CommentsSection:React.FC<ICommentsSectionProps> = (props) => {
         />
       </Row>
       <Spacer vertical={26} />
-      {/* INPUT */}
       <AddCommentForm  />
       <Spacer vertical={43} />
       <StyledCommentBlock>
@@ -59,7 +62,7 @@ const CommentsSection:React.FC<ICommentsSectionProps> = (props) => {
           withLocalComments.map(t => <CommentsThread key={t.id} thread={t} />)
         }
       </StyledCommentBlock>
-    </section>
+    </StyledCommentsSection>
   );
 }
 

@@ -9,11 +9,10 @@ export const StyledVideoProgress = styled.input`
   -moz-appearance: none;
   appearance: none;
 
-  flex: 1;
-
   background: var(--progress-gradient);
   cursor: pointer;
   height: var(--progress-height);
+  width: 100%;
   border-radius: calc(var(--progress-height) / 2);
   transition: 0.1s ease-in;
   vertical-align: bottom;

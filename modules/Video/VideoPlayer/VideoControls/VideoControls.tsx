@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { StyledVideoControls } from './styled';
+import { PlayControlsArea, RightControlsArea, StyledVideoControls, TimingsArea, VideoProgressArea } from './styled';
 import VideoProgress from './VideoProgress';
 import PlayControls from './PlayControls';
 import VideoTimeRanges from './VideoTimeRanges';
@@ -13,10 +13,21 @@ interface IVideoControlsProps {
 const VideoControls:React.FC<IVideoControlsProps> = () => {
   return (
     <StyledVideoControls>
-      <PlayControls />
-      <VideoProgress />
-      <VideoTimeRanges />
-      <VideoControlsRight />
+      <PlayControlsArea>
+        <PlayControls />
+      </PlayControlsArea>
+
+      <VideoProgressArea>
+        <VideoProgress />
+      </VideoProgressArea>
+
+      <TimingsArea>
+        <VideoTimeRanges />
+      </TimingsArea>
+
+      <RightControlsArea>
+        <VideoControlsRight />
+      </RightControlsArea>
     </StyledVideoControls>
   );
 }

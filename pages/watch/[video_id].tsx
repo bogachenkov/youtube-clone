@@ -1,17 +1,11 @@
 import { dehydrate, QueryClient } from "@tanstack/react-query";
 import { GetStaticProps, GetStaticPaths, NextPage } from "next";
 import { ParsedUrlQuery } from "querystring";
-import Container from "@shared/Container";
-import Spacer from "@shared/Spacer";
-import VideoInfo from "@modules/Video/VideoInfo";
-import TwoColumnGrid from "@modules/shared/TwoColumnGrid";
-import VideoPlayer from "@modules/Video/VideoPlayer";
-import CommentsSection from "@modules/shared/CommentsSection";
 import { useEffect } from "react";
 import { useHistoryStore } from "@lib/store";
 import { useVideoId } from "@lib/hooks/useVideoId";
-import VideoPlaylist from "@modules/Video/VideoPlaylist";
 import { homeQuery, watchQuery } from "@const/queries";
+import Watch from "@modules/Watch";
 
 export interface UrlParams extends ParsedUrlQuery {
   video_id?: string;
@@ -29,27 +23,7 @@ const VideoPage:NextPage<VideoPageProps> = () => {
     if (isWatching) addToHistory!(id);
   }, [isWatching, addToHistory, id]);
 
-  return (
-    <TwoColumnGrid secondCol="445px">
-      <Container>
-        <VideoPlayer
-          controls
-          src="https://storage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
-        />
-        <Spacer vertical={32} />
-        <VideoInfo />
-        <Spacer vertical={20} />
-        <hr style={{
-          height: 3,
-          border: 'none',
-          background: 'var(--color-grayDark)'
-        }} />
-        <Spacer vertical={24} />
-        <CommentsSection />
-      </Container>
-      <VideoPlaylist />
-    </TwoColumnGrid>
-  )
+  return <Watch />
 }
 
 export const getStaticPaths:GetStaticPaths = async () => {

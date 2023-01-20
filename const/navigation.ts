@@ -11,6 +11,34 @@ export type SidebarSectionType = {
   links: SectionLinkType[]
 }
 
+export const MOBILE_NAV:SectionLinkType[] = [
+  {
+    href: '/',
+    label: 'Home',
+    icon: 'HomeOutlined'
+  },
+  {
+    href: '/explore',
+    label: 'Explore',
+    icon: 'ExploreOutlined'
+  },
+  {
+    href: '',
+    label: '',
+    icon: 'AddCircleOutlineOutlined'
+  },
+  {
+    href: '/subscriptions',
+    label: 'Subscriptions',
+    icon: 'SubscriptionsOutlined'
+  },
+  {
+    href: '/library',
+    label: 'Library',
+    icon: 'VideoLibraryOutlined'
+  },
+]
+
 const MAIN_SECTION:SidebarSectionType = {
   links: [
     {

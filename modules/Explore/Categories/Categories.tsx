@@ -26,7 +26,7 @@ const categoriesList:ICategory[] = [
     icon: 'NewspaperOutlined'
   },
   {
-    label: 'Fashion & Beauty',
+    label: 'Fashion',
     icon: 'CheckroomOutlined'
   },
   {

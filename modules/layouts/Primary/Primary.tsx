@@ -3,6 +3,7 @@ import Navbar from '@modules/Navbar';
 import Sidebar from '@modules/Sidebar';
 import { StyledLayout, StyledMain } from './styled';
 import Scrollbar from '@modules/shared/Scrollbar';
+import MobileNav from '@modules/MobileNav';
 
 interface IPrimaryProps {
   children?: React.ReactNode;
@@ -17,6 +18,7 @@ const Primary:React.FC<IPrimaryProps> = (props) => {
         <StyledMain>
           {props.children}
         </StyledMain>
+        <MobileNav />
       </StyledLayout>
     </Scrollbar>
   );

@@ -1,3 +1,4 @@
+import { device } from '@const/cssMedia';
 import Text from '@modules/shared/Text';
 import styled from 'styled-components';
 
@@ -19,10 +20,14 @@ export const StyledIndex = styled(Text)`
 
 export const StyledTitle = styled(Text)`
   padding-top: .8em;
-  max-width: 200px;
+  max-width: 120px;
   overflow:hidden; 
   white-space:nowrap; 
   text-overflow: ellipsis;
+
+  @media ${device.tablet} {
+    max-width: 200px;
+  }
 `;
 
 export const StyledThumb = styled.div`

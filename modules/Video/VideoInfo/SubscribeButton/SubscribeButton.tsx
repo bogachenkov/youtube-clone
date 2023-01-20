@@ -1,14 +1,15 @@
 import { useSubscriptionsStore } from '@lib/store';
-import Button from '@modules/shared/Button';
+import Button, { IButtonProps } from '@modules/shared/Button';
 import React from 'react';
 
-interface ISubscribeButtonProps {
+interface ISubscribeButtonProps extends IButtonProps {
   children?: React.ReactNode;
   id: string;
 }
 
 const SubscribeButton:React.FC<ISubscribeButtonProps> = ({
-  id
+  id,
+  ...props
 }) => {
   const subscriptions = useSubscriptionsStore(store => store.subscriptions);
   const toggleSubscription = useSubscriptionsStore(store => store.toggleSubscription);
@@ -19,6 +20,7 @@ const SubscribeButton:React.FC<ISubscribeButtonProps> = ({
     <Button 
       theme={isSubscribed ? 'secondary' : 'primary'}
       onClick={() => toggleSubscription(id as string)}
+      {...props}
     >
       SUBSCRIBE{isSubscribed ? 'D' : ''}
     </Button>
