@@ -20,17 +20,16 @@ const VideoPlaylist:React.FC<IVideoPlaylistProps> = (props) => {
         <Container
           style={{
             background: 'transparent',
-            maxHeight: 'var(--content-full-height)',
-            overflow: 'auto'
+            // maxHeight: 'var(--content-full-height)',
           }}
         >
-          <LaptopOnly>
+          {/* <LaptopOnly>
             <Input
               placeholder='Search name'
               iconLeft='Search'
             />
             <Spacer vertical={32} />
-          </LaptopOnly>
+          </LaptopOnly> */}
           <PlaylistInfo />
           <Spacer vertical={12} />
           <PlaylistActions />
