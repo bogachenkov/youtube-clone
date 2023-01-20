@@ -1,7 +1,8 @@
 import { usePlaylistCollection, usePlaylistIndex } from '@lib/providers/playlist-api';
 import Scrollbar from '@modules/shared/Scrollbar';
 import _ from 'lodash';
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
+import Scrollbars from 'react-custom-scrollbars-2';
 import PlaylistItem from '../PlaylistItem';
 import { StyledPlaylistCollection, StyledPlaylistWindow } from './styled';
 
@@ -12,12 +13,17 @@ interface IPlaylistCollectionProps {
 const PlaylistCollection:React.FC<IPlaylistCollectionProps> = () => {
   const collection = usePlaylistCollection();
   const activeIndex = usePlaylistIndex();
+  const scrollbarRef = useRef<Scrollbars>(null);
+
+  useEffect(() => {
+    scrollbarRef.current?.scrollTop((84 + 14) * (activeIndex - 1));
+  }, [activeIndex]);
   
   return (
     <StyledPlaylistWindow>
       <Scrollbar
+        ref={scrollbarRef}
         autoHide
-        initialScrollTop={(84 + 14) * (activeIndex - 1)}
         style={{
           height: 'calc(var(--item-height) * 4 + var(--collection-gap) * 3)'
         }}

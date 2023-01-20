@@ -1,23 +1,16 @@
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import { Scrollbars, ScrollbarProps } from 'react-custom-scrollbars-2';
 
 interface IScrollbarProps extends ScrollbarProps {
   children?: React.ReactNode;
   thumbColor?: string;
-  initialScrollTop?: number;
 }
 
-const Scrollbar:React.FC<IScrollbarProps> = ({
+// trunk-ignore(eslint/react/display-name)
+const Scrollbar = React.forwardRef<Scrollbars, IScrollbarProps>(({
   thumbColor = 'var(--color-grayDark)',
-  initialScrollTop,
   ...props
-}) => {
-  const ref = useRef<Scrollbars>(null);
-
-  useEffect(() => {
-    if (initialScrollTop) ref.current?.scrollTop(initialScrollTop);
-  }, [initialScrollTop]);
-
+}, ref) => {
   const renderThumb = ({ style, ...props }: any) => {
     const thumbStyle = {
         backgroundColor: thumbColor,
@@ -39,6 +32,6 @@ const Scrollbar:React.FC<IScrollbarProps> = ({
       universal
       {...props} />
   );
-}
+})
 
 export default Scrollbar;

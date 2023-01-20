@@ -1,17 +1,36 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import Navbar from '@modules/Navbar';
 import Sidebar from '@modules/Sidebar';
 import { StyledLayout, StyledMain } from './styled';
 import Scrollbar from '@modules/shared/Scrollbar';
 import MobileNav from '@modules/MobileNav';
+import Scrollbars from 'react-custom-scrollbars-2';
+import { useRouter } from 'next/router';
 
 interface IPrimaryProps {
   children?: React.ReactNode;
 }
 
 const Primary:React.FC<IPrimaryProps> = (props) => {
+  const router = useRouter();
+  const scrollbarRef = useRef<Scrollbars>(null);
+
+  useEffect(() => {
+    const handleRouteChange = () => {
+      scrollbarRef.current?.scrollToTop();
+    }
+
+    router.events.on('routeChangeComplete', handleRouteChange)
+
+    // If the component is unmounted, unsubscribe
+    // from the event with the `off` method:
+    return () => {
+      router.events.off('routeChangeComplete', handleRouteChange)
+    }
+  }, [])
+
   return (
-    <Scrollbar style={{ height: '100vh' }} thumbColor='var(--color-gray)'>
+    <Scrollbar ref={scrollbarRef} style={{ height: '100vh' }} thumbColor='var(--color-gray)'>
       <StyledLayout>
         <Sidebar />
         <Navbar />
