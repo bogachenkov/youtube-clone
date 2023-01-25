@@ -1,9 +1,9 @@
 import { useLibraryTabs } from '@lib/hooks/useLibraryTabs';
-import Container from '@modules/shared/Container';
-import GridContainer from '@modules/shared/GridContainer';
-import Row from '@modules/shared/Row';
-import Spacer from '@modules/shared/Spacer';
-import Tabs from '@modules/shared/Tabs';
+import Container from '@ui/Container';
+import GridContainer from '@ui/GridContainer';
+import Row from '@ui/Row';
+import Spacer from '@ui/Spacer';
+import Tabs from '@ui/Tabs';
 import React from 'react';
 import LibraryStats from './LibraryStats';
 

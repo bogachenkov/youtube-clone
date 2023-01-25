@@ -2,7 +2,7 @@ import UserSection from './UserSection';
 import { Meta, StoryObj } from '@storybook/react';
 
 const meta:Meta<typeof UserSection> = {
-  title: 'UserSection',
+  title: 'Navbar/UserSection',
   component: UserSection,
 };
 

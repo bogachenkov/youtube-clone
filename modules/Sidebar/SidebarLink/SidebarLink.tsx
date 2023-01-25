@@ -2,7 +2,7 @@ import { useRouter } from 'next/router';
 import React from 'react';
 import { SectionLinkType } from '@const/navigation';
 import { StyledLink, StyledLinkIconWrapper, StyledLinkLabel } from './styled';
-import IconWrapper from '@modules/shared/IconWrapper';
+import IconWrapper from '@ui/IconWrapper';
 
 
 const SidebarLink:React.FC<SectionLinkType> = ({ href, label, icon }) => {

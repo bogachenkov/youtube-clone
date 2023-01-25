@@ -1,8 +1,8 @@
-import Button from '@modules/shared/Button';
-import Row from '@modules/shared/Row';
-import Spacer from '@modules/shared/Spacer';
-import Text from '@modules/shared/Text';
-import Title from '@modules/shared/Title';
+import Button from '@ui/Button';
+import Row from '@ui/Row';
+import Spacer from '@ui/Spacer';
+import Text from '@ui/Text';
+import Title from '@ui/Title';
 import React from 'react';
 import SignInForm from './SignInForm';
 import { StyledSignInContainer, StyledSignWrapper } from './styled';

@@ -1,6 +1,6 @@
 import { device } from '@const/cssMedia';
-import Row from '@modules/shared/Row';
-import Text from '@modules/shared/Text';
+import Row from '@ui/Row';
+import Text from '@ui/Text';
 import styled from 'styled-components';
 
 export const StyledLibraryStats = styled(Row)`

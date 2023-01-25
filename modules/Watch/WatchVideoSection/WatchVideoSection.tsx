@@ -1,10 +1,10 @@
 import React from 'react';
 
-import Spacer from "@shared/Spacer";
-import VideoInfo from "@modules/Video/VideoInfo";
-import VideoPlayer from "@modules/Video/VideoPlayer";
+import Spacer from "@ui/Spacer";
+import VideoInfo from "@modules/Watch/VideoInfoSection";
+import VideoPlayer from "@modules/VideoPlayer";
 import { StyledVideoSection } from './styled';
-import { LaptopOnly } from '@modules/MediaQuery';
+import { LaptopOnly } from '@ui/MediaQuery';
 
 interface IWatchVideoSectionProps {
   children?: React.ReactNode;

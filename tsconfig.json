@@ -19,8 +19,8 @@
       "@modules/*": [
         "modules/*"
       ],
-      "@shared/*": [
-        "modules/shared/*"
+      "@ui/*": [
+        "modules/ui/*"
       ],
       "@const/*": [
         "const/*"

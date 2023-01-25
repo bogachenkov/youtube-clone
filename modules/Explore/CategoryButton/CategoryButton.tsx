@@ -1,6 +1,6 @@
-import IconWrapper, { IconName } from '@modules/shared/IconWrapper/IconWrapper';
-import Spacer from '@modules/shared/Spacer';
-import Text from '@modules/shared/Text';
+import IconWrapper, { IconName } from '@ui/IconWrapper/IconWrapper';
+import Spacer from '@ui/Spacer';
+import Text from '@ui/Text';
 import React from 'react';
 import Ink from 'react-ink';
 import { StyledCategoryButton } from './styled';

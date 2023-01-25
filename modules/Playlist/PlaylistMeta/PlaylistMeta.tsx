@@ -1,13 +1,13 @@
 import { usePlaylistAPI } from '@lib/providers/playlist-api';
 import { getCalendarDate } from '@lib/utils/getCalendarDate';
-import { LaptopOnly, TabletOnly } from '@modules/MediaQuery';
-import Button from '@modules/shared/Button';
-import DefaultIconButton from '@modules/shared/DefaultIconButton';
-import IconWrapper from '@modules/shared/IconWrapper';
-import Row from '@modules/shared/Row';
-import Spacer from '@modules/shared/Spacer';
-import Text from '@modules/shared/Text';
-import Title from '@modules/shared/Title';
+import { LaptopOnly, TabletOnly } from '@ui/MediaQuery';
+import Button from '@ui/Button';
+import IconButton from '@ui/IconButton';
+import IconWrapper from '@ui/IconWrapper';
+import Row from '@ui/Row';
+import Spacer from '@ui/Spacer';
+import Text from '@ui/Text';
+import Title from '@ui/Title';
 import { useRouter } from 'next/router';
 import React from 'react';
 
@@ -47,7 +47,7 @@ const PlaylistMeta:React.FC<IPlaylistMetaProps> = ({
           </Title>
         </Row>
         <Spacer vertical={16} />
-        <DefaultIconButton
+        <IconButton
           color='var(--color-grayLight)'
           size={42}
           icon='Shuffle'

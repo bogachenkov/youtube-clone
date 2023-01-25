@@ -1,7 +1,7 @@
 import { useAuthStore } from "@lib/store";
-import Container from "@modules/shared/Container";
-import EmptyScreen from "@modules/shared/EmptyScreen";
-import SignInButton from "@modules/shared/SignInButton";
+import Container from "@ui/Container";
+import EmptyScreen from "@ui/EmptyScreen";
+import SignInButton from "@ui/SignInButton";
 import Subscriptions from "@modules/Subscriptions";
 import Head from "next/head";
 

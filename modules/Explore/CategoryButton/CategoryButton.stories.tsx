@@ -2,7 +2,7 @@ import CategoryButton from './CategoryButton';
 import { Meta, StoryObj } from '@storybook/react';
 
 const meta:Meta<typeof CategoryButton> = {
-  title: 'CategoryButton',
+  title: 'Explore/CategoryButton',
   component: CategoryButton,
 };
 

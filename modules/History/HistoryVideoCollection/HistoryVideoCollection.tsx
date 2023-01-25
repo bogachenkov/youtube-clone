@@ -1,7 +1,7 @@
 import { useHistoryTabs } from '@lib/hooks/useHistoryTabs';
-import GridContainer from '@modules/shared/GridContainer';
-import Spacer from '@modules/shared/Spacer';
-import Tabs from '@modules/shared/Tabs';
+import GridContainer from '@ui/GridContainer';
+import Spacer from '@ui/Spacer';
+import Tabs from '@ui/Tabs';
 import React from 'react';
 
 interface IHistoryVideoCollectionProps {

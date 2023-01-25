@@ -1,7 +1,8 @@
 import React from 'react';
-import Container from "@shared/Container";
+import Container from "@ui/Container";
 import VideoPlaylist from "@modules/Watch/VideoPlaylist";
 import CommentsSection from "@modules/Watch/CommentsSection";
+import { PlaylistDataProvider } from '@lib/providers/playlist-api';
 
 import { StyledWatchPageGrid } from './styled';
 import WatchVideoSection from './WatchVideoSection';
@@ -14,13 +15,15 @@ interface IWatchProps {
 const Watch:React.FC<IWatchProps> = (props) => {
 
   return (
-    <StyledWatchPageGrid>
-      <Container style={{ display: 'contents' }}>
-        <WatchVideoSection />
-        <CommentsSection />
-      </Container>
-      <VideoPlaylist />
-    </StyledWatchPageGrid>
+    <PlaylistDataProvider>
+      <StyledWatchPageGrid>
+        <Container style={{ display: 'contents' }}>
+          <WatchVideoSection />
+          <CommentsSection />
+        </Container>
+        <VideoPlaylist />
+      </StyledWatchPageGrid>
+    </PlaylistDataProvider>
   );
 }
 

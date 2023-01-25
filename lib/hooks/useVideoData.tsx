@@ -3,8 +3,8 @@ import { useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/router";
 
 export const useVideoData = () => {
-  const { query } = useRouter();
-  const id = query.video_id as string;
+  const router = useRouter();
+  const id = router.query.video_id as string;
 
   const { data } = useQuery(watchQuery(id));
 

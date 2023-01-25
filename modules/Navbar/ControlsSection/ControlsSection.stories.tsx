@@ -2,7 +2,7 @@ import ControlsSection from './ControlsSection';
 import { Meta, StoryObj } from '@storybook/react';
 
 const meta:Meta<typeof ControlsSection> = {
-  title: 'ControlsSection',
+  title: 'Navbar/ControlsSection',
   component: ControlsSection,
 };
 

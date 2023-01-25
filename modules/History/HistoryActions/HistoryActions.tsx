@@ -1,5 +1,5 @@
 import { useHistoryStore } from '@lib/store';
-import Spacer from '@modules/shared/Spacer';
+import Spacer from '@ui/Spacer';
 import React from 'react';
 import HistoryActionButton from '../HistoryActionButton';
 

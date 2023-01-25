@@ -1,5 +1,5 @@
 import { device } from '@const/cssMedia';
-import DefaultIconButton from '@modules/shared/DefaultIconButton';
+import IconButton from '@ui/IconButton';
 import Image from 'next/image';
 import styled from 'styled-components';
 
@@ -20,7 +20,7 @@ export const StyledPlaylistCover = styled(Image)`
   object-position: center;
 `;
 
-export const StyledMobilePlayButton = styled(DefaultIconButton)`
+export const StyledMobilePlayButton = styled(IconButton)`
   display: inline-block;
   position: absolute;
   bottom: -.5em;

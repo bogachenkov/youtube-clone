@@ -1,17 +1,18 @@
 import React from 'react';
-import Row from '../../shared/Row';
-import Text from '../../shared/Text';
+import Row from '../../ui/Row';
+import Text from '../../ui/Text';
 import { StyledCommentBlock, StyledCommentsSection } from './styled';
 
 import { useVideoData } from '@lib/hooks/useVideoData';
 import { thousandsSeparator } from '@utils/thousandsSeparator';
-import CommentsThread from '../../shared/CommentsThread';
-import Spacer from '../../shared/Spacer';
-import AddCommentForm from '../../shared/AddCommentForm';
+import CommentsThread from '../../Comments/CommentsThread';
+import Spacer from '../../ui/Spacer';
+import AddCommentForm from '../../Comments/Comment/CommentAddForm';
 import { useCommentsStore } from '@lib/store';
 import { useVideoId } from '@lib/hooks/useVideoId';
 import { sortCommentsByDate } from '@lib/utils/sortCommentsByDate';
-import SortButton from '../../shared/SortButton';
+import SortButton from '../../ui/SortButton';
+import SuspenseSpinner from '@modules/ui/SuspenseSpinner';
 
 interface ICommentsSectionProps {
   children?: React.ReactNode;
@@ -24,7 +25,7 @@ const CommentsSection:React.FC<ICommentsSectionProps> = (props) => {
 
   if (!data) return (
     <StyledCommentsSection>
-      Loading...
+      <SuspenseSpinner />
     </StyledCommentsSection>
   )
 

@@ -1,0 +1,96 @@
+🔎 checking possible migrations..
+
+⚠️  failed to check fix newFrameworks
+
+Error: The given node must be a string literal or an object expression with a "name" property that is a string literal.
+    at ConfigFile._getPresetValue (/Users/nikitabogachenkov/.npm/_npx/eb8bf615e50a412a/node_modules/@storybook/csf-tools/dist/index.js:74:7388)
+    at ConfigFile.getNameFromPath (/Users/nikitabogachenkov/.npm/_npx/eb8bf615e50a412a/node_modules/@storybook/csf-tools/dist/index.js:74:6824)
+    at Object.check (/Users/nikitabogachenkov/.npm/_npx/eb8bf615e50a412a/node_modules/@storybook/cli/dist/generate.js:181:161)
+    at async automigrate (/Users/nikitabogachenkov/.npm/_npx/eb8bf615e50a412a/node_modules/@storybook/cli/dist/generate.js:311:743)
+    at async doUpgrade (/Users/nikitabogachenkov/.npm/_npx/eb8bf615e50a412a/node_modules/@storybook/cli/dist/generate.js:382:2883)
+    at async withTelemetry (/Users/nikitabogachenkov/.npm/_npx/eb8bf615e50a412a/node_modules/@storybook/core-server/dist/index.js:33:5540)
+    at async upgrade (/Users/nikitabogachenkov/.npm/_npx/eb8bf615e50a412a/node_modules/@storybook/cli/dist/generate.js:382:3177)
+
+🔎 found a 'autodocsTrue' migration:
+╭ Automigration detected ───────────────────────────────╮
+│                                                       │
+│   We've changed the configuration of autodocs         │
+│   (previous docsPage), so now the value:              │
+│   - docs.autodocs: true -- means automatically        │
+│   create docs for every CSF file                      │
+│   - docs.autodocs: 'tag' -- means only create         │
+│   autodocs for CSF files with the 'autodocs' tag      │
+│   - docs.autodocs: false -- means never create        │
+│   autodocs                                            │
+│                                                       │
+│   Based on your prior configuration,  we can set      │
+│   the `docs.autodocs` to keep your old behaviour:     │
+│                                                       │
+│   docs: { autodocs: "tag" }                           │
+│                                                       │
+│   NOTE: it is important you change all CSF files to   │
+│   use the 'autodocs' tag rather than the 'docsPage'   │
+│   tag.                                                │
+│                                                       │
+│   More info: https://github.com/storybookjs/storybo   │
+│   ok/blob/next/MIGRATION.md#autodocs                  │
+│                                                       │
+╰───────────────────────────────────────────────────────╯
+[?25l? Do you want to run the 'autodocsTrue' migration on your project? › (Y/n)[2K[1A[2K[G✔ Do you want to run the 'autodocsTrue' migration on your project? … yes
+[?25h✅ Setting 'docs.autodocs' to true in main.js
+✅ ran autodocsTrue migration
+
+⚠️  failed to check fix missing-babelrc
+
+Error: The given node must be a string literal or an object expression with a "name" property that is a string literal.
+    at ConfigFile._getPresetValue (/Users/nikitabogachenkov/.npm/_npx/eb8bf615e50a412a/node_modules/@storybook/csf-tools/dist/index.js:74:7388)
+    at ConfigFile.getNameFromPath (/Users/nikitabogachenkov/.npm/_npx/eb8bf615e50a412a/node_modules/@storybook/csf-tools/dist/index.js:74:6824)
+    at Object.check (/Users/nikitabogachenkov/.npm/_npx/eb8bf615e50a412a/node_modules/@storybook/cli/dist/generate.js:296:255)
+    at async automigrate (/Users/nikitabogachenkov/.npm/_npx/eb8bf615e50a412a/node_modules/@storybook/cli/dist/generate.js:311:743)
+    at async doUpgrade (/Users/nikitabogachenkov/.npm/_npx/eb8bf615e50a412a/node_modules/@storybook/cli/dist/generate.js:382:2883)
+    at async withTelemetry (/Users/nikitabogachenkov/.npm/_npx/eb8bf615e50a412a/node_modules/@storybook/core-server/dist/index.js:33:5540)
+    at async upgrade (/Users/nikitabogachenkov/.npm/_npx/eb8bf615e50a412a/node_modules/@storybook/cli/dist/generate.js:382:3177)
+
+╭ Migration check ran with failures ────────────────────╮
+│                                                       │
+│                                                       │
+│   Successful migrations:                              │
+│                                                       │
+│   autodocsTrue                                        │
+│                                                       │
+│   Failed migrations:                                  │
+│                                                       │
+│   newFrameworks:                                      │
+│   The given node must be a string literal or an       │
+│   object expression with a "name" property that is    │
+│   a string literal.                                   │
+│                                                       │
+│   missing-babelrc:                                    │
+│   The given node must be a string literal or an       │
+│   object expression with a "name" property that is    │
+│   a string literal.                                   │
+│                                                       │
+│                                                       │
+│   You can find the full logs in                       │
+│   /Users/nikitabogachenkov/development/front/youtub   │
+│   e-redesign/migration-storybook.log                  │
+│                                                       │
+│   ─────────────────────────────────────────────────   │
+│                                                       │
+│   If you'd like to run the migrations again, you      │
+│   can do so by running 'npx storybook@next            │
+│   automigrate'                                        │
+│                                                       │
+│   The automigrations try to migrate common patterns   │
+│   in your project, but might not contain everything   │
+│   needed to migrate to the latest version of          │
+│   Storybook.                                          │
+│                                                       │
+│   Please check the changelog and migration guide      │
+│   for manual migrations and more information:         │
+│   https://storybook.js.org/migration-guides/7.0       │
+│   And reach out on Discord if you need help:          │
+│   https://discord.gg/storybook                        │
+│                                                       │
+╰───────────────────────────────────────────────────────╯
+

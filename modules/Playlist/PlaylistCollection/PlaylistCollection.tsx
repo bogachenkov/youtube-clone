@@ -1,10 +1,10 @@
-import { LaptopOnly, TabletOnly } from '@modules/MediaQuery';
-import GridContainer from '@modules/shared/GridContainer';
-import Row from '@modules/shared/Row';
-import SortButton from '@modules/shared/SortButton';
-import Spacer from '@modules/shared/Spacer';
-import Text from '@modules/shared/Text';
-import VideoCard from '@modules/shared/VideoCard';
+import { LaptopOnly, TabletOnly } from '@ui/MediaQuery';
+import GridContainer from '@ui/GridContainer';
+import Row from '@ui/Row';
+import SortButton from '@ui/SortButton';
+import Spacer from '@ui/Spacer';
+import Text from '@ui/Text';
+import VideoCard from '@modules/Video/VideoCard';
 import { IVideoPreview } from '@ts-types/Video';
 import React from 'react';
 

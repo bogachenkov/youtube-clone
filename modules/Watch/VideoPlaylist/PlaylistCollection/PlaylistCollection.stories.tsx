@@ -2,7 +2,7 @@ import PlaylistCollection from './PlaylistCollection';
 import { Meta, StoryObj } from '@storybook/react';
 
 const meta:Meta<typeof PlaylistCollection> = {
-  title: 'PlaylistCollection',
+  title: 'Watch/VideoPlaylist/PlaylistCollection',
   component: PlaylistCollection,
 };
 

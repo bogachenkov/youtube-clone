@@ -1,6 +1,6 @@
 import { useIsRepeatable, useIsShuffled, usePlaylistAPI } from '@lib/providers/playlist-api';
-import DefaultIconButton from '@modules/shared/DefaultIconButton';
-import Row from '@modules/shared/Row';
+import IconButton from '@ui/IconButton';
+import Row from '@ui/Row';
 import React from 'react';
 
 interface IPlaylistActionsProps {
@@ -14,7 +14,7 @@ const PlaylistActions:React.FC<IPlaylistActionsProps> = () => {
 
   return (
     <Row gap={20}>
-      <DefaultIconButton
+      <IconButton
         size={24}
         icon='Shuffle'
         onClick={api.shuffle}
@@ -23,7 +23,7 @@ const PlaylistActions:React.FC<IPlaylistActionsProps> = () => {
         fontColor={isShuffled ? 'var(--color-light)' : 'var(--color-grayLight)'}
         hoverable
       />
-      <DefaultIconButton
+      <IconButton
         size={24}
         icon='Repeat'
         onClick={api.toggleRepeat}

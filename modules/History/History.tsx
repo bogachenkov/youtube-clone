@@ -1,13 +1,13 @@
 import { useHistoryTabs } from '@lib/hooks/useHistoryTabs';
-import Container from '@modules/shared/Container';
-import Sticky from '@modules/shared/Sticky';
-import Spacer from '@modules/shared/Spacer';
-import Title from '@modules/shared/Title';
-import TwoColumnGrid from '@modules/shared/TwoColumnGrid';
+import Container from '@ui/Container';
+import Sticky from '@ui/Sticky';
+import Spacer from '@ui/Spacer';
+import Title from '@ui/Title';
+import TwoColumnGrid from '@ui/TwoColumnGrid';
 import React, { useState } from 'react';
 import HistoryControls from './HistoryControls';
 import HistoryVideoCollection from './HistoryVideoCollection';
-import EmptyScreen from '@modules/shared/EmptyScreen';
+import EmptyScreen from '@ui/EmptyScreen';
 
 interface IHistoryProps {
   children?: React.ReactNode;

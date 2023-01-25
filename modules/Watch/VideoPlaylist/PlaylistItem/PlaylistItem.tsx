@@ -1,8 +1,8 @@
 import { youtubeDurationFormat } from '@lib/utils/youtubeDuration';
-import IconWrapper from '@modules/shared/IconWrapper';
-import Row from '@modules/shared/Row';
-import Spacer from '@modules/shared/Spacer';
-import Text from '@modules/shared/Text';
+import IconWrapper from '@ui/IconWrapper';
+import Row from '@ui/Row';
+import Spacer from '@ui/Spacer';
+import Text from '@ui/Text';
 import { IVideoPreview } from '@ts-types/Video';
 import Image from 'next/image';
 import Link from 'next/link';

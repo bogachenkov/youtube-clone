@@ -5,10 +5,9 @@ import type { AppProps } from 'next/app';
 import { ReactElement, ReactNode, Suspense, useState } from 'react';
 import Primary from '@modules/layouts/Primary';
 import GlobalStyle from '../styles/globalStyles';
-import { PlaylistDataProvider } from '@lib/providers/playlist-api';
 import { REVALIDATE_TIME } from '@const/index';
 import 'react-tooltip/dist/react-tooltip.css';
-import SuspenseSpinner from '@modules/SuspenseSpinner';
+import SuspenseSpinner from '@ui/SuspenseSpinner';
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: ReactElement) => ReactNode
@@ -42,9 +41,7 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
       <QueryClientProvider client={queryClient}>
         <Hydrate state={pageProps.dehydratedState}>
           <GlobalStyle />
-          <PlaylistDataProvider>
-            <Component {...pageProps} />
-          </PlaylistDataProvider>
+          <Component {...pageProps} />
         </Hydrate>
       </QueryClientProvider>
     </Suspense>

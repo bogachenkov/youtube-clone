@@ -1,5 +1,5 @@
 import { device } from '@const/cssMedia';
-import Text from '@modules/shared/Text';
+import Text from '@ui/Text';
 import styled from 'styled-components';
 
 export const StyledPlaylistItem = styled.div`

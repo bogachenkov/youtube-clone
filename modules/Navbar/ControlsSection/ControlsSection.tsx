@@ -2,7 +2,7 @@ import React from 'react';
 import { StyledControlsSection } from './styled';
 import { useAuthStore } from '@lib/store';
 import UserSection from '../UserSection';
-import DefaultIconButton from '@modules/shared/DefaultIconButton';
+import IconButton from '@ui/IconButton';
 
 interface IControlsSectionProps {
   children?: React.ReactNode;
@@ -16,7 +16,7 @@ const ControlsSection:React.FC<IControlsSectionProps> = (props) => {
       {
         user ?
         (
-          <DefaultIconButton
+          <IconButton
             size={24}
             icon='VideoCallOutlined'
             title='Not Implemented'
@@ -25,7 +25,7 @@ const ControlsSection:React.FC<IControlsSectionProps> = (props) => {
         :
         null
       }
-      <DefaultIconButton
+      <IconButton
         icon='GridViewOutlined'
         size={24}
         title='Not Implemented'

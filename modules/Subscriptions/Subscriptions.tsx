@@ -1,7 +1,7 @@
 import { useSubsTabs } from '@lib/hooks/useSubsTabs';
 import HistoryVideoCollection from '@modules/History/HistoryVideoCollection';
-import Container from '@modules/shared/Container';
-import EmptyScreen from '@modules/shared/EmptyScreen';
+import Container from '@ui/Container';
+import EmptyScreen from '@ui/EmptyScreen';
 import React from 'react';
 
 interface ISubscriptionsProps {

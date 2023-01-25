@@ -1,4 +1,4 @@
-import { IconName } from "@modules/shared/IconWrapper/IconWrapper";
+import { IconName } from "@ui/IconWrapper/IconWrapper";
 
 export type SectionLinkType = {
   href: string;

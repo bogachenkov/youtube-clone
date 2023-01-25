@@ -1,6 +1,6 @@
-import Button from "@modules/shared/Button";
-import EmptyScreen from "@modules/shared/EmptyScreen";
-import Row from "@modules/shared/Row";
+import Button from "@ui/Button";
+import EmptyScreen from "@ui/EmptyScreen";
+import Row from "@ui/Row";
 import Head from "next/head";
 import Link from "next/link";
 

@@ -2,7 +2,7 @@ import HistoryVideoCollection from './HistoryVideoCollection';
 import { Meta, StoryObj } from '@storybook/react';
 
 const meta:Meta<typeof HistoryVideoCollection> = {
-  title: 'HistoryVideoCollection',
+  title: 'History/VideoCollection',
   component: HistoryVideoCollection,
 };
 

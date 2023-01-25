@@ -1,5 +1,5 @@
 import { IVideoPreview } from "@ts-types/Video";
-import VideoCard from "@modules/shared/VideoCard";
+import VideoCard from "@modules/Video/VideoCard";
 import { useTabs } from "./useTabs";
 import { useSubsCollection } from "./useSubsCollection";
 import { createTabsByDate } from "@lib/utils/createTabsByDate";

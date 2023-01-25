@@ -1,7 +1,7 @@
 import { device } from '@const/cssMedia';
 import Link from 'next/link';
 import styled from 'styled-components';
-import { StyledHamburgerButton } from '../shared/HamburgerMenu/styled';
+import { StyledHamburgerButton } from '../ui/HamburgerMenu/styled';
 
 export const StyledSidebarHeader = styled.header`
   max-width: 100%;

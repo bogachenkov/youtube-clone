@@ -1,5 +1,5 @@
 import { device } from "@const/cssMedia";
-import Title from "@modules/shared/Title";
+import Title from "@ui/Title";
 import styled from "styled-components";
 
 export const StyledExploreTitle = styled(Title)`

@@ -1,7 +1,6 @@
 import { IVideo, IVideoPreview } from "@ts-types/Video";
 import redis from "@lib/redis";
 import YoutubeAPI from "@api/youtube";
-import { REVALIDATE_TIME } from "@const/index";
 
 export type YoutubeApiResponse = {
   items: IVideo[]

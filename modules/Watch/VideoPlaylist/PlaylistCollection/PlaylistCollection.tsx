@@ -1,5 +1,5 @@
 import { usePlaylistCollection, usePlaylistIndex } from '@lib/providers/playlist-api';
-import Scrollbar from '@modules/shared/Scrollbar';
+import Scrollbar from '@ui/Scrollbar';
 import _ from 'lodash';
 import React, { useEffect, useRef } from 'react';
 import Scrollbars from 'react-custom-scrollbars-2';

@@ -2,7 +2,7 @@ import Library from './Library';
 import { Meta, StoryObj } from '@storybook/react';
 
 const meta:Meta<typeof Library> = {
-  title: 'Library',
+  title: 'Library/Library',
   component: Library,
 };
 

@@ -1,9 +1,10 @@
 import { exploreQuery } from '@const/queries';
 import { useVideoCollection } from '@lib/hooks/useVideoCollection';
-import Title from '@modules/shared/Title';
-import VideoCard from '@modules/shared/VideoCard';
+import Title from '@ui/Title';
+import VideoCard from '@modules/Video/VideoCard';
 import React from 'react';
 import { StyledExploreCollection } from './styled';
+import SuspenseSpinner from '@modules/ui/SuspenseSpinner';
 
 interface IExploreCollectionProps {
   children?: React.ReactNode;
@@ -12,7 +13,7 @@ interface IExploreCollectionProps {
 const ExploreCollection:React.FC<IExploreCollectionProps> = (props) => {
   const { data, isLoading } = useVideoCollection(exploreQuery);
 
-  if (isLoading) return <Title>Loading...</Title>
+  if (isLoading) return <SuspenseSpinner />
 
   if (!data) return null;
 

@@ -1,8 +1,8 @@
-import { LaptopOnly } from '@modules/MediaQuery';
-import Container from '@modules/shared/Container';
-import Input from '@modules/shared/Input';
-import Spacer from '@modules/shared/Spacer';
-import Sticky from '@modules/shared/Sticky';
+import { LaptopOnly } from '@ui/MediaQuery';
+import Container from '@ui/Container';
+import Input from '@ui/Input';
+import Spacer from '@ui/Spacer';
+import Sticky from '@ui/Sticky';
 import React from 'react';
 import PlaylistActions from './PlaylistActions';
 import PlaylistCollection from './PlaylistCollection';

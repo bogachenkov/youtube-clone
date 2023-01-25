@@ -1,8 +1,8 @@
 import { SectionLinkType } from '@const/navigation';
-import Button from '@modules/shared/Button';
-import IconWrapper from '@modules/shared/IconWrapper';
-import Row from '@modules/shared/Row';
-import Text from '@modules/shared/Text';
+import Button from '@ui/Button';
+import IconWrapper from '@ui/IconWrapper';
+import Row from '@ui/Row';
+import Text from '@ui/Text';
 import { noop } from 'lodash';
 import { useRouter } from 'next/router';
 import React from 'react';

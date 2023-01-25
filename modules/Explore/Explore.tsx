@@ -1,6 +1,6 @@
-import Container from '@modules/shared/Container';
-import Spacer from '@modules/shared/Spacer';
-import Title from '@modules/shared/Title';
+import Container from '@ui/Container';
+import Spacer from '@ui/Spacer';
+import Title from '@ui/Title';
 import React, { useState } from 'react';
 import Categories from './Categories';
 import ExploreCollection from './ExploreCollection';

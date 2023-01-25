@@ -1,7 +1,7 @@
 import { useAuthStore } from '@lib/store';
 import History from '@modules/History';
-import EmptyScreen from '@modules/shared/EmptyScreen';
-import SignInButton from '@modules/shared/SignInButton';
+import EmptyScreen from '@ui/EmptyScreen';
+import SignInButton from '@ui/SignInButton';
 import Head from 'next/head';
 
 export default function HistoryPage() {

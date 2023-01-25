@@ -2,7 +2,7 @@ import SidebarSection from './SidebarSection';
 import { Meta, StoryObj } from '@storybook/react';
 
 const meta:Meta<typeof SidebarSection> = {
-  title: 'SidebarSection',
+  title: 'Sidebar/Section',
   component: SidebarSection,
 };
 

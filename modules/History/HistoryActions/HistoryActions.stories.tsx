@@ -2,7 +2,7 @@ import HistoryActions from './HistoryActions';
 import { Meta, StoryObj } from '@storybook/react';
 
 const meta:Meta<typeof HistoryActions> = {
-  title: 'HistoryActions',
+  title: 'History/Actions',
   component: HistoryActions,
 };
 

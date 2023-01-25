@@ -1,5 +1,5 @@
 import { IVideoPreview } from "@ts-types/Video";
-import VideoCard from "@modules/shared/VideoCard";
+import VideoCard from "@modules/Video/VideoCard";
 import { Tab, useTabs } from "./useTabs";
 import { useHistoryCollection } from "./useHistoryCollection";
 import { usePlaylistCollection } from "./usePlaylistCollection";
@@ -7,7 +7,7 @@ import { useLikedCollection } from "./useLikedCollection";
 import Playlist from "@modules/Playlist";
 import { useLikesStore } from "@lib/store";
 import { usePlaylistStore } from "@lib/store/playlist";
-import GridContainer from "@modules/shared/GridContainer";
+import GridContainer from "@ui/GridContainer";
 
 const renderVideoCard = (v: IVideoPreview) => (
   <VideoCard key={v.id} video={v} />

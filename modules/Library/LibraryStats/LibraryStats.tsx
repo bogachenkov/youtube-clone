@@ -1,5 +1,5 @@
 import { useLikesStore, useSubscriptionsStore } from '@lib/store';
-import Text from '@modules/shared/Text';
+import Text from '@ui/Text';
 import React from 'react';
 import { StyledLibraryStats, StyledLibraryText } from './styled';
 

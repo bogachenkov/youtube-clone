@@ -2,9 +2,9 @@ import { usePlaylistCollection } from "@lib/hooks/usePlaylistCollection";
 import { useAuthStore } from "@lib/store";
 import { usePlaylistStore } from "@lib/store/playlist";
 import Playlist from "@modules/Playlist";
-import Container from "@modules/shared/Container";
-import EmptyScreen from "@modules/shared/EmptyScreen";
-import SignInButton from "@modules/shared/SignInButton";
+import Container from "@ui/Container";
+import EmptyScreen from "@ui/EmptyScreen";
+import SignInButton from "@ui/SignInButton";
 import Head from "next/head";
 
 export default function DemoPlaylistPage() {

@@ -1,8 +1,8 @@
-import Button from '@modules/shared/Button';
-import { IButtonProps } from '@modules/shared/Button/Button';
-import IconWrapper from '@modules/shared/IconWrapper';
-import { IconName } from '@modules/shared/IconWrapper/IconWrapper';
-import Row from '@modules/shared/Row';
+import Button from '@ui/Button';
+import { IButtonProps } from '@ui/Button/Button';
+import IconWrapper from '@ui/IconWrapper';
+import { IconName } from '@ui/IconWrapper/IconWrapper';
+import Row from '@ui/Row';
 import React from 'react';
 
 interface IHistoryActionButtonProps extends IButtonProps {

@@ -1,8 +1,8 @@
 import { usePlaylistIndex, usePlaylistLength } from '@lib/providers/playlist-api';
-import IconWrapper from '@modules/shared/IconWrapper';
-import Row from '@modules/shared/Row';
-import Spacer from '@modules/shared/Spacer';
-import Text from '@modules/shared/Text';
+import IconWrapper from '@ui/IconWrapper';
+import Row from '@ui/Row';
+import Spacer from '@ui/Spacer';
+import Text from '@ui/Text';
 import React from 'react';
 
 interface IPlaylistInfoProps {

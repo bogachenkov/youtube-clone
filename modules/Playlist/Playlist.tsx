@@ -1,8 +1,8 @@
 import { getHighResThumb } from '@lib/utils/getHighResThumb';
-import { LaptopOnly } from '@modules/MediaQuery';
-import Container from '@modules/shared/Container';
-import Spacer from '@modules/shared/Spacer';
-import TwoColumnGrid from '@modules/shared/TwoColumnGrid';
+import { LaptopOnly } from '@ui/MediaQuery';
+import Container from '@ui/Container';
+import Spacer from '@ui/Spacer';
+import TwoColumnGrid from '@ui/TwoColumnGrid';
 import { IVideoPreview } from '@ts-types/Video';
 import React from 'react';
 import PlaylistCollection from './PlaylistCollection';

@@ -1,8 +1,8 @@
 import { useAuthStore } from '@lib/store';
-import Avatar from '@modules/shared/Avatar';
+import Avatar from '@ui/Avatar';
 import React from 'react';
-import SignInButton from '@modules/shared/SignInButton';
-import DefaultIconButton from '@modules/shared/DefaultIconButton';
+import SignInButton from '@ui/SignInButton';
+import IconButton from '@ui/IconButton';
 
 interface IUserSectionProps {
   children?: React.ReactNode;
@@ -14,7 +14,7 @@ const UserSection:React.FC<IUserSectionProps> = (props) => {
   if (user) {
     return (
       <>
-        <DefaultIconButton
+        <IconButton
           size={24}
           icon='NotificationsOutlined'
           title='Not Implemented'

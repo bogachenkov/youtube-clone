@@ -7,6 +7,7 @@ import SidebarLink from './SidebarLink';
 
 const meta: Meta<typeof SidebarLink> = {
   component: SidebarLink,
+  title: 'Sidebar/Link',
   parameters: {
     backgrounds: {
       default: 'dark'

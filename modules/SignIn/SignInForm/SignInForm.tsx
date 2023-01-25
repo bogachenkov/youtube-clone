@@ -1,9 +1,9 @@
 import { useAuthStore } from '@lib/store';
-import Button from '@modules/shared/Button';
-import Checkbox from '@modules/shared/Checkbox';
-import InputWithLabel from '@modules/shared/InputWithLabel';
-import Row from '@modules/shared/Row';
-import Spacer from '@modules/shared/Spacer';
+import Button from '@ui/Button';
+import Checkbox from '@ui/Checkbox';
+import InputWithLabel from '@ui/InputWithLabel';
+import Row from '@ui/Row';
+import Spacer from '@ui/Spacer';
 import { useRouter } from 'next/router';
 import React, { useEffect } from 'react';
 

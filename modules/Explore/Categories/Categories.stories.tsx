@@ -2,7 +2,7 @@ import Categories from './Categories';
 import { Meta, StoryObj } from '@storybook/react';
 
 const meta:Meta<typeof Categories> = {
-  title: 'Categories',
+  title: 'Explore/Categories',
   component: Categories,
 };
 

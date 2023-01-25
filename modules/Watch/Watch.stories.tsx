@@ -2,7 +2,7 @@ import Watch from './Watch';
 import { Meta, StoryObj } from '@storybook/react';
 
 const meta:Meta<typeof Watch> = {
-  title: 'Watch',
+  title: 'Watch/Watch',
   component: Watch,
 };
 

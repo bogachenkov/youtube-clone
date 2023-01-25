@@ -2,7 +2,7 @@ import SearchSection from './SearchSection';
 import { Meta, StoryObj } from '@storybook/react';
 
 const meta:Meta<typeof SearchSection> = {
-  title: 'SearchSection',
+  title: 'Navbar/SearchSection',
   component: SearchSection,
 };
 

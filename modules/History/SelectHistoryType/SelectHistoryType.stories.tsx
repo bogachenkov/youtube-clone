@@ -2,7 +2,7 @@ import SelectHistoryType from './SelectHistoryType';
 import { Meta, StoryObj } from '@storybook/react';
 
 const meta:Meta<typeof SelectHistoryType> = {
-  title: 'SelectHistoryType',
+  title: 'History/SelectHistoryType',
   component: SelectHistoryType,
 };
 

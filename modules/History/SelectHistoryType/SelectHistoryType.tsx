@@ -1,6 +1,6 @@
-import RadioInput from '@modules/shared/RadioInput';
-import Spacer from '@modules/shared/Spacer';
-import Title from '@modules/shared/Title';
+import RadioInput from '@ui/RadioInput';
+import Spacer from '@ui/Spacer';
+import Title from '@ui/Title';
 import React from 'react';
 
 interface ISelectHistoryTypeProps {

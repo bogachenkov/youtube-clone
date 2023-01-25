@@ -2,7 +2,7 @@ import HistoryControls from './HistoryControls';
 import { Meta, StoryObj } from '@storybook/react';
 
 const meta:Meta<typeof HistoryControls> = {
-  title: 'HistoryControls',
+  title: 'History/Controls',
   component: HistoryControls,
 };
 

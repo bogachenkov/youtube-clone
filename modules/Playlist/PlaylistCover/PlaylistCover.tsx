@@ -1,7 +1,7 @@
 import React from 'react';
 import { IThumbnail } from '@ts-types/Video';
 import { StyledCoverLink, StyledCoverWrap, StyledMobilePlayButton, StyledPlaylistCover } from './styled';
-import IconWrapper from '@modules/shared/IconWrapper';
+import IconWrapper from '@ui/IconWrapper';
 import Link from 'next/link';
 
 interface IPlaylistCoverProps {

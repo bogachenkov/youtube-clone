@@ -1,5 +1,5 @@
-import Input from '@modules/shared/Input';
-import Spacer from '@modules/shared/Spacer';
+import Input from '@ui/Input';
+import Spacer from '@ui/Spacer';
 import React from 'react';
 import HistoryActions from '../HistoryActions';
 import SelectHistoryType from '../SelectHistoryType';
