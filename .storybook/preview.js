@@ -45,6 +45,12 @@ export const parameters = {
         console.log(req);
       })
     ]
+  },
+  docs: {
+    source: {
+      type: 'dynamic',
+      excludeDecorators: true,
+    }
   }
 }
 

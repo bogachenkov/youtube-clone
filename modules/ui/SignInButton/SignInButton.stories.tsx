@@ -12,5 +12,7 @@ type Story = StoryObj<typeof SignInButton>;
 
 export const Default:Story = {
   render: args => <SignInButton {...args} />,
-  args: {}
+  args: {
+    fontSize: 20
+  }
 };

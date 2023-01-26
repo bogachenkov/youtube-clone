@@ -12,5 +12,8 @@ type Story = StoryObj<typeof SortButton>;
 
 export const Default:Story = {
   render: args => <SortButton {...args} />,
-  args: {}
+  args: {
+    text: 'Sort By',
+    fontSize: 16
+  }
 };

@@ -2,7 +2,7 @@ import React from 'react';
 import Ink from 'react-ink';
 import { baseRem } from 'styles/globalStyles';
 import { IButtonProps } from '../Button';
-import IconWrapper, { IconName } from '../IconWrapper/IconWrapper';
+import { IconName } from '../IconWrapper/IconWrapper';
 import { InkWrapper, StyledButton, StyledButtonIcon } from './styled';
 
 interface IProps extends Omit<IButtonProps, 'fontSize'> {

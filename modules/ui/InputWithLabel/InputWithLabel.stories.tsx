@@ -4,13 +4,15 @@ import { Meta, StoryObj } from '@storybook/react';
 const meta:Meta<typeof InputWithLabel> = {
   title: 'UI/InputWithLabel',
   component: InputWithLabel,
+  render: args => <InputWithLabel {...args} />,
 };
 
 export default meta;
 
 type Story = StoryObj<typeof InputWithLabel>;
 
-export const Default:Story = {
-  render: args => <InputWithLabel {...args} />,
-  args: {}
+export const Primary:Story = {
+  args: {
+    label: 'Enter your name'
+  }
 };

@@ -6,7 +6,7 @@ export const StyledInputWrap = styled.div`
   --input-height: 4rem;
   --padding-left-default: 2.5rem;
   --icon-left-size: 2.4rem;
-  --icon-left-padding: 0.4rem;
+  --icon-left-padding: 0.75rem;
   --padding-left-resulted: var(--padding-left-default);
 `;
 

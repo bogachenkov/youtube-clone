@@ -4,6 +4,7 @@ import { Meta, StoryObj } from '@storybook/react';
 const meta:Meta<typeof IconWrapper> = {
   title: 'UI/IconWrapper',
   component: IconWrapper,
+  render: args => <IconWrapper {...args} />,
 };
 
 export default meta;
@@ -11,6 +12,15 @@ export default meta;
 type Story = StoryObj<typeof IconWrapper>;
 
 export const Default:Story = {
-  render: args => <IconWrapper {...args} />,
-  args: {}
+  args: {
+    icon: 'Alarm',
+    size: 32
+  }
+};
+
+export const Colored:Story = {
+  args: {
+    ...Default.args,
+    color: 'red'
+  }
 };
