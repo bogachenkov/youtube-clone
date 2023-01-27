@@ -4,6 +4,7 @@ import { Meta, StoryObj } from '@storybook/react';
 const meta:Meta<typeof IconButton> = {
   title: 'UI/IconButton',
   component: IconButton,
+  tags: ['autodocs'],
   render: args => <IconButton {...args} />,
 };
 

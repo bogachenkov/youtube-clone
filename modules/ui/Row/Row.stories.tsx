@@ -4,6 +4,7 @@ import { Meta, StoryObj } from '@storybook/react';
 const meta:Meta<typeof Row> = {
   title: 'UI/Row',
   component: Row,
+  tags: ['autodocs'],
   render: args => (
     <Row {...args}>
       <div style={boxStyles}>1</div>

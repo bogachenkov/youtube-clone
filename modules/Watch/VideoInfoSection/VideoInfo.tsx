@@ -15,7 +15,6 @@ import Head from 'next/head';
 import { LaptopOnly, TabletOnly } from '@ui/MediaQuery';
 import VideoSocialControls from './VideoSocialControls';
 import { StyledAvatarArea, StyledChannelArea, StyledDescArea, StyledSubscribeArea, StyledVideoInfo, StyledVideoInfoGrid } from './styled';
-import SuspenseSpinner from '@modules/ui/SuspenseSpinner';
 
 
 interface IVideoInfoSectionProps {
@@ -26,9 +25,7 @@ const VideoInfoSection:React.FC<IVideoInfoSectionProps> = (props) => {
   const data = useVideoData();
 
   // TODO: Video loading skeleton
-  if (!data) return (
-    <SuspenseSpinner />
-  );
+  if (!data) return null;
 
   const { video, channel } = data;
 

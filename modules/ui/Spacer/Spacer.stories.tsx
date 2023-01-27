@@ -6,6 +6,7 @@ import Row from '../Row';
 const meta:Meta<typeof Spacer> = {
   title: 'UI/Spacer',
   component: Spacer,
+  tags: ['autodocs'],
   render: args => (
     <>
       <Text size={15}>Lorem ipsum dolor sit amet, consectetur adipiscing elit</Text>

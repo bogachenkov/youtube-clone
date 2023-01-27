@@ -4,6 +4,7 @@ import { Meta, StoryObj } from '@storybook/react';
 const meta:Meta<typeof InputWithLabel> = {
   title: 'UI/InputWithLabel',
   component: InputWithLabel,
+  tags: ['autodocs'],
   render: args => <InputWithLabel {...args} />,
 };
 

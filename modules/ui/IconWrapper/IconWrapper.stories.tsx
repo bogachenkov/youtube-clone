@@ -4,6 +4,7 @@ import { Meta, StoryObj } from '@storybook/react';
 const meta:Meta<typeof IconWrapper> = {
   title: 'UI/IconWrapper',
   component: IconWrapper,
+  tags: ['autodocs'],
   render: args => <IconWrapper {...args} />,
 };
 

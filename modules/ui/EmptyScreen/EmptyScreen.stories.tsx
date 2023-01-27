@@ -5,6 +5,7 @@ import SignInButton from '../SignInButton';
 const meta:Meta<typeof EmptyScreen> = {
   title: 'UI/EmptyScreen',
   component: EmptyScreen,
+  tags: ['autodocs'],
 };
 
 export default meta;

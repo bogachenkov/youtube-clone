@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { Suspense, useEffect, useRef } from 'react';
 import Navbar from '@modules/Navbar';
 import Sidebar from '@modules/Sidebar';
 import { StyledLayout, StyledMain } from './styled';
@@ -6,6 +6,7 @@ import Scrollbar from '@ui/Scrollbar';
 import MobileNav from '@modules/MobileNav';
 import Scrollbars from 'react-custom-scrollbars-2';
 import { useRouter } from 'next/router';
+import SuspenseSpinner from '@modules/ui/SuspenseSpinner';
 
 interface IPrimaryProps {
   children?: React.ReactNode;
@@ -35,7 +36,9 @@ const Primary:React.FC<IPrimaryProps> = (props) => {
         <Sidebar />
         <Navbar />
         <StyledMain>
-          {props.children}
+          <Suspense fallback={<SuspenseSpinner />}>
+            {props.children}
+          </Suspense>
         </StyledMain>
         <MobileNav />
       </StyledLayout>

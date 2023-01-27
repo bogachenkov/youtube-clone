@@ -4,6 +4,7 @@ import { Meta, StoryObj } from '@storybook/react';
 const meta:Meta<typeof SignInButton> = {
   title: 'UI/SignInButton',
   component: SignInButton,
+  tags: ['autodocs'],
 };
 
 export default meta;

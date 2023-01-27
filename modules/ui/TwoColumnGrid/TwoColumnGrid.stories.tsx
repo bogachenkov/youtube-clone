@@ -15,6 +15,7 @@ const boxStyles = {
 const meta:Meta<typeof TwoColumnGrid> = {
   title: 'UI/TwoColumnGrid',
   component: TwoColumnGrid,
+  tags: ['autodocs'],
   render: args => (
     <TwoColumnGrid {...args}>
       <div style={boxStyles}>1</div>

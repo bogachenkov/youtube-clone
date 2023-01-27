@@ -5,6 +5,7 @@ import Spacer from '../Spacer';
 const meta:Meta<typeof RadioInput> = {
   title: 'UI/RadioInput',
   component: RadioInput,
+  tags: ['autodocs'],
   render: args => (
     <>
       <RadioInput label='One' name='abc' />

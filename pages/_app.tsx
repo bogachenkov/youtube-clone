@@ -2,12 +2,11 @@ import 'regenerator-runtime/runtime';
 import { NextPage } from 'next';
 import { QueryClient, QueryClientProvider, Hydrate } from '@tanstack/react-query';
 import type { AppProps } from 'next/app';
-import { ReactElement, ReactNode, Suspense, useState } from 'react';
+import { ReactElement, ReactNode, useState } from 'react';
 import Primary from '@modules/layouts/Primary';
 import GlobalStyle from '../styles/globalStyles';
 import { REVALIDATE_TIME } from '@const/index';
 import 'react-tooltip/dist/react-tooltip.css';
-import SuspenseSpinner from '@ui/SuspenseSpinner';
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: ReactElement) => ReactNode
@@ -37,13 +36,11 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
   const getLayout = Component.getLayout || ((page) => <Primary>{page}</Primary>);
 
   return getLayout(
-    <Suspense fallback={<SuspenseSpinner />}>
-      <QueryClientProvider client={queryClient}>
-        <Hydrate state={pageProps.dehydratedState}>
-          <GlobalStyle />
-          <Component {...pageProps} />
-        </Hydrate>
-      </QueryClientProvider>
-    </Suspense>
+    <QueryClientProvider client={queryClient}>
+      <Hydrate state={pageProps.dehydratedState}>
+        <GlobalStyle />
+        <Component {...pageProps} />
+      </Hydrate>
+    </QueryClientProvider>
   )
 }

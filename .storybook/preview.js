@@ -1,11 +1,13 @@
 import GlobalStyle from '../styles/globalStyles';
-import { Suspense } from 'react';
 import { initialize, mswDecorator } from 'msw-storybook-addon';
-import SuspenseSpinner from '@ui/SuspenseSpinner';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-
+import {
+  MockedVideoCollection,
+  MockedVideo,
+  MockedChannel,
+  MockedComments
+} from '../mocks/apiResponses';
 import { rest } from 'msw'
-
 import 'react-tooltip/dist/react-tooltip.css';
 
 initialize();
@@ -35,16 +37,32 @@ export const parameters = {
     },
   },
   msw: {
-    handlers: [
-      // TODO Mock redis url
-      rest.get('', (req, res, ctx) => {
-        console.log(req);
-      }),
-      // TODO Mock videoById url
-      rest.get('', (req, res, ctx) => {
-        console.log(req);
-      })
-    ]
+    handlers: {
+      redis: [
+        rest.post('https://eu2-social-grouper-30233.upstash.io', (req, res, ctx) => {
+          return res(
+            ctx.json(MockedVideoCollection)
+          )
+        }),
+      ],
+      youtube: [
+        rest.get('https://www.googleapis.com/youtube/v3/videos', (req, res, ctx) => {
+          return res(
+            ctx.json(MockedVideo)
+          )
+        }),
+        rest.get('https://www.googleapis.com/youtube/v3/channels', (req, res, ctx) => {
+          return res(
+            ctx.json(MockedChannel)
+          )
+        }),
+        rest.get('https://www.googleapis.com/youtube/v3/commentThreads', (req, res, ctx) => {
+          return res(
+            ctx.json(MockedComments)
+          )
+        }),
+      ]
+    }
   },
   docs: {
     source: {
@@ -59,13 +77,13 @@ export const decorators = [
     const queryClient = new QueryClient();
 
     return (
-      <Suspense fallback={<SuspenseSpinner />}>
+      <>
         <GlobalStyle />
         <QueryClientProvider client={queryClient}>
           <GlobalStyle />
           <Story />
         </QueryClientProvider>
-      </Suspense>
+      </>
     )
   },
   mswDecorator,

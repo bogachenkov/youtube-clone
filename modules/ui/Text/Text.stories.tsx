@@ -4,6 +4,7 @@ import { Meta, StoryObj } from '@storybook/react';
 const meta:Meta<typeof Text> = {
   title: 'UI/Text',
   component: Text,
+  tags: ['autodocs'],
   render: args => <Text {...args} />,
 };
 

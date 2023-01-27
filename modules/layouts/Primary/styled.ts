@@ -22,5 +22,7 @@ export const StyledMain = styled.main`
   width: 100%;
   max-width: 1754px;
   margin: 0 auto;
+  position: relative;
+  z-index: 1;
   /* overflow-x: hidden; */
 `;

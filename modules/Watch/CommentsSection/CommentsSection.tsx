@@ -12,7 +12,6 @@ import { useCommentsStore } from '@lib/store';
 import { useVideoId } from '@lib/hooks/useVideoId';
 import { sortCommentsByDate } from '@lib/utils/sortCommentsByDate';
 import SortButton from '../../ui/SortButton';
-import SuspenseSpinner from '@modules/ui/SuspenseSpinner';
 
 interface ICommentsSectionProps {
   children?: React.ReactNode;
@@ -23,11 +22,7 @@ const CommentsSection:React.FC<ICommentsSectionProps> = (props) => {
   const threads = useCommentsStore(store => store.threads);
   const videoId = useVideoId();
 
-  if (!data) return (
-    <StyledCommentsSection>
-      <SuspenseSpinner />
-    </StyledCommentsSection>
-  )
+  if (!data) return null;
 
   if (data.comments.length === 0) return (
     <StyledCommentsSection>

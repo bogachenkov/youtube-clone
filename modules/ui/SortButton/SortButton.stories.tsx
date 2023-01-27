@@ -4,6 +4,7 @@ import { Meta, StoryObj } from '@storybook/react';
 const meta:Meta<typeof SortButton> = {
   title: 'UI/SortButton',
   component: SortButton,
+  tags: ['autodocs'],
 };
 
 export default meta;

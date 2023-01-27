@@ -1,13 +1,13 @@
 import styled from 'styled-components';
 
 export const StyledSuspenseContainer = styled.div`
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
-  height: 100%;
   width: 100%;
+  height: calc(100vh - var(--navbar-height) - var(--navbar-margin));
   background: rgba(21,23,25, .85);
-  backdrop-filter: blur(3px);
+  backdrop-filter: blur(1px);
   display: flex;
   align-items: center;
   justify-content: center;
