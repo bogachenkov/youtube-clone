@@ -26,7 +26,7 @@ class VideosAPI {
     } = args;
     try {
       if (cacheConfig) {
-        const cache = await redis.get<IVideoPreview[]>(JSON.stringify(args));
+        const cache = await redis.get<IVideoPreview[]>(cacheConfig.name);
 
         if (cache?.length) {
           console.log('Fetching data from cache...');
@@ -41,7 +41,7 @@ class VideosAPI {
       });
 
       if (cacheConfig) {
-        await redis.set(JSON.stringify(args), JSON.stringify(items));
+        await redis.set(cacheConfig.name, JSON.stringify(items));
       }
       return items;
     } catch (e) {
