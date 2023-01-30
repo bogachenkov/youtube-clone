@@ -5,7 +5,7 @@ export interface IComment {
     videoId: string;
     textDisplay: string;
     textOriginal: string;
-    parentId: string;
+    parentId?: string;
     authorDisplayName: string;
     authorProfileImageUrl: string;
     authorChannelUrl: string;
@@ -28,7 +28,7 @@ export interface ICommentThread {
     totalReplyCount: number;
     isPublic: boolean;
   }
-  replies: {
+  replies?: {
     comments: IComment[];
   }
 }

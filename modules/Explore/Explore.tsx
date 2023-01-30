@@ -1,6 +1,5 @@
 import Container from '@ui/Container';
 import Spacer from '@ui/Spacer';
-import Title from '@ui/Title';
 import React, { useState } from 'react';
 import Categories from './Categories';
 import ExploreCollection from './ExploreCollection';

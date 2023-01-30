@@ -10,7 +10,9 @@ import {
 import { rest } from 'msw'
 import 'react-tooltip/dist/react-tooltip.css';
 
-initialize();
+initialize({
+  quiet: true
+});
 
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },

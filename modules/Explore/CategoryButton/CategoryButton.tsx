@@ -1,5 +1,4 @@
 import IconWrapper, { IconName } from '@ui/IconWrapper/IconWrapper';
-import Spacer from '@ui/Spacer';
 import Text from '@ui/Text';
 import React from 'react';
 import Ink from 'react-ink';
@@ -12,7 +11,7 @@ export interface ICategory {
 
 export interface ICategoryButtonProps extends ICategory {
   onClick: VoidFunction;
-  isActive: boolean;
+  isActive?: boolean;
 }
 
 

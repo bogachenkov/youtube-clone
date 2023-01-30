@@ -4,6 +4,7 @@ import { Meta, StoryObj } from '@storybook/react';
 const meta:Meta<typeof Categories> = {
   title: 'Explore/Categories',
   component: Categories,
+  tags: ['autodocs'],
 };
 
 export default meta;

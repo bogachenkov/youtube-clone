@@ -8,7 +8,7 @@ interface ICategoriesProps {
   setActiveCategory: (category: string) => void;
 }
 
-const categoriesList:ICategory[] = [
+export const categoriesList:ICategory[] = [
   {
     label: 'Trending',
     icon: 'WhatshotOutlined'

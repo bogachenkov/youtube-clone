@@ -11,11 +11,16 @@ import EmptyScreen from '@ui/EmptyScreen';
 
 interface IHistoryProps {
   children?: React.ReactNode;
+  mockedTabs?: ReturnType<typeof useHistoryTabs>
 }
 
-const History:React.FC<IHistoryProps> = (props) => {
+const History:React.FC<IHistoryProps> = ({
+  mockedTabs = null
+}) => {
   const [ search, setSearch ] = useState('');
-  const tabs = useHistoryTabs(search);
+  const historyTabs = useHistoryTabs(search);
+
+  const tabs = mockedTabs ?? historyTabs;
 
   return (
     <TwoColumnGrid secondCol="350px">

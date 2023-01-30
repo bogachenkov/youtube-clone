@@ -364,13 +364,13 @@ export const MockedVideo = {
 export const MockedComments = {
   items: [
     {
-        "kind": "youtube#commentThread",
+        "kind": "youtube#commentThread" as const,
         "etag": "DYfWfl3ZJxS26R5xO-NGqR6OASg",
         "id": "Ugwt6CFomZ5hBysmHhp4AaABAg",
         "snippet": {
             "videoId": "EUer-Tto1ZA",
             "topLevelComment": {
-                "kind": "youtube#comment",
+                "kind": "youtube#comment" as const,
                 "etag": "srqW529kemjfPmIbbnCMt2dGyn0",
                 "id": "Ugwt6CFomZ5hBysmHhp4AaABAg",
                 "snippet": {
@@ -396,13 +396,13 @@ export const MockedComments = {
         }
     },
     {
-        "kind": "youtube#commentThread",
+        "kind": "youtube#commentThread" as const,
         "etag": "yDQKmSNcMFlvsAsLB0XnHx8bIkM",
         "id": "UgzIDq8q2yTWwhD1t194AaABAg",
         "snippet": {
             "videoId": "EUer-Tto1ZA",
             "topLevelComment": {
-                "kind": "youtube#comment",
+                "kind": "youtube#comment" as const,
                 "etag": "Ty2A2pnMPBc6w_jIfzJjcwylEAY",
                 "id": "UgzIDq8q2yTWwhD1t194AaABAg",
                 "snippet": {
@@ -429,7 +429,7 @@ export const MockedComments = {
         "replies": {
             "comments": [
                 {
-                    "kind": "youtube#comment",
+                    "kind": "youtube#comment" as const,
                     "etag": "PzX_cms41hoBhxT6K9L-G8p8Yac",
                     "id": "UgzIDq8q2yTWwhD1t194AaABAg.9l9QQfOoINU9lBIoZZgsDB",
                     "snippet": {
@@ -454,13 +454,13 @@ export const MockedComments = {
         }
     },
     {
-        "kind": "youtube#commentThread",
+        "kind": "youtube#commentThread" as const,
         "etag": "UrhfdHtPQ7R7G_Ba_HAcJjtr4S8",
         "id": "UgzXXj06KJHFq77M4a14AaABAg",
         "snippet": {
             "videoId": "EUer-Tto1ZA",
             "topLevelComment": {
-                "kind": "youtube#comment",
+                "kind": "youtube#comment" as const,
                 "etag": "1F67Vj9WtZS55YK6miBRXJAhK-U",
                 "id": "UgzXXj06KJHFq77M4a14AaABAg",
                 "snippet": {
@@ -486,13 +486,13 @@ export const MockedComments = {
         }
     },
     {
-        "kind": "youtube#commentThread",
+        "kind": "youtube#commentThread" as const,
         "etag": "xnM8hpzxUSrDQI74ddX9E_MaDto",
         "id": "Ugy1_i-r0WjegUM6Wbx4AaABAg",
         "snippet": {
             "videoId": "EUer-Tto1ZA",
             "topLevelComment": {
-                "kind": "youtube#comment",
+                "kind": "youtube#comment" as const,
                 "etag": "ishOKDS8vc591uICHRNq3Yz2-oM",
                 "id": "Ugy1_i-r0WjegUM6Wbx4AaABAg",
                 "snippet": {
@@ -519,7 +519,7 @@ export const MockedComments = {
         "replies": {
             "comments": [
                 {
-                    "kind": "youtube#comment",
+                    "kind": "youtube#comment" as const,
                     "etag": "M-i0UdVKF2vVzo2IShAYgTMs6h8",
                     "id": "Ugy1_i-r0WjegUM6Wbx4AaABAg.9key3EP-kzt9kf-piSDIrV",
                     "snippet": {
@@ -544,7 +544,7 @@ export const MockedComments = {
         }
     },
   ]
-}
+};
 
 export const MockedChannel = {
   items: [

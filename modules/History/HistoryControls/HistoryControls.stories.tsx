@@ -4,6 +4,7 @@ import { Meta, StoryObj } from '@storybook/react';
 const meta:Meta<typeof HistoryControls> = {
   title: 'History/Controls',
   component: HistoryControls,
+  tags: ['autodocs']
 };
 
 export default meta;

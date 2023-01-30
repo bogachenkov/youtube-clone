@@ -1,9 +1,13 @@
 import CommentAddForm from './CommentAddForm';
 import { Meta, StoryObj } from '@storybook/react';
+import { useAuthStore } from '@lib/store';
+import { useEffect } from 'react';
 
 const meta:Meta<typeof CommentAddForm> = {
-  title: 'Comments/Comment/CommentAddForm',
+  title: 'Comments/AddForm',
   component: CommentAddForm,
+  tags: ['autodocs'],
+  render: args => <CommentAddForm {...args} />,
 };
 
 export default meta;
@@ -11,6 +15,22 @@ export default meta;
 type Story = StoryObj<typeof CommentAddForm>;
 
 export const Default:Story = {
-  render: args => <CommentAddForm {...args} />,
-  args: {}
+  decorators: [
+    (Story) => {
+      const signIn = useAuthStore(store => store.signIn);
+
+      useEffect(() => {
+        signIn();
+      }, [signIn]);
+
+      return <Story />
+    }
+  ],
 };
+
+export const WithCallback:Story = {
+  decorators: Default.decorators,
+  args: {
+    onSubmit: () => alert('Callback called')
+  }
+}

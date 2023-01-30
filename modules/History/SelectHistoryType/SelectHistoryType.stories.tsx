@@ -4,6 +4,7 @@ import { Meta, StoryObj } from '@storybook/react';
 const meta:Meta<typeof SelectHistoryType> = {
   title: 'History/SelectHistoryType',
   component: SelectHistoryType,
+  tags: ['autodocs']
 };
 
 export default meta;
