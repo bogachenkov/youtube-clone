@@ -15,7 +15,6 @@ const Explore:React.FC<IExploreProps> = (props) => {
   return (
     <>
       <Categories
-        activeCategory={activeCategory}
         setActiveCategory={setActiveCategory}
       />
       <Spacer vertical={30} />

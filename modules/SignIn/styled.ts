@@ -9,5 +9,6 @@ export const StyledSignInContainer = styled.div`
 `;
 
 export const StyledSignWrapper = styled.div`
+  max-width: 358px;
   text-align: center;
 `;

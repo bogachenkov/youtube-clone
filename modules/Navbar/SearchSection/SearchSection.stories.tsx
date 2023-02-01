@@ -4,6 +4,7 @@ import { Meta, StoryObj } from '@storybook/react';
 const meta:Meta<typeof SearchSection> = {
   title: 'Navbar/SearchSection',
   component: SearchSection,
+  tags: ['autodocs']
 };
 
 export default meta;

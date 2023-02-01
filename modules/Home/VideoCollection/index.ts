@@ -1,1 +1,1 @@
-export { default } from './HomePageVideos';
+export { default } from './VideoCollection';

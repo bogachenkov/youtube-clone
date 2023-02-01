@@ -1,15 +1,16 @@
 import { Tab } from '@hooks/useTabs';
 import useIsOverflowing from '@lib/hooks/useIsOverflowing';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { easings, useSpring, a } from 'react-spring';
-import { StyledNav, StyledNavWrapper, StyledTab, StyledUnderline, StyledUnderlineThumb } from './styled';
+import { StyledNav, StyledNavWrapper, StyledUnderline, StyledUnderlineThumb } from './styled';
+import TabComponent from './Tab';
 import TabsScroller from './TabsScroller';
 
 interface ITabsProps {
   children?: React.ReactNode;
   selectedTabIndex: number;
   tabs: Tab[];
-  setSelectedTab: (input: [number, number]) => void;
+  setSelectedTab: (input: number) => void;
 }
 
 const AnimatedUnderlineThumb = a(StyledUnderlineThumb);
@@ -19,40 +20,29 @@ const Tabs:React.FC<ITabsProps> = ({
   selectedTabIndex,
   setSelectedTab,
 }) => {
-  const [buttonRefs, setButtonRefs] = useState<Array<HTMLButtonElement | null>>(
-    []
-  );
-
-  useEffect(() => {
-    setButtonRefs((prev) => prev.slice(0, tabs.length));
-  }, [tabs.length]);
-
+  const [selectedRect, setSelectedRect] = useState<DOMRect | null>(null);
   const navRef = useRef<HTMLDivElement>(null);
   const navRect = navRef.current?.getBoundingClientRect();
-  const isOverflowing = useIsOverflowing(navRef)
+  const isOverflowing = useIsOverflowing(navRef);
 
-  const selectedRect = buttonRefs[selectedTabIndex]?.getBoundingClientRect();
+  useEffect(() => {
+    if (!navRef.current) return;
 
-  const [hoveredTabIndex, setHoveredTabIndex] = useState<number | null>(null);
+    const rect = navRef.current.querySelector(`button[data-tabIndex="${selectedTabIndex}"]`)?.getBoundingClientRect();
+    setSelectedRect(rect ?? null);
+  }, [selectedTabIndex]);
 
-  const onLeaveTabs = () => {
-    setHoveredTabIndex(null);
-  };
+  // const onSelectTab = (i: number) => {
+  //   setSelectedTab([i, i > selectedTabIndex ? 1 : -1]);
+  // };
 
-  const onEnterTab = (i: number) => {
-    setHoveredTabIndex(i);
-  };
+  const onSelectTab:React.MouseEventHandler<HTMLElement> = (e) => {
+    e.preventDefault();
+    const element = e.target as HTMLElement;
+    if (element.getAttribute('data-role') !== 'tab') return;
 
-  const onSelectTab = (i: number) => {
-    setSelectedTab([i, i > selectedTabIndex ? 1 : -1]);
-  };
-
-  const scrollLeft = () => {
-    navRef.current!.scrollLeft -= 150;
-  }
-
-  const scrollRight = () => {
-    navRef.current!.scrollLeft += 150;
+    const index = Number(element.getAttribute('data-tabIndex'));
+    setSelectedTab(index);
   }
 
   const underlineStyles = useSpring({
@@ -76,25 +66,19 @@ const Tabs:React.FC<ITabsProps> = ({
     <StyledNavWrapper>
       <StyledNav
         ref={navRef}
-        onPointerLeave={onLeaveTabs}
+        onClick={onSelectTab}
         style={{
           ['--tabs-pad-right' as string]: isOverflowing ? '6rem' : 0
         }}
       >
         {tabs.map((item, i) => {
           return (
-            <StyledTab
+            <TabComponent
               key={i}
-              style={{
-                ['--tab-font-color' as string]: (hoveredTabIndex === i || selectedTabIndex === i) ? '#FFF' : 'var(--color-gray)',
-              }}
-              ref={(el) => (buttonRefs[i] = el)}
-              onPointerEnter={() => onEnterTab(i)}
-              onFocus={() => onEnterTab(i)}
-              onClick={() => onSelectTab(i)}
-            >
-              {item.label}
-            </StyledTab>
+              index={i}
+              label={item.label}
+              isActive={selectedTabIndex === i}
+            />
           );
         })}
         <AnimatedUnderlineThumb
@@ -105,8 +89,7 @@ const Tabs:React.FC<ITabsProps> = ({
       {
         isOverflowing && (
           <TabsScroller
-            scrollLeft={scrollLeft}
-            scrollRight={scrollRight}
+            parentRef={navRef}
           />
         )
       }

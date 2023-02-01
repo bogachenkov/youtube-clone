@@ -31,4 +31,4 @@ const LibraryStats:React.FC<ILibraryStatsProps> = (props) => {
   );
 }
 
-export default LibraryStats;
+export default React.memo(LibraryStats);

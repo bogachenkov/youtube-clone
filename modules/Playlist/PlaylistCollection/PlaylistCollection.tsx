@@ -10,19 +10,17 @@ import React from 'react';
 
 interface IPlaylistCollectionProps {
   collection: IVideoPreview[];
-  totalVideos: number;
 }
 
 const PlaylistCollection:React.FC<IPlaylistCollectionProps> = ({
   collection,
-  totalVideos
 }) => {
   return (
     <>
       <TabletOnly>
         <Row gap={24}>
           <Text weight='regular' color='var(--color-light)' size={16}>
-            {totalVideos} videos
+            {collection.length} videos
           </Text>
           <SortButton
             text='Sort'
@@ -47,4 +45,4 @@ const PlaylistCollection:React.FC<IPlaylistCollectionProps> = ({
   );
 }
 
-export default PlaylistCollection;
+export default React.memo(PlaylistCollection);

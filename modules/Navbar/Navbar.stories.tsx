@@ -4,6 +4,7 @@ import { Meta, StoryObj } from '@storybook/react';
 const meta:Meta<typeof Navbar> = {
   title: 'Navbar',
   component: Navbar,
+  tags: ['autodocs']
 };
 
 export default meta;

@@ -4,7 +4,6 @@ import { StyledExploreCategories } from './styled';
 
 interface ICategoriesProps {
   children?: React.ReactNode;
-  activeCategory: string;
   setActiveCategory: (category: string) => void;
 }
 
@@ -44,7 +43,6 @@ export const categoriesList:ICategory[] = [
 ]
 
 const Categories:React.FC<ICategoriesProps> = ({
-  activeCategory,
   setActiveCategory
 }) => {
   return (
@@ -52,7 +50,6 @@ const Categories:React.FC<ICategoriesProps> = ({
       {categoriesList.map(c => (
         <CategoryButton
           onClick={() => setActiveCategory(c.label)}
-          isActive={activeCategory === c.label}
           key={c.label}
           {...c}
         />
@@ -61,4 +58,4 @@ const Categories:React.FC<ICategoriesProps> = ({
   );
 }
 
-export default Categories;
+export default React.memo(Categories);

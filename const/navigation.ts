@@ -88,7 +88,7 @@ const PERSONAL_SECTION:SidebarSectionType = {
   ]
 }
 
-const MORE_FROM_YOUTUBE_SECTION:SidebarSectionType = {
+export const MORE_FROM_YOUTUBE_SECTION:SidebarSectionType = {
   name: 'More from YouTube',
   links: [
     {

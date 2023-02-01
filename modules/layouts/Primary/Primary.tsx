@@ -7,6 +7,7 @@ import MobileNav from '@modules/MobileNav';
 import Scrollbars from 'react-custom-scrollbars-2';
 import { useRouter } from 'next/router';
 import SuspenseSpinner from '@modules/ui/SuspenseSpinner';
+import { TabletOnly } from '@modules/ui/MediaQuery';
 
 interface IPrimaryProps {
   children?: React.ReactNode;
@@ -40,7 +41,9 @@ const Primary:React.FC<IPrimaryProps> = (props) => {
             {props.children}
           </Suspense>
         </StyledMain>
-        <MobileNav />
+        <TabletOnly>
+          <MobileNav />
+        </TabletOnly>
       </StyledLayout>
     </Scrollbar>
   );

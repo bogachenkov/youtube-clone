@@ -1,19 +1,19 @@
 import { useHistoryTabs } from '@lib/hooks/useHistoryTabs';
+import { IVideoPreview } from '@ts-types/Video';
 import GridContainer from '@ui/GridContainer';
 import Spacer from '@ui/Spacer';
 import Tabs from '@ui/Tabs';
 import React from 'react';
 
 interface IHistoryVideoCollectionProps {
-  tabs: ReturnType<typeof useHistoryTabs>
+  collection: IVideoPreview[]
 }
 
 const HistoryVideoCollection:React.FC<IHistoryVideoCollectionProps> = ({
-  tabs: {
-    tabProps,
-    selectedTab
-  }
+  collection
 }) => {
+  const { tabProps, selectedTab } = useHistoryTabs(collection);
+
   return (
     <>
       <Tabs {...tabProps} />
@@ -27,4 +27,4 @@ const HistoryVideoCollection:React.FC<IHistoryVideoCollectionProps> = ({
   );
 }
 
-export default HistoryVideoCollection;
+export default React.memo(HistoryVideoCollection);

@@ -3,11 +3,11 @@ import GridContainer from '@ui/GridContainer';
 import VideoCard from '@modules/Video/VideoCard';
 import { useVideoCollection } from '@lib/hooks/useVideoCollection';
 
-interface IHomePageVideosProps {
+interface IVideoCollectionProps {
   children?: React.ReactNode;
 }
 
-const HomePageVideos:React.FC<IHomePageVideosProps> = (props) => {
+const VideoCollection:React.FC<IVideoCollectionProps> = () => {
   const { data } = useVideoCollection();
 
   if (!data) return null;
@@ -23,4 +23,4 @@ const HomePageVideos:React.FC<IHomePageVideosProps> = (props) => {
   );
 }
 
-export default HomePageVideos;
+export default React.memo(VideoCollection);

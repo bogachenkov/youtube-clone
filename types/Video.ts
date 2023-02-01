@@ -11,11 +11,11 @@ export type IVideoPreview = {
     channelId: string;
     channelTitle: string;
     title: string;
-    liveBroadcastContent: boolean;
+    liveBroadcastContent: boolean | string;
     publishedAt: string;
     thumbnails: {
       default: IThumbnail,
-      standart: IThumbnail,
+      standart?: IThumbnail,
       medium: IThumbnail,
       high: IThumbnail,
       maxres?: IThumbnail

@@ -50,7 +50,6 @@ const Playlist:React.FC<IPlaylistProps> = ({
       </LaptopOnly>
       <Container>
         <PlaylistCollection
-          totalVideos={collection.length}
           collection={collection}
         />
       </Container>

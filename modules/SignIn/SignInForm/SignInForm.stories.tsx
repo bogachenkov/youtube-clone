@@ -12,5 +12,18 @@ type Story = StoryObj<typeof SignInForm>;
 
 export const Default:Story = {
   render: args => <SignInForm {...args} />,
+  decorators: [
+    (Story) => (
+      <div style={{
+        height: '100vh',
+        display: 'flex',
+        alignItems: 'center',
+        maxWidth: 358,
+        margin: '0 auto'
+      }}>
+        <Story />
+      </div>
+    )
+  ],
   args: {}
 };

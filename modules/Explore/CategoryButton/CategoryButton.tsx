@@ -11,14 +11,12 @@ export interface ICategory {
 
 export interface ICategoryButtonProps extends ICategory {
   onClick: VoidFunction;
-  isActive?: boolean;
 }
 
 
 const CategoryButton:React.FC<ICategoryButtonProps> = ({
   label,
   icon,
-  isActive,
   onClick
 }) => {
   return (

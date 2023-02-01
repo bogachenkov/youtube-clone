@@ -6,8 +6,8 @@ export const MockedVideoCollection = {
         "duration": "PT2H1M41S"
       },
       "statistics": {
-        "viewCount": "4033297",
-        "likeCount": "107827"
+        "viewCount": 4033297,
+        "likeCount": 107827
       },
       "snippet": {
         "categoryId": "24",
@@ -51,8 +51,8 @@ export const MockedVideoCollection = {
         "duration": "PT1H"
       },
       "statistics": {
-        "viewCount": "233846",
-        "likeCount": "6921"
+        "viewCount": 233846,
+        "likeCount": 6921
       },
       "snippet": {
         "categoryId": "10",
@@ -96,8 +96,8 @@ export const MockedVideoCollection = {
         "duration": "PT2H3M47S"
       },
       "statistics": {
-        "viewCount": "599732",
-        "likeCount": "15810"
+        "viewCount": 599732,
+        "likeCount": 15810
       },
       "snippet": {
         "categoryId": "24",
@@ -141,8 +141,8 @@ export const MockedVideoCollection = {
         "duration": "PT1H32M30S"
       },
       "statistics": {
-        "viewCount": "446390",
-        "likeCount": "15713"
+        "viewCount": 446390,
+        "likeCount": 15713
       },
       "snippet": {
         "categoryId": "1",
@@ -186,8 +186,8 @@ export const MockedVideoCollection = {
         "duration": "PT8H1S"
       },
       "statistics": {
-        "viewCount": "1400875",
-        "likeCount": "41651"
+        "viewCount": 1400875,
+        "likeCount": 41651
       },
       "snippet": {
         "categoryId": "22",
@@ -231,8 +231,8 @@ export const MockedVideoCollection = {
         "duration": "PT1H1M17S"
       },
       "statistics": {
-        "viewCount": "1020891",
-        "likeCount": "18604"
+        "viewCount": 1020891,
+        "likeCount": 18604
       },
       "snippet": {
         "categoryId": "24",
@@ -352,10 +352,10 @@ export const MockedVideo = {
           "projection": "rectangular"
       },
       "statistics": {
-          "viewCount": "1021021",
-          "likeCount": "18604",
-          "favoriteCount": "0",
-          "commentCount": "532"
+          "viewCount": 1021021,
+          "likeCount": 18604,
+          "favoriteCount": 0,
+          "commentCount": 532
       }
     }
   ]

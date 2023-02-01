@@ -20,7 +20,6 @@ type State = {
   isMuted: boolean;
   isFullscreen: boolean;
   volume: number;
-  timings: TimeRanges;
 };
 
 type PlayerRefs = {
@@ -38,8 +37,6 @@ type API = {
   toggleMute: VoidFunction;
   toggleFullscreen: VoidFunction;
   updateVolume: (volume: number) => void;
-  updateTimings: (args: UpdateTimingsArgs) => void;
-  resetProgress: VoidFunction;
 };
 
 const PlayerPlayingContext = createContext<State["isPlaying"]>(
@@ -54,9 +51,6 @@ const PlayerFullscreenContext = createContext<State["isFullscreen"]>(
 const PlayerVolumeContext = createContext<State["volume"]>(
   {} as State["volume"]
 );
-const PlayerTimingContext = createContext<State["timings"]>(
-  {} as State["timings"]
-);
 const PlayerRefsContext = createContext<PlayerRefs>(
   {} as PlayerRefs
 );
@@ -68,14 +62,15 @@ export const PlayerDataProvider = ({ children }: { children: ReactNode }) => {
   const [isFullscreen, setFullscreen] = useState(false);
 
   const [volume, setVolume] = useState(50);
-  const [timings, setTimings] = useState<TimeRanges>({
-    played: 0,
-    buffered: 0,
-    duration: 0
-  });
+
 
   const videoRef = useRef<HTMLVideoElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+
+  const refs = useMemo(() => ({
+    video: videoRef,
+    container: containerRef
+  }), [videoRef, containerRef])
 
   useEffect(() => {
     if (videoRef.current) {
@@ -88,7 +83,6 @@ export const PlayerDataProvider = ({ children }: { children: ReactNode }) => {
     isMuted,
     isFullscreen,
     volume,
-    timings
   };
 
   const api = useMemo<API>(() => {
@@ -121,20 +115,6 @@ export const PlayerDataProvider = ({ children }: { children: ReactNode }) => {
       }  
     };
 
-    const updateTimings:API['updateTimings'] = ({ timeValue, el }) => {
-      const videoElement = el || videoRef.current;
-      if (!videoElement) return;
-      
-      if (timeValue) videoElement.currentTime = timeValue;
-
-      const buffered = videoElement.buffered;
-      setTimings({
-        played: videoElement.currentTime,
-        buffered: buffered.length > 0 ? buffered.end(buffered.length - 1) : 0,
-        duration: videoElement.duration
-      }); 
-    };
-
     const updateVolume = (val: number) => {
       if (!videoRef.current) return;
       videoRef.current.volume = val / 100;
@@ -146,21 +126,11 @@ export const PlayerDataProvider = ({ children }: { children: ReactNode }) => {
       })
     }
 
-    const resetProgress = () => {
-      setTimings({
-        played: 0,
-        buffered: 0,
-        duration: 0
-      });
-    }
-
     return { 
       togglePlaying,
       toggleMute: () => setMute(mute => !mute),
       toggleFullscreen,
       updateVolume,
-      updateTimings,
-      resetProgress
     };
   }, [togglePlaying]);
 
@@ -170,14 +140,9 @@ export const PlayerDataProvider = ({ children }: { children: ReactNode }) => {
         <PlayerMutedContext.Provider value={state.isMuted}>
           <PlayerFullscreenContext.Provider value={state.isFullscreen}>
             <PlayerVolumeContext.Provider value={state.volume}>
-              <PlayerTimingContext.Provider value={state.timings}>
-                <PlayerRefsContext.Provider value={{
-                  video: videoRef,
-                  container: containerRef
-                }}>
+                <PlayerRefsContext.Provider value={refs}>
                   {children}
                 </PlayerRefsContext.Provider>
-              </PlayerTimingContext.Provider>
             </PlayerVolumeContext.Provider>
           </PlayerFullscreenContext.Provider>
         </PlayerMutedContext.Provider>
@@ -191,5 +156,4 @@ export const usePlayerRefs = () => useContext(PlayerRefsContext);
 export const usePlayerPlaying= () => useContext(PlayerPlayingContext);
 export const usePlayerMuted= () => useContext(PlayerMutedContext);
 export const usePlayerFullscreen= () => useContext(PlayerFullscreenContext);
-export const usePlayerTimings= () => useContext(PlayerTimingContext);
 export const usePlayerVolume= () => useContext(PlayerVolumeContext);

@@ -11,7 +11,7 @@ import { rest } from 'msw'
 import 'react-tooltip/dist/react-tooltip.css';
 
 initialize({
-  quiet: true
+  // quiet: true
 });
 
 export const parameters = {

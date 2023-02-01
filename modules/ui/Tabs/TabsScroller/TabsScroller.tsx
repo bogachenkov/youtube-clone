@@ -6,14 +6,20 @@ import { StyledTabsScroller } from './styled';
 
 interface ITabsScrollerProps {
   children?: React.ReactNode;
-  scrollLeft: VoidFunction;
-  scrollRight: VoidFunction;
+  parentRef: React.RefObject<HTMLDivElement>;
 }
 
 const TabsScroller:React.FC<ITabsScrollerProps> = ({
-  scrollLeft,
-  scrollRight,
+  parentRef,
 }) => {
+  const scrollLeft = () => {
+    parentRef.current!.scrollLeft -= 150;
+  }
+
+  const scrollRight = () => {
+    parentRef.current!.scrollLeft += 150;
+  }
+
   return (
     <StyledTabsScroller>
       <Row justify='flex-end' gap={2}>
@@ -28,4 +34,4 @@ const TabsScroller:React.FC<ITabsScrollerProps> = ({
   );
 }
 
-export default TabsScroller;
+export default React.memo(TabsScroller);

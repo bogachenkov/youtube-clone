@@ -8,7 +8,7 @@ export const StyledComment = styled.div`
   "avatar author"
   "content content"
   ;
-  grid-template-columns: auto 1fr;
+  grid-template-columns: auto minmax(0, 1fr);
   column-gap: 16px;
   align-items: flex-start;
   margin-bottom: var(--comment-margin);

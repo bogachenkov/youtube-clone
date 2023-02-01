@@ -1,4 +1,4 @@
-import { usePlayerAPI, usePlayerTimings } from '@lib/providers/player-api';
+import { usePlayerTimings } from '@lib/hooks/usePlayerTimings';
 import React from 'react';
 import { StyledVideoProgress } from './styled';
 
@@ -9,16 +9,13 @@ interface IVideoProgressProps {
 export const PercentMultiplier = 3;
 
 const VideoProgress:React.FC<IVideoProgressProps> = () => {
-  const { updateTimings } = usePlayerAPI();
-  const { played, duration, buffered } = usePlayerTimings();
+  const { played, duration, buffered, updateTimings } = usePlayerTimings();
 
   const val = played === 0 ? 0 : Math.floor((played / duration) * 100 * PercentMultiplier);
 
   const handleChange:React.ChangeEventHandler<HTMLInputElement> = (e) => {
     const value = (Number(e.target.value) / PercentMultiplier / 100) * duration;
-    updateTimings({
-      timeValue: value
-    });
+    updateTimings(value);
   }
 
   return (

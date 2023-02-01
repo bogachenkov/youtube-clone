@@ -1,4 +1,3 @@
-import { useHistoryTabs } from '@lib/hooks/useHistoryTabs';
 import Container from '@ui/Container';
 import Sticky from '@ui/Sticky';
 import Spacer from '@ui/Spacer';
@@ -8,25 +7,27 @@ import React, { useState } from 'react';
 import HistoryControls from './HistoryControls';
 import HistoryVideoCollection from './HistoryVideoCollection';
 import EmptyScreen from '@ui/EmptyScreen';
+import { IVideoPreview } from '@ts-types/Video';
+import { useHistoryCollection } from '@lib/hooks/useHistoryCollection';
 
 interface IHistoryProps {
   children?: React.ReactNode;
-  mockedTabs?: ReturnType<typeof useHistoryTabs>
+  mockedHistoryCollection?: IVideoPreview[];
 }
 
 const History:React.FC<IHistoryProps> = ({
-  mockedTabs = null
+  mockedHistoryCollection = null
 }) => {
   const [ search, setSearch ] = useState('');
-  const historyTabs = useHistoryTabs(search);
+  const historyCollection = useHistoryCollection(search);
 
-  const tabs = mockedTabs ?? historyTabs;
+  const collection = mockedHistoryCollection ?? historyCollection;
 
   return (
     <TwoColumnGrid secondCol="350px">
       <Container>
         {
-          tabs.tabProps.tabs.length === 0 && (
+          collection.length === 0 && (
             <EmptyScreen
               emojiCode='1F627'
               title='Keep Track Of What You Watch'
@@ -35,13 +36,13 @@ const History:React.FC<IHistoryProps> = ({
           )
         }
         {
-          tabs.tabProps.tabs.length > 0 && (
+          collection.length > 0 && (
             <>
               <Title size={34}>
                 Watch History
               </Title>
               <Spacer vertical={19} />
-              <HistoryVideoCollection tabs={tabs} />
+              <HistoryVideoCollection collection={collection} />
             </>
           )
         }

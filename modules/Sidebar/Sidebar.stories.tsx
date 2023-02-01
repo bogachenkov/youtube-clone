@@ -6,6 +6,7 @@ import Sidebar from './Sidebar';
 const meta:Meta<typeof Sidebar> = {
   component: Sidebar,
   title: 'Sidebar',
+
 };
 
 export default meta;
@@ -13,8 +14,7 @@ export default meta;
 type Story = StoryObj<typeof Sidebar>;
 
 export const Default:Story = {
-  //render: args => <Sidebar {...args} />,
-  //args: {},
+  render: args => <Sidebar {...args} />,
   play: async ({ canvasElement }) => {
     // @ts-ignore
     await SidebarLink.play!({ canvasElement });

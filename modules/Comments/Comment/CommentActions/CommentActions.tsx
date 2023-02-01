@@ -28,7 +28,7 @@ const CommentActions:React.FC<ICommentActionsProps> = ({
   const { likes, toggleLike } = useCommentLikesStore(store => store);
   const signIn = useSignIn();
 
-  const likedInfo = useMemo(() => {
+  const likedInfo = (() => {
     const likeObj = likes.find(l => l.id === id);
     const isLiked = likeObj && likeObj.liked === true;
     const isDisliked = likeObj && likeObj.liked === false;
@@ -37,7 +37,7 @@ const CommentActions:React.FC<ICommentActionsProps> = ({
       isLiked,
       isDisliked
     }
-  }, [id, likes]);
+  })();
 
   return (
     <Row gap={22}>

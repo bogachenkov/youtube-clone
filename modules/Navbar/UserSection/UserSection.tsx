@@ -3,13 +3,19 @@ import Avatar from '@ui/Avatar';
 import React from 'react';
 import SignInButton from '@ui/SignInButton';
 import IconButton from '@ui/IconButton';
+import { User } from '@ts-types/User';
 
 interface IUserSectionProps {
   children?: React.ReactNode;
+  mockedUser?: User | null;
 }
 
-const UserSection:React.FC<IUserSectionProps> = (props) => {  
-  const user = useAuthStore(store => store.user);
+const UserSection:React.FC<IUserSectionProps> = ({
+  mockedUser
+}) => {
+  const storeUser = useAuthStore(store => store.user);
+
+  const user = mockedUser !== undefined ? mockedUser : storeUser;
 
   if (user) {
     return (

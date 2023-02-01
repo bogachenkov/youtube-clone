@@ -1,5 +1,5 @@
-import { device } from '@const/cssMedia';
 import styled from 'styled-components';
+import { StyledMobileNavItem } from './MobileNavItem/styled';
 
 export const StyledMobileNav = styled.nav`
   position: fixed;
@@ -14,7 +14,13 @@ export const StyledMobileNav = styled.nav`
   justify-content: space-between;
   padding: 1em 4.5em 0;
 
-  @media ${device.laptop} {
-    display: none;
+  & ${StyledMobileNavItem} {
+    &:first-of-type {
+      justify-content: flex-start;
+    }
+
+    &:last-of-type {
+      justify-content: flex-end;
+    }
   }
 `;
