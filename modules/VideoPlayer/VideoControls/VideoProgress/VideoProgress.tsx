@@ -1,16 +1,23 @@
-import { usePlayerTimings } from '@lib/hooks/usePlayerTimings';
+import { UpdateTimings } from '@lib/hooks/usePlayerTimings';
 import React from 'react';
 import { StyledVideoProgress } from './styled';
 
 interface IVideoProgressProps {
   children?: React.ReactNode;
+  played: number;
+  duration: number;
+  buffered: number;
+  updateTimings: UpdateTimings;
 }
 
 export const PercentMultiplier = 3;
 
-const VideoProgress:React.FC<IVideoProgressProps> = () => {
-  const { played, duration, buffered, updateTimings } = usePlayerTimings();
-
+const VideoProgress:React.FC<IVideoProgressProps> = ({
+  played,
+  duration,
+  buffered,
+  updateTimings
+}) => {
   const val = played === 0 ? 0 : Math.floor((played / duration) * 100 * PercentMultiplier);
 
   const handleChange:React.ChangeEventHandler<HTMLInputElement> = (e) => {

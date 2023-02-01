@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { StyledPlayControls } from './styled';
-import { usePlayerAPI, usePlayerPlaying } from '@lib/providers/player-api';
+import { usePlayerAPI, usePlayerPlaying, usePlayerRefs } from '@lib/providers/player-api';
 import IconWrapper from '@ui/IconWrapper';
 import { useCanPlayNext, usePlaylistAPI, usePlaylistIndex } from '@lib/providers/playlist-api';
 import Button from '@ui/Button';
@@ -14,15 +14,26 @@ const PlayControls:React.FC<IPlayControlsProps> = () => {
   const { togglePlaying } = usePlayerAPI();
   const isPlaying = usePlayerPlaying();
 
+  const { video } = usePlayerRefs();
   const { playNext, playPrev } = usePlaylistAPI();
   const canPlayNext = useCanPlayNext();
   const canPlayPrev = usePlaylistIndex() !== 0;
+
+  const onPlayNext = () => {
+    video.current?.pause();
+    playNext();
+  }
+
+  const onPlayPrev = () => {
+    video.current?.pause();
+    playPrev();
+  }
 
   return (
     <StyledPlayControls>
       {
         canPlayPrev && (
-          <Button title='Play previous' theme='text' onClick={playPrev}>
+          <Button title='Play previous' theme='text' onClick={onPlayPrev}>
             <IconWrapper icon='SkipPreviousOutlined' />
           </Button>
         )
@@ -37,7 +48,7 @@ const PlayControls:React.FC<IPlayControlsProps> = () => {
       </Button>
       {
         canPlayNext && (
-          <Button title='Play next' theme='text' onClick={playNext}>
+          <Button title='Play next' theme='text' onClick={onPlayNext}>
             <IconWrapper icon='SkipNextOutlined' />
           </Button>
         )

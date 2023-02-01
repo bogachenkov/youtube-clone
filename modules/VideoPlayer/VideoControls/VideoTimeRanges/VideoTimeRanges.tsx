@@ -5,15 +5,18 @@ import duration from 'dayjs/plugin/duration';
 dayjs.extend(duration);
 
 import { StyledVideoTimeRanges } from './styled';
-import { usePlayerTimings } from '@lib/hooks/usePlayerTimings';
 
 interface IVideoTimeRangesProps {
   children?: React.ReactNode;
+  played: number;
+  duration: number;
 }
 
 
-const VideoTimeRanges:React.FC<IVideoTimeRangesProps> = () => {
-  const { played, duration } = usePlayerTimings();
+const VideoTimeRanges:React.FC<IVideoTimeRangesProps> = ({
+  played,
+  duration
+}) => {
   return (
     <StyledVideoTimeRanges>
       {dayjs.duration(played, 'seconds').format('mm:ss')}

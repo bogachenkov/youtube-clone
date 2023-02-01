@@ -5,6 +5,7 @@ import VideoProgress from './VideoProgress';
 import PlayControls from './PlayControls';
 import VideoTimeRanges from './VideoTimeRanges';
 import VideoControlsRight from './VideoControlsRight';
+import TimingComponents from './TimingComponents';
 
 interface IVideoControlsProps {
   children?: React.ReactNode;
@@ -17,13 +18,7 @@ const VideoControls:React.FC<IVideoControlsProps> = () => {
         <PlayControls />
       </PlayControlsArea>
 
-      <VideoProgressArea>
-        <VideoProgress />
-      </VideoProgressArea>
-
-      <TimingsArea>
-        <VideoTimeRanges />
-      </TimingsArea>
+      <TimingComponents />
 
       <RightControlsArea>
         <VideoControlsRight />

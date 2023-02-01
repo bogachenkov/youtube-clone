@@ -1,17 +1,13 @@
 import { TimeRanges, usePlayerRefs } from "@lib/providers/player-api";
 import { useCallback, useEffect, useRef, useState } from "react";
+import { useVideoId } from "./useVideoId";
 
-type UpdateTimingsArgs = {
-  el?: HTMLVideoElement;
-  timeValue?: number;
-}
-
-type UpdateTimings = (timeValue?: number) => void;
-
+export type UpdateTimings = (timeValue?: number) => void;
 
 export const usePlayerTimings = () => {
   const timeIntervalRef = useRef<NodeJS.Timer>();
   const { video } = usePlayerRefs();
+  const id = useVideoId();
 
   const [timings, setTimings] = useState<TimeRanges>({
     played: 0,
@@ -33,7 +29,7 @@ export const usePlayerTimings = () => {
 
     const buffered = videoElement.buffered;
     setTimings({
-      played: videoElement.currentTime,
+      played: Math.round(videoElement.currentTime),
       buffered: buffered.length > 0 ? buffered.end(buffered.length - 1) : 0,
       duration: videoElement.duration
     }); 
@@ -45,8 +41,15 @@ export const usePlayerTimings = () => {
 
   const resetPlayInterval = useCallback(() => {
     clearInterval(timeIntervalRef.current);
-    // timeIntervalRef.current = setInterval(updateTimings, 1000);
   }, [timeIntervalRef]);
+
+  useEffect(() => {
+    if (!video.current) return;
+    const videoElement = video.current;
+
+    videoElement.currentTime = 0;
+    videoElement.load();
+  }, [id])
 
   useEffect(() => {
     if (!video.current) return;
