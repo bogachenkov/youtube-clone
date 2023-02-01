@@ -6,7 +6,7 @@ import GridContainer from "@ui/GridContainer";
 import { MockedVideoCollection } from "./apiResponses";
 import { MockedPlaylistData } from "./playlist";
 import { Tab, useTabs } from "@lib/hooks/useTabs";
-import { MockedHistoryCollection } from "./historyTabs";
+import { MockedHistoryCollection } from "./history";
 
 const renderVideoCard = (v: IVideoPreview) => (
   <VideoCard key={v.id} video={v} />

@@ -1,6 +1,6 @@
 import HistoryVideoCollection from './HistoryVideoCollection';
 import { Meta, StoryObj } from '@storybook/react';
-import { MockedHistoryCollection } from 'mocks/historyTabs';
+import { MockedHistoryCollection } from 'mocks/history';
 
 const meta:Meta<typeof HistoryVideoCollection> = {
   title: 'History/VideoCollection',

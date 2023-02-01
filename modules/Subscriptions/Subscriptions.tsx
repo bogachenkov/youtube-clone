@@ -1,17 +1,23 @@
-import { useSubsTabs } from '@lib/hooks/useSubsTabs';
-import HistoryVideoCollection from '@modules/History/HistoryVideoCollection';
+import { useSubsCollection } from '@lib/hooks/useSubsCollection';
+import { IVideoPreview } from '@ts-types/Video';
 import Container from '@ui/Container';
 import EmptyScreen from '@ui/EmptyScreen';
 import React from 'react';
+import SubscriptionsCollection from './SubscriptionsCollection';
 
 interface ISubscriptionsProps {
   children?: React.ReactNode;
+  mockedCollection?: IVideoPreview[];
 }
 
-const Subscriptions:React.FC<ISubscriptionsProps> = (props) => {
-  const tabs = useSubsTabs();
+const Subscriptions:React.FC<ISubscriptionsProps> = ({
+  mockedCollection
+}) => {
+  const subsCollection = useSubsCollection();
 
-  if (tabs.tabProps.tabs.length === 0) return (
+  const collection = mockedCollection ?? subsCollection;
+
+  if (collection.length === 0) return (
     <Container>
       <EmptyScreen
         emojiCode="1F62D"
@@ -23,7 +29,7 @@ const Subscriptions:React.FC<ISubscriptionsProps> = (props) => {
 
   return (
     <Container>
-      <HistoryVideoCollection tabs={tabs} />
+      <SubscriptionsCollection collection={collection} />
     </Container>
   );
 }

@@ -1,6 +1,6 @@
 import History from './History';
 import { Meta, StoryObj } from '@storybook/react';
-import { MockedHistoryCollection } from 'mocks/historyTabs';
+import { MockedHistoryCollection } from 'mocks/history';
 
 const meta:Meta<typeof History> = {
   title: 'History',
