@@ -4,7 +4,7 @@ import { intToString } from '@lib/utils/intToString';
 import Button from '@ui/Button';
 import IconWrapper from '@ui/IconWrapper';
 import Row from '@ui/Row';
-import React, { useMemo } from 'react';
+import React from 'react';
 
 interface ICommentActionsProps {
   children?: React.ReactNode;
@@ -25,13 +25,18 @@ const CommentActions:React.FC<ICommentActionsProps> = ({
   toggleShowForm
 }) => {
   const user = useAuthStore(store => store.user);
-  const { likes, toggleLike } = useCommentLikesStore(store => store);
+  const toggleLike = useCommentLikesStore(store => store.toggleLike);
+  const like = useCommentLikesStore(store => store.likes.find(l => l.id === id)) ?? null;
   const signIn = useSignIn();
 
   const likedInfo = (() => {
-    const likeObj = likes.find(l => l.id === id);
-    const isLiked = likeObj && likeObj.liked === true;
-    const isDisliked = likeObj && likeObj.liked === false;
+    if (!like) return {
+      isLiked: false,
+      isDisliked: false
+    };
+
+    const isLiked = like.liked === true;
+    const isDisliked = like.liked === false;
 
     return {
       isLiked,

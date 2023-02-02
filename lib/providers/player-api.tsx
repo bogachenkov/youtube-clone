@@ -1,4 +1,5 @@
 import { useToggle } from "@lib/hooks/useToggle";
+import { debounce } from "lodash";
 import React, {
   createContext,
   ReactNode,
@@ -118,19 +119,22 @@ export const PlayerDataProvider = ({ children }: { children: ReactNode }) => {
     const updateVolume = (val: number) => {
       if (!videoRef.current) return;
       videoRef.current.volume = val / 100;
+
       setVolume(val);
-      setMute(mute => {
-        if (mute && val > 0) return false;
-        if (!mute && val === 0) return true;
-        return mute;
-      })
+        setMute(mute => {
+          if (mute && val > 0) return false;
+          if (!mute && val === 0) return true;
+          return mute;
+        })
     }
+
+    const debouncedUpdateVolume = debounce(updateVolume, 10);
 
     return { 
       togglePlaying,
       toggleMute: () => setMute(mute => !mute),
       toggleFullscreen,
-      updateVolume,
+      updateVolume: debouncedUpdateVolume,
     };
   }, [togglePlaying]);
 

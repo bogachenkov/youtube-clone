@@ -1,11 +1,12 @@
 import { noop } from 'lodash';
 import { createHydratedStore, createPersistedStore, IStateCreator } from './utils';
 
+interface ILike {
+  id: string;
+  liked: boolean;
+}
 interface ILikesState {
-  likes: {
-    id: string
-    liked: boolean
-  }[];
+  likes: ILike[];
   toggleLike: (id: string, liked: boolean) => void;
 }
 
@@ -36,14 +37,14 @@ const toggleLike = (likes: ILikesState['likes'], id: string, liked: boolean) => 
 
 const defaultCommentLikesState:ILikesState = {
   likes: [],
-  toggleLike: noop
+  toggleLike: noop,
 }
 
 const storeCreator:IStateCreator<ILikesState> = (set, get) => ({
   likes: [],
   toggleLike: (id, liked) => set({
     likes: toggleLike(get().likes, id, liked)
-  })
+  }),
 })
 
 export const defaultCommentLikesStore = createPersistedStore<ILikesState>(

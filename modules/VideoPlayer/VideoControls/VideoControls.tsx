@@ -1,9 +1,7 @@
 import React from 'react';
 
-import { PlayControlsArea, RightControlsArea, StyledVideoControls, TimingsArea, VideoProgressArea } from './styled';
-import VideoProgress from './VideoProgress';
+import { PlayControlsArea, RightControlsArea, StyledVideoControls } from './styled';
 import PlayControls from './PlayControls';
-import VideoTimeRanges from './VideoTimeRanges';
 import VideoControlsRight from './VideoControlsRight';
 import TimingComponents from './TimingComponents';
 

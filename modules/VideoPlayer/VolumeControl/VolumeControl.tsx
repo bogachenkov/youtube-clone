@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 import { StyledVolumeProgress, StyleProgressWrapper } from './styled';
-import { usePlayerAPI, usePlayerMuted, usePlayerVolume } from '@lib/providers/player-api';
+import { usePlayerAPI, usePlayerMuted, usePlayerRefs, usePlayerVolume } from '@lib/providers/player-api';
 import Row from '../../ui/Row';
 import useAccordion from '@lib/hooks/useAccordion';
 import { animated } from 'react-spring';
@@ -27,6 +27,10 @@ const VolumeControl:React.FC<IVolumeControlProps> = (props) => {
 
   const diplayingValue = isMuted ? 0 : volume;
 
+  const handleChange:React.ChangeEventHandler<HTMLInputElement> = (e) => {
+    updateVolume(Number(e.target.value))
+  }
+
   return (
     <Row align='stretch' gap={5} onMouseEnter={() => setIsOpen(true)} onMouseLeave={() => setIsOpen(false)}>
       <Button
@@ -45,7 +49,7 @@ const VolumeControl:React.FC<IVolumeControlProps> = (props) => {
         <StyleProgressWrapper ref={ref}>
           <StyledVolumeProgress 
             value={diplayingValue} 
-            onChange={e => updateVolume(Number(e.target.value))}
+            onChange={handleChange}
             type={'range'}
             min={0}
             max={100}

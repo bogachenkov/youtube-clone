@@ -1,16 +1,12 @@
 import { IComment } from '@ts-types/Comment';
 import React from 'react';
-import { animated as a } from 'react-spring';
 import Avatar from '../../ui/Avatar';
 import { CommentAvatarArea, CommentContentArea, StyledComment, StyledCommentText } from './styled';
 
 import Spacer from '../../ui/Spacer';
 import { isNumber } from 'lodash';
-import { useToggle } from '@lib/hooks/useToggle';
-import AddCommentForm from './CommentAddForm';
-import useAccordion from '@lib/hooks/useAccordion';
-import CommentActions from './CommentActions';
 import CommentAuthor from './CommentAuthor';
+import CommentInteractive from './CommentInteractive';
 
 interface ICommentProps {
   children?: React.ReactNode;
@@ -33,16 +29,10 @@ const Comment:React.FC<ICommentProps> = ({
       publishedAt,
       likeCount,
       canRate,
+      parentId,
       textDisplay,
-      parentId
     }
   } = comment;
-  const [showForm, toggleShowForm] = useToggle();
-  const { style, ref } = useAccordion({
-    isOpen: showForm,
-    duration: 100
-  });
-
 
   return (
     <StyledComment 
@@ -67,25 +57,13 @@ const Comment:React.FC<ICommentProps> = ({
         }} />
 
         <Spacer vertical={16} />
-
-        <CommentActions
+        <CommentInteractive
           id={id}
           likeCount={likeCount}
           canRate={canRate}
           canReply={canReply}
-          showForm={showForm}
-          toggleShowForm={toggleShowForm}
+          parentId={parentId}
         />
-
-        <a.div style={style}>
-          <div ref={ref}>
-            <Spacer vertical={16} />
-            <AddCommentForm
-              parentId={parentId || id}
-              onSubmit={toggleShowForm}
-            />
-          </div>
-        </a.div>
         {children}
       </CommentContentArea>
     </StyledComment>
