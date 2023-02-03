@@ -74,3 +74,12 @@ export const StyledVideoControls = styled.div`
     cursor: pointer;
   }
 `;
+
+export const VideoControlsStoryWrapper = styled.div`
+  position: relative;
+  height: 100vh;
+
+  & ${StyledVideoControls} {
+    bottom: 0;
+  }
+`;

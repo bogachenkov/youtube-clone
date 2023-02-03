@@ -12,5 +12,9 @@ type Story = StoryObj<typeof VideoMetadata>;
 
 export const Default:Story = {
   render: args => <VideoMetadata {...args} />,
-  args: {}
+  args: {
+    views: 152000,
+    likes: 78,
+    published: new Date().toISOString()
+  }
 };

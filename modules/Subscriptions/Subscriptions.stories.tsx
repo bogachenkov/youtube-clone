@@ -3,7 +3,7 @@ import { Meta, StoryObj } from '@storybook/react';
 import { MockedSubsCollection } from 'mocks/subscriptions';
 
 const meta:Meta<typeof Subscriptions> = {
-  title: 'Subscriptions',
+  title: 'Subscriptions/Subscriptions',
   component: Subscriptions,
   tags: ['autodocs'],
   render: args => <Subscriptions {...args} />,
@@ -19,7 +19,7 @@ export const Empty:Story = {
   }
 };
 
-export const WithSubscriptions:Story = {
+export const Default:Story = {
   args: {
     mockedCollection: MockedSubsCollection
   }

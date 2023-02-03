@@ -3,12 +3,18 @@ import { Meta, StoryObj } from '@storybook/react';
 import { PlayerDataProvider } from '@lib/providers/player-api';
 
 const meta:Meta<typeof VideoPlayer> = {
-  title: 'VideoPlayer',
+  title: 'VideoPlayer/VideoPlayer',
   component: VideoPlayer,
   decorators: [
     (Story) => (
       <PlayerDataProvider>
-        <Story />
+        <div style={{
+          width: '100%',
+          maxWidth: 1000,
+          margin: '0 auto'
+        }}>
+          <Story />
+        </div>
       </PlayerDataProvider>
     )
   ],
@@ -24,5 +30,7 @@ type Story = StoryObj<typeof VideoPlayer>;
 
 export const Default:Story = {
   render: args => <VideoPlayer {...args} />,
-  args: {}
+  args: {
+
+  }
 };
