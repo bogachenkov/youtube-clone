@@ -1,5 +1,7 @@
 import IconButton from './IconButton';
 import { Meta, StoryObj } from '@storybook/react';
+import { userEvent, within } from '@storybook/testing-library';
+import { expect, jest } from '@storybook/jest';
 
 const meta:Meta<typeof IconButton> = {
   title: 'UI/IconButton',
@@ -25,4 +27,19 @@ export const Colored:Story = {
     fontColor: 'orange',
     hoverColor: 'red'
   }
+}
+
+export const ClickButton:Story = {
+  args: {
+    ...Default.args,
+    onClick: jest.fn()
+  },
+}
+
+ClickButton.play = async ({ args, canvasElement }) => {
+  const canvas = within(canvasElement);
+
+  const button = await canvas.getByRole('button');
+  await userEvent.click(button);
+  await expect(args.onClick).toHaveBeenCalled();
 }

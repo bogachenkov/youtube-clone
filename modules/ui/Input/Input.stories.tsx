@@ -1,5 +1,7 @@
 import Input from './Input';
 import { Meta, StoryObj } from '@storybook/react';
+import { userEvent, within } from '@storybook/testing-library';
+import { expect } from '@storybook/jest';
 
 const meta:Meta<typeof Input> = {
   title: 'UI/Input',
@@ -40,3 +42,16 @@ export const WithCustomPaddings:Story = {
     padRight: 60
   }
 };
+
+export const ChangeInput:Story = {
+  args: Primary.args,
+}
+
+ChangeInput.play = async ({ canvasElement }) => {
+  const canvas = within(canvasElement);
+
+  const inputElement = await canvas.findByRole('textbox') as HTMLInputElement;
+  await userEvent.type(inputElement, 'Hello, world!');
+
+  await expect(inputElement.value).toBe('Hello, world!')
+}

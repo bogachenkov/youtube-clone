@@ -1,6 +1,5 @@
 import { useSignIn } from '@lib/hooks/useSignInPush';
 import { isNumber } from 'lodash';
-import Link from 'next/link';
 import React from 'react';
 import Button from '../Button';
 import { IButtonProps } from '../Button/Button';
@@ -12,19 +11,17 @@ interface ISignInButtonProps extends IButtonProps {
 }
 
 const SignInButton:React.FC<ISignInButtonProps> = (props) => {
-  const { path } = useSignIn();
+  const { push } = useSignIn();
 
   return (
-    <Link href={path}>
-      <Button {...props} style={{
-        padding: '.4em .9em'
-      }}>
-        <Row gap={6}>
-          <IconWrapper size={isNumber(props.fontSize) ? props.fontSize * 2 : undefined} icon='AccountCircle' />
-          SIGN IN
-        </Row>
-      </Button>
-    </Link>
+    <Button {...props} style={{
+      padding: '.4em .9em'
+    }} onClick={push}>
+      <Row gap={6}>
+        <IconWrapper size={isNumber(props.fontSize) ? props.fontSize * 2 : undefined} icon='AccountCircle' />
+        SIGN IN
+      </Row>
+    </Button>
   );
 }
 

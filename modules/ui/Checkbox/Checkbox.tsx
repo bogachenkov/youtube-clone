@@ -18,7 +18,7 @@ const Checkbox:React.FC<ICheckboxProps> = ({
           type={'checkbox'}
           {...inputProps}
         />
-        <IconWrapper icon='CheckOutlined' size={11} />
+        <IconWrapper data-testid='checkbox-icon' icon='CheckOutlined' size={11} />
       </StyledCheckbox>
       {label}
     </StyledCheckboxLabel>
