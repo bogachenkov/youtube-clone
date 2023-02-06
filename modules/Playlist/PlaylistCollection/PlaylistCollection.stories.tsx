@@ -15,7 +15,6 @@ type Story = StoryObj<typeof PlaylistCollection>;
 export const Default:Story = {
   render: args => <PlaylistCollection {...args} />,
   args: {
-    // @ts-ignore
     collection: MockedPlaylistData,
   }
 };

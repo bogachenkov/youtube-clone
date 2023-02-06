@@ -1,6 +1,4 @@
-import { LaptopOnly } from '@ui/MediaQuery';
 import Container from '@ui/Container';
-import Input from '@ui/Input';
 import Spacer from '@ui/Spacer';
 import Sticky from '@ui/Sticky';
 import React from 'react';
