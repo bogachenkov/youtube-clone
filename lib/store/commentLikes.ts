@@ -1,11 +1,11 @@
 import { noop } from 'lodash';
 import { createHydratedStore, createPersistedStore, IStateCreator } from './utils';
 
-interface ILike {
+export interface ILike {
   id: string;
   liked: boolean;
 }
-interface ILikesState {
+export interface ILikesState {
   likes: ILike[];
   toggleLike: (id: string, liked: boolean) => void;
 }

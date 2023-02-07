@@ -6,7 +6,7 @@ import IconWrapper from '@ui/IconWrapper';
 import Row from '@ui/Row';
 import React from 'react';
 
-interface ICommentActionsProps {
+export interface ICommentActionsProps {
   children?: React.ReactNode;
   id: string;
   likeCount: number;
@@ -49,6 +49,7 @@ const CommentActions:React.FC<ICommentActionsProps> = ({
       <Button
         theme='text' 
         disabled={!canRate}
+        data-testid='like-button'
         onClick={() => toggleLike(id, true)}
         title={likedInfo.isLiked ? 'Remove Like' : 'Like'}
         fontColor={likedInfo.isLiked ? 'red' : 'inherit'}
@@ -64,6 +65,7 @@ const CommentActions:React.FC<ICommentActionsProps> = ({
       <Row gap={10}>
         <Button 
           theme='text'
+          data-testid='dislike-button'
           disabled={!canRate}
           onClick={() => toggleLike(id, false)}
           title={likedInfo.isDisliked ? 'Remove Dislike' : 'Dislike'}
