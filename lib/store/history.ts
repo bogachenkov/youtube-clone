@@ -1,70 +1,58 @@
-import { concat, noop } from 'lodash';
-import { createHydratedStore, createPersistedStore } from './utils';
+import { PersistedStore } from "@ts-types/Store";
+import { concat } from "lodash";
+import { makeAutoObservable } from "mobx";
+import { clearPersistedStore, makePersistable } from "mobx-persist-store";
+import GlobalStore from "./index";
 
-interface IHistoryState {
-  history: {
-    id: string;
-    date: string;
-  }[];
-  lastUpdate: string;
-  isWatching: boolean;
-  addToHistory: (videoId: string) => void;
-  clearHistory: VoidFunction;
-  toggleWatching: VoidFunction;
+type HistoryRecord = {
+  id: string;
+  date: string;
 }
 
-const defaultHistoryState:IHistoryState = {
-  history: [],
-  lastUpdate: new Date().toISOString(),
-  isWatching: true,
-  addToHistory: noop,
-  clearHistory: noop,
-  toggleWatching: noop
+export class HistoryStore implements PersistedStore {
+  history: HistoryRecord[] = [];
+  lastUpdate: string = '';
+  isWatching: boolean = true;
+
+  constructor(readonly globalStore: GlobalStore) {
+    makeAutoObservable(this);
+  }
+
+  initPersist = () => {
+    makePersistable(
+      this,
+      {
+        name: 'HistoryStore',
+        properties: ['history', 'lastUpdate', 'isWatching'],
+      },
+    )
+  }
+
+  addToHistory = (id: string) => {
+    const history = this.history;
+    const date = new Date().toISOString();
+
+    const filteredHistory = concat(
+      {
+        id,
+        date
+      },
+      history,
+    ).filter((element, index, arr) => {
+      return arr.findIndex(el => el.id === element.id) === index;
+    });
+
+    this.history = filteredHistory;
+    this.lastUpdate = date;
+  }
+
+  toggleWatching = () => {
+    this.isWatching = !this.isWatching;
+  }
+
+  clearHistory = () => {
+    this.history = [];
+    this.lastUpdate = '';
+    clearPersistedStore(this);
+  }
 }
-
-const defaultHistoryStore = createPersistedStore<IHistoryState>(
-  (set, get) => ({
-    history: defaultHistoryState.history,
-    lastUpdate: defaultHistoryState.lastUpdate,
-    isWatching: defaultHistoryState.isWatching,
-
-    addToHistory: (id) => {
-      const history = get().history;
-      const date = new Date().toISOString();
-
-      const filteredHistory = concat(
-        {
-          id,
-          date
-        },
-        history,
-      ).filter((element, index, arr) => {
-        return arr.findIndex(el => el.id === element.id) === index;
-      });
-
-      set({
-        history: filteredHistory,
-        lastUpdate: date
-      })
-    },
-
-    clearHistory: () => {
-      set({
-        history: defaultHistoryState.history,
-        lastUpdate: defaultHistoryState.lastUpdate
-      })
-    },
-
-    toggleWatching: () => {
-      set({
-        isWatching: !get().isWatching
-      })
-    }
-  }),
-  'history-store'
-)
-
-export const useHistoryStore = createHydratedStore(
-  defaultHistoryState, 
-  defaultHistoryStore
-) as typeof defaultHistoryStore;

@@ -1,31 +1,30 @@
-import { noop } from 'lodash';
-import { createHydratedStore, createPersistedStore } from './utils';
+import { PersistedStore } from "@ts-types/Store";
+import { makeAutoObservable } from "mobx";
+import { hydrateStore, makePersistable } from "mobx-persist-store";
+import GlobalStore from "./index";
 
-interface ISubscriptionsState {
-  subscriptions: string[];
-  toggleSubscription: (id: string) => void;
-}
-
-const defaultSubscriptionsState:ISubscriptionsState = {
-  subscriptions: [],
-  toggleSubscription: noop
-}
-
-const toggleSubscription = (ids: ISubscriptionsState['subscriptions'], id: string) => {
+const toggleSubscription = (ids: string[], id: string) => {
   return ids.includes(id) ? ids.filter(i => i !== id) : [...ids, id]
 }
 
-export const defaultSubscriptionsStore = createPersistedStore<ISubscriptionsState>(
-  (set, get) => ({
-    subscriptions: [],
-    toggleSubscription: (id) => set({
-      subscriptions: toggleSubscription(get().subscriptions, id)
-    })
-  }),
-  'subscriptions-store'
-);
+export class SubscriptionsStore implements PersistedStore {
+  subscriptions: string[] = [];
 
-export const useSubscriptionsStore = createHydratedStore(
-  defaultSubscriptionsState,
-  defaultSubscriptionsStore
-) as typeof defaultSubscriptionsStore;
+  constructor(readonly globalStore: GlobalStore) {
+    makeAutoObservable(this);
+  }
+
+  initPersist = () => {
+    makePersistable(
+      this,
+      {
+        name: 'SubscriptionsStore',
+        properties: ['subscriptions'],
+      },
+    )
+  }
+
+  toggleSubscription = (id: string) => {
+    this.subscriptions = toggleSubscription(this.subscriptions, id);
+  }
+}

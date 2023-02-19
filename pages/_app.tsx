@@ -7,6 +7,7 @@ import Primary from '@modules/layouts/Primary';
 import GlobalStyle from '../styles/globalStyles';
 import { REVALIDATE_TIME } from '@const/index';
 import 'react-tooltip/dist/react-tooltip.css';
+import { GlobalStoreProvider } from '@lib/providers/GlobalStoreProvider';
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: ReactElement) => ReactNode
@@ -38,8 +39,10 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
   return getLayout(
     <QueryClientProvider client={queryClient}>
       <Hydrate state={pageProps.dehydratedState}>
-        <GlobalStyle />
-        <Component {...pageProps} />
+        <GlobalStoreProvider>
+          <GlobalStyle />
+          <Component {...pageProps} />
+        </GlobalStoreProvider>
       </Hydrate>
     </QueryClientProvider>
   )

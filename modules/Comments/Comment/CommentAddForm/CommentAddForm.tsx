@@ -1,7 +1,8 @@
 import { useSignIn } from '@lib/hooks/useSignInPush';
 import { useVideoId } from '@lib/hooks/useVideoId';
-import { useAuthStore, useCommentsStore } from '@lib/store';
+import { useStore } from '@lib/providers/GlobalStoreProvider';
 import { FromTabletOnly, MobileOnly } from '@ui/MediaQuery';
+import { observer } from 'mobx-react-lite';
 import React, { useRef, useState } from 'react';
 import Avatar from '../../../ui/Avatar';
 import Button from '../../../ui/Button';
@@ -20,11 +21,7 @@ const CommentAddForm:React.FC<ICommentAddFormProps> = ({
 }) => {
   const { push } = useSignIn();
   const [text, setText] = useState('');
-  const { addCommentThread, addComment } = useCommentsStore(({ addComment, addCommentThread }) => ({
-    addComment,
-    addCommentThread
-  }));
-  const user = useAuthStore(store => store.user);
+  const { commentsStore, authStore: { user } } = useStore();
 
   const defaultValue = useRef(text);
   const inputRef = useRef<HTMLSpanElement>(null);
@@ -69,13 +66,13 @@ const CommentAddForm:React.FC<ICommentAddFormProps> = ({
 
 
     if (parentId) {
-      addComment(
+      commentsStore.addComment(
         commentText,
         videoId,
         parentId
       );
     } else {
-      addCommentThread(
+      commentsStore.addCommentThread(
         commentText,
         videoId,
       );
@@ -90,6 +87,7 @@ const CommentAddForm:React.FC<ICommentAddFormProps> = ({
 
   return (
     <StyledCommentForm
+      data-testid='comment-form'
       onSubmit={handleFormSubmit}
     >
       {
@@ -117,4 +115,4 @@ const CommentAddForm:React.FC<ICommentAddFormProps> = ({
   );
 }
 
-export default CommentAddForm;
+export default observer(CommentAddForm);

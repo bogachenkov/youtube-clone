@@ -5,9 +5,8 @@ import { useHistoryCollection } from "./useHistoryCollection";
 import { usePlaylistCollection } from "./usePlaylistCollection";
 import { useLikedCollection } from "./useLikedCollection";
 import Playlist from "@modules/Playlist";
-import { useLikesStore } from "@lib/store";
-import { usePlaylistStore } from "@lib/store/playlist";
 import GridContainer from "@ui/GridContainer";
+import { useStore } from "@lib/providers/GlobalStoreProvider";
 
 const renderVideoCard = (v: IVideoPreview) => (
   <VideoCard key={v.id} video={v} />
@@ -15,12 +14,10 @@ const renderVideoCard = (v: IVideoPreview) => (
 
 export const useLibraryTabs = () => {
   const historyCollection = useHistoryCollection();
-
   const playlistCollection = usePlaylistCollection();
-  const lastPlaylistUpdate = usePlaylistStore(store => store.lastUpdate);
 
   const likedCollection = useLikedCollection();
-  const lastLikedUpdate = useLikesStore(store => store.lastUpdate);
+  const { likesStore, playlistStore } = useStore();
 
   const tabs:Tab[] = [
     {
@@ -39,7 +36,7 @@ export const useLibraryTabs = () => {
         <Playlist
           collection={playlistCollection}
           name="Demo Playlist"
-          lastUpdate={lastPlaylistUpdate}
+          lastUpdate={playlistStore.lastUpdate}
         />
       )
     },
@@ -50,7 +47,7 @@ export const useLibraryTabs = () => {
         <Playlist
           collection={likedCollection}
           name="Liked Videos"
-          lastUpdate={lastLikedUpdate}
+          lastUpdate={likesStore.lastUpdate}
         />
       )
     },

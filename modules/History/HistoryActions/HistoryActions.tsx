@@ -1,5 +1,6 @@
-import { useHistoryStore } from '@lib/store';
+import { useStore } from '@lib/providers/GlobalStoreProvider';
 import Spacer from '@ui/Spacer';
+import { observer } from 'mobx-react-lite';
 import React from 'react';
 import HistoryActionButton from '../HistoryActionButton';
 
@@ -8,9 +9,8 @@ interface IHistoryActionsProps {
 }
 
 const HistoryActions:React.FC<IHistoryActionsProps> = (props) => {
-  const clearHistory = useHistoryStore(store => store.clearHistory);
-  const toggleWatching = useHistoryStore(store => store.toggleWatching);
-  const isWatching = useHistoryStore(store => store.isWatching);
+  const { historyStore } = useStore();
+  const { isWatching, clearHistory, toggleWatching } = historyStore;
   
   return (
     <>
@@ -35,4 +35,4 @@ const HistoryActions:React.FC<IHistoryActionsProps> = (props) => {
   );
 }
 
-export default HistoryActions;
+export default observer(HistoryActions);

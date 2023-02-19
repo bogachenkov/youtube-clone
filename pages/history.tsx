@@ -1,13 +1,14 @@
-import { useAuthStore } from '@lib/store';
+import { useStore } from '@lib/providers/GlobalStoreProvider';
 import History from '@modules/History';
 import EmptyScreen from '@ui/EmptyScreen';
 import SignInButton from '@ui/SignInButton';
+import { observer } from 'mobx-react-lite';
 import Head from 'next/head';
 
-export default function HistoryPage() {
-  const user = useAuthStore(store => store.user);
+export default observer(function HistoryPage() {
+  const { authStore } = useStore();
 
-  if (!user) return (
+  if (!authStore.user) return (
     <>
       <Head>
         <title>Watch History - YouTube Clone</title>
@@ -30,4 +31,4 @@ export default function HistoryPage() {
       <History />
     </>
   )
-}
+})

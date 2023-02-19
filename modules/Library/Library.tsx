@@ -3,6 +3,7 @@ import Container from '@ui/Container';
 import Row from '@ui/Row';
 import Spacer from '@ui/Spacer';
 import Tabs from '@ui/Tabs';
+import { observer } from 'mobx-react-lite';
 import React from 'react';
 import LibraryStats from './LibraryStats';
 
@@ -35,4 +36,4 @@ const Library:React.FC<ILibraryProps> = ({
   );
 }
 
-export default Library;
+export default observer(Library);

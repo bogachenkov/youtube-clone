@@ -8,10 +8,11 @@ import { thousandsSeparator } from '@utils/thousandsSeparator';
 import CommentsThread from '../../Comments/CommentsThread';
 import Spacer from '../../ui/Spacer';
 import AddCommentForm from '../../Comments/Comment/CommentAddForm';
-import { useCommentsStore } from '@lib/store';
 import { useVideoId } from '@lib/hooks/useVideoId';
 import { sortCommentsByDate } from '@lib/utils/sortCommentsByDate';
 import SortButton from '../../ui/SortButton';
+import { useStore } from '@lib/providers/GlobalStoreProvider';
+import { observer } from 'mobx-react-lite';
 
 interface ICommentsSectionProps {
   children?: React.ReactNode;
@@ -19,7 +20,7 @@ interface ICommentsSectionProps {
 
 const CommentsSection:React.FC<ICommentsSectionProps> = (props) => {
   const data = useVideoData();
-  const threads = useCommentsStore(store => store.threads);
+  const { commentsStore } = useStore();
   const videoId = useVideoId();
 
   if (!data) return null;
@@ -32,7 +33,7 @@ const CommentsSection:React.FC<ICommentsSectionProps> = (props) => {
     </StyledCommentsSection>
   )
 
-  const localComments = threads.filter(thread => thread.snippet.topLevelComment.snippet.videoId === videoId);
+  const localComments = commentsStore.threads.filter(thread => thread.snippet.topLevelComment.snippet.videoId === videoId);
 
   const withLocalComments = sortCommentsByDate([
     ...data.comments,
@@ -62,4 +63,4 @@ const CommentsSection:React.FC<ICommentsSectionProps> = (props) => {
   );
 }
 
-export default CommentsSection;
+export default observer(CommentsSection);

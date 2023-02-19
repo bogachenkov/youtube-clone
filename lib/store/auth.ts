@@ -1,39 +1,44 @@
-import { DEFAULT_USER_DATA } from '@const/data';
-import { User } from '@ts-types/User';
-import { noop } from 'lodash';
-import { createHydratedStore, createPersistedStore } from './utils';
+import { DEFAULT_USER_DATA } from "@const/data";
+import { User } from "@ts-types/User";
+import { makeAutoObservable } from "mobx";
+import { clearPersistedStore, hydrateStore, makePersistable } from "mobx-persist-store";
+import ms from 'milliseconds';
+import GlobalStore from "./index";
+import { PersistedStore } from "@ts-types/Store";
 
-interface IAuthState {
-  user: User | null;
-  signIn: VoidFunction;
-  signOut: VoidFunction;
+export class AuthStore implements PersistedStore {
+  user: User | null = null;
+
+  constructor(readonly globalStore: GlobalStore) {
+    makeAutoObservable(this);
+  }
+
+  get isAuthenticated():boolean {
+    return this.user !== null;
+  }
+
+  get userName():string {
+    return this.user?.authorDisplayName ?? '';
+  }
+
+  initPersist = () => {
+    makePersistable(
+      this,
+      {
+        name: 'AuthStore',
+        properties: ['user'],
+        expireIn: ms.days(3),
+        removeOnExpiration: true,
+      },
+    )
+  }
+
+  signIn = () => {
+    this.user = DEFAULT_USER_DATA;
+  }
+
+  signOut = () => {
+    this.user = null;
+    clearPersistedStore(this);
+  }
 }
-
-const defaultAuthState:IAuthState = {
-  user: null,
-  signIn: noop,
-  signOut: noop
-}
-
-const defaultAuthStore = createPersistedStore<IAuthState>(
-  (set) => ({
-    user: defaultAuthState.user,
-    signIn: () => {
-      set({
-        user: DEFAULT_USER_DATA
-      });
-    },
-    signOut: () => {
-      set({
-        user: defaultAuthState.user
-      })
-    }
-  }),
-  'auth-store'
-);
-
-
-export const useAuthStore = createHydratedStore(
-  defaultAuthState, 
-  defaultAuthStore
-) as typeof defaultAuthStore;

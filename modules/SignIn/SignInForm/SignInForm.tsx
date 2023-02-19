@@ -1,9 +1,10 @@
-import { useAuthStore } from '@lib/store';
+import { useStore } from '@lib/providers/GlobalStoreProvider';
 import Button from '@ui/Button';
 import Checkbox from '@ui/Checkbox';
 import InputWithLabel from '@ui/InputWithLabel';
 import Row from '@ui/Row';
 import Spacer from '@ui/Spacer';
+import { observer } from 'mobx-react-lite';
 import { useRouter } from 'next/router';
 import React, { useEffect } from 'react';
 
@@ -12,11 +13,10 @@ interface ISignInFormProps {
 }
 
 const SignInForm:React.FC<ISignInFormProps> = (props) => {
-  const { signIn, user } = useAuthStore(store => ({
-    signIn: store.signIn,
-    user: store.user
-  }));
+  const { authStore } = useStore();
   const router = useRouter();
+
+  const { user, signIn } = authStore;
 
   useEffect(() => {
     if (user !== null) {
@@ -65,4 +65,4 @@ const SignInForm:React.FC<ISignInFormProps> = (props) => {
   );
 }
 
-export default SignInForm;
+export default observer(SignInForm);

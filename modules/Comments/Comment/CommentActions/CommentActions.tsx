@@ -1,9 +1,10 @@
 import { useSignIn } from '@lib/hooks/useSignInPush';
-import { useAuthStore, useCommentLikesStore } from '@lib/store';
+import { useStore } from '@lib/providers/GlobalStoreProvider';
 import { intToString } from '@lib/utils/intToString';
 import Button from '@ui/Button';
 import IconWrapper from '@ui/IconWrapper';
 import Row from '@ui/Row';
+import { observer } from 'mobx-react-lite';
 import React from 'react';
 
 export interface ICommentActionsProps {
@@ -24,9 +25,8 @@ const CommentActions:React.FC<ICommentActionsProps> = ({
   showForm,
   toggleShowForm
 }) => {
-  const user = useAuthStore(store => store.user);
-  const toggleLike = useCommentLikesStore(store => store.toggleLike);
-  const like = useCommentLikesStore(store => store.likes.find(l => l.id === id)) ?? null;
+  const { authStore, commentsStore } = useStore();
+  const like = commentsStore.isCommentLiked(id);
   const signIn = useSignIn();
 
   const likedInfo = (() => {
@@ -50,7 +50,7 @@ const CommentActions:React.FC<ICommentActionsProps> = ({
         theme='text' 
         disabled={!canRate}
         data-testid='like-button'
-        onClick={() => toggleLike(id, true)}
+        onClick={() => commentsStore.toggleLike(id, true)}
         title={likedInfo.isLiked ? 'Remove Like' : 'Like'}
         fontColor={likedInfo.isLiked ? 'red' : 'inherit'}
       >
@@ -67,7 +67,7 @@ const CommentActions:React.FC<ICommentActionsProps> = ({
           theme='text'
           data-testid='dislike-button'
           disabled={!canRate}
-          onClick={() => toggleLike(id, false)}
+          onClick={() => commentsStore.toggleLike(id, false)}
           title={likedInfo.isDisliked ? 'Remove Dislike' : 'Dislike'}
           fontColor={likedInfo.isDisliked ? 'red' : 'inherit'}
         >
@@ -78,7 +78,7 @@ const CommentActions:React.FC<ICommentActionsProps> = ({
         </Button>
         {
           canReply && (
-            <Button theme='text' onClick={!!user ? toggleShowForm : signIn.push}>
+            <Button theme='text' onClick={!!authStore.user ? toggleShowForm : signIn.push}>
               {showForm ? 'Cancel' : 'Reply'}
             </Button>
           )
@@ -88,4 +88,4 @@ const CommentActions:React.FC<ICommentActionsProps> = ({
   );
 }
 
-export default CommentActions;
+export default observer(CommentActions);

@@ -2,14 +2,10 @@ import { ICommentThread } from '@ts-types/Comment';
 import React from 'react';
 import Comment from '../Comment';
 
-import Button from '../../ui/Button';
-import Row from '../../ui/Row';
-import Spacer from '../../ui/Spacer';
-import { useToggle } from '@lib/hooks/useToggle';
-import { useCommentsStore } from '@lib/store';
 import { sortCommentsByDate } from '@lib/utils/sortCommentsByDate';
-import IconWrapper from '../../ui/IconWrapper';
 import CommentReplies from '../CommentReplies';
+import { useStore } from '@lib/providers/GlobalStoreProvider';
+import { observer } from 'mobx-react-lite';
 
 interface ICommentsThreadProps {
   children?: React.ReactNode;
@@ -31,11 +27,11 @@ const CommentsThread:React.FC<ICommentsThreadProps> = ({
     id,
     replies
   } = thread;
-  const comments = useCommentsStore(store => store.comments);
+  const { commentsStore } = useStore();
 
   if (!isPublic) return null;
 
-  const localReplies = comments.filter(comm => comm.snippet.parentId === id);
+  const localReplies = commentsStore.comments.filter(comm => comm.snippet.parentId === id);
   const repliesList = sortCommentsByDate([
     ...(!!replies ? replies.comments : []),
     ...localReplies
@@ -56,4 +52,4 @@ const CommentsThread:React.FC<ICommentsThreadProps> = ({
   );
 }
 
-export default CommentsThread;
+export default observer(CommentsThread);

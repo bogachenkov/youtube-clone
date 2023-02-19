@@ -3,9 +3,10 @@ import React from 'react';
 import { StyledLikeButton } from './styled';
 import Text from '@ui/Text';
 import { intToString } from '@utils/intToString';
-import { useLikesStore } from '@store';
 import { useRouter } from 'next/router';
 import IconWrapper from '@ui/IconWrapper';
+import { useStore } from '@lib/providers/GlobalStoreProvider';
+import { observer } from 'mobx-react-lite';
 
 interface IVideoLikeProps {
   children?: React.ReactNode;
@@ -16,7 +17,8 @@ const VideoLike:React.FC<IVideoLikeProps> = ({
   likesCount
 }) => {
   const router = useRouter();
-  const { likedIds, toggleLike } = useLikesStore(store => store);
+  const { likesStore } = useStore();
+  const { likedIds, toggleLike } = likesStore;
 
   const videoId = router.query.video_id as string;
 
@@ -35,4 +37,4 @@ const VideoLike:React.FC<IVideoLikeProps> = ({
   );
 }
 
-export default VideoLike;
+export default observer(VideoLike);

@@ -1,19 +1,17 @@
 import { usePlaylistCollection } from "@lib/hooks/usePlaylistCollection";
-import { useAuthStore } from "@lib/store";
-import { usePlaylistStore } from "@lib/store/playlist";
+import { useStore } from "@lib/providers/GlobalStoreProvider";
 import Playlist from "@modules/Playlist";
 import Container from "@ui/Container";
 import EmptyScreen from "@ui/EmptyScreen";
 import SignInButton from "@ui/SignInButton";
+import { observer } from "mobx-react-lite";
 import Head from "next/head";
 
-export default function DemoPlaylistPage() {
-  const user = useAuthStore(store => store.user);
+export default observer(function DemoPlaylistPage() {
+  const { authStore, playlistStore } = useStore();
   const collection = usePlaylistCollection();
-  const lastUpdate = usePlaylistStore(store => store.lastUpdate);
-  const name = usePlaylistStore(store => store.name);
 
-  if (!user) return (
+  if (!authStore.user) return (
     <Container>
       <Head>
         <title>Playlist - YouTube Clone</title>
@@ -48,9 +46,9 @@ export default function DemoPlaylistPage() {
       </Head>
       <Playlist
         collection={collection}
-        name={name}
-        lastUpdate={lastUpdate}
+        name={playlistStore.name}
+        lastUpdate={playlistStore.lastUpdate}
       />
     </>
   )
-}
+})

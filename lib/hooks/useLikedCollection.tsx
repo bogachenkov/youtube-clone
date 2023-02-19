@@ -1,12 +1,16 @@
-import { useLikesStore } from "@lib/store";
+import { useStore } from "@lib/providers/GlobalStoreProvider";
 import { intersectionBy } from "lodash";
 import { useVideoCollection } from "./useVideoCollection";
 
 export const useLikedCollection = () => {
   const { data, isLoading } = useVideoCollection();
-  const likedPlaylist = useLikesStore(store => store.likedIds).map(v => ({ id: v }));
+  const { likesStore } = useStore();
 
   if (!data || isLoading) return [];
 
-  return intersectionBy(data, likedPlaylist, 'id');
+  return intersectionBy(
+    data,
+    likesStore.idsAsObjects,
+    'id'
+  );
 }

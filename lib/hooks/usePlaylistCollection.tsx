@@ -1,12 +1,12 @@
-import { usePlaylistStore } from "@lib/store/playlist";
+import { useStore } from "@lib/providers/GlobalStoreProvider";
 import { intersectionBy } from "lodash";
 import { useVideoCollection } from "./useVideoCollection";
 
 export const usePlaylistCollection = () => {
   const { data, isLoading } = useVideoCollection();
-  const collection = usePlaylistStore(store => store.videos).map(v => ({ id: v }));
+  const { playlistStore } = useStore();
 
   if (!data || isLoading) return [];
 
-  return intersectionBy(data, collection, 'id');
+  return intersectionBy(data, playlistStore.collection, 'id');
 }

@@ -28,7 +28,7 @@ const Tabs:React.FC<ITabsProps> = ({
   useEffect(() => {
     if (!navRef.current) return;
 
-    const rect = navRef.current.querySelector(`button[data-tabIndex="${selectedTabIndex}"]`)?.getBoundingClientRect();
+    const rect = navRef.current.querySelector(`button[data-tabindex="${selectedTabIndex}"]`)?.getBoundingClientRect();
     setSelectedRect(rect ?? null);
   }, [selectedTabIndex]);
 
@@ -41,7 +41,7 @@ const Tabs:React.FC<ITabsProps> = ({
     const element = e.target as HTMLElement;
     if (element.getAttribute('data-role') !== 'tab') return;
 
-    const index = Number(element.getAttribute('data-tabIndex'));
+    const index = Number(element.getAttribute('data-tabindex'));
     setSelectedTab(index);
   }
 

@@ -1,23 +1,18 @@
-import { useAuthStore } from '@lib/store';
 import Avatar from '@ui/Avatar';
 import React from 'react';
 import SignInButton from '@ui/SignInButton';
 import IconButton from '@ui/IconButton';
-import { User } from '@ts-types/User';
+import { observer } from 'mobx-react-lite';
+import { useStore } from '@lib/providers/GlobalStoreProvider';
 
 interface IUserSectionProps {
   children?: React.ReactNode;
-  mockedUser?: User | null;
 }
 
-const UserSection:React.FC<IUserSectionProps> = ({
-  mockedUser
-}) => {
-  const storeUser = useAuthStore(store => store.user);
+const UserSection:React.FC<IUserSectionProps> = () => {
+  const { authStore } = useStore();
 
-  const user = mockedUser !== undefined ? mockedUser : storeUser;
-
-  if (user) {
+  if (authStore.isAuthenticated) {
     return (
       <>
         <IconButton
@@ -25,7 +20,7 @@ const UserSection:React.FC<IUserSectionProps> = ({
           icon='NotificationsOutlined'
           title='Not Implemented'
         />
-        <Avatar name={user.authorDisplayName} />
+        <Avatar name={authStore.userName} />
       </>
     )
   }
@@ -33,4 +28,4 @@ const UserSection:React.FC<IUserSectionProps> = ({
   return <SignInButton fontSize={14} />
 }
 
-export default UserSection;
+export default observer(UserSection);

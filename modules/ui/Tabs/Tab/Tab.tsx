@@ -20,7 +20,7 @@ const Tab = React.forwardRef<HTMLButtonElement, ITabProps>(({
         ['--tab-font-color' as string]: isActive ? 'var(--tab-font-color-active)' : 'var(--color-gray)',
       }}
       data-role='tab'
-      data-tabIndex={index}
+      data-tabindex={index}
       ref={ref}
     >
       {label}

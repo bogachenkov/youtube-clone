@@ -1,7 +1,7 @@
-import { useHistoryStore } from "@lib/store";
 import { useVideoCollection } from "./useVideoCollection";
 
 import { IVideoPreview } from "@ts-types/Video";
+import { useStore } from "@lib/providers/GlobalStoreProvider";
 
 export interface IHistoryVideo extends IVideoPreview {
   date: string;
@@ -9,11 +9,11 @@ export interface IHistoryVideo extends IVideoPreview {
 
 export const useHistoryCollection = (searchLine?: string):IHistoryVideo[] => {
   const { data, isLoading } = useVideoCollection();
-  const history = useHistoryStore(store => store.history);
+  const { historyStore } = useStore();
 
   if (!data || isLoading) return [];
 
-  const collection = history.reduce<IHistoryVideo[]>((result, { id, date }) => {
+  const collection = historyStore.history.reduce<IHistoryVideo[]>((result, { id, date }) => {
     const item = data.find(v => {
       return (v.id === id) && (
         searchLine ?

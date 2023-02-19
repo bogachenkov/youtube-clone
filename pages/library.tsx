@@ -1,14 +1,15 @@
-import { useAuthStore } from "@lib/store";
+import { useStore } from "@lib/providers/GlobalStoreProvider";
 import Library from "@modules/Library";
 import Container from "@ui/Container";
 import EmptyScreen from "@ui/EmptyScreen";
 import SignInButton from "@ui/SignInButton";
+import { observer } from "mobx-react-lite";
 import Head from "next/head";
 
-export default function LibraryPage() {
-  const user = useAuthStore(store => store.user);
+export default observer(function LibraryPage() {
+  const { authStore } = useStore();
 
-  if (!user) return (
+  if (!authStore.user) return (
     <Container>
       <Head>
         <title>Library - YouTube Clone</title>
@@ -30,4 +31,5 @@ export default function LibraryPage() {
       </Head>
       <Library />
     </>)
-}
+  }
+)

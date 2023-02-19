@@ -1,5 +1,6 @@
-import { useSubscriptionsStore } from '@lib/store';
+import { useStore } from '@lib/providers/GlobalStoreProvider';
 import Button, { IButtonProps } from '@ui/Button';
+import { observer } from 'mobx-react-lite';
 import React from 'react';
 
 interface ISubscribeButtonProps extends IButtonProps {
@@ -11,8 +12,8 @@ const SubscribeButton:React.FC<ISubscribeButtonProps> = ({
   id,
   ...props
 }) => {
-  const subscriptions = useSubscriptionsStore(store => store.subscriptions);
-  const toggleSubscription = useSubscriptionsStore(store => store.toggleSubscription);
+  const { subscriptionsStore } = useStore();
+  const { subscriptions, toggleSubscription } = subscriptionsStore;
 
   const isSubscribed = subscriptions.includes(id as string);
 
@@ -27,4 +28,4 @@ const SubscribeButton:React.FC<ISubscribeButtonProps> = ({
   );
 }
 
-export default SubscribeButton;
+export default observer(SubscribeButton);

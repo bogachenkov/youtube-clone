@@ -3,11 +3,24 @@ import { Meta, StoryObj } from '@storybook/react';
 import { WithReplies } from '../CommentsThread/CommentsThread.stories';
 import { userEvent, within } from '@storybook/testing-library';
 import { expect } from '@storybook/jest';
+import { useLayoutEffect } from 'react';
+import { useStore } from '@lib/providers/GlobalStoreProvider';
 
 const meta:Meta<typeof Comment> = {
   title: 'Comments/Comment',
   component: Comment,
   tags: ['autodocs'],
+  decorators: [
+    (Story) => {
+      const { authStore: { signIn } } = useStore();
+
+      useLayoutEffect(() => {
+        signIn();
+      }, [signIn]);
+
+      return <Story />
+    }
+  ]
 };
 
 export default meta;
@@ -67,10 +80,12 @@ export const ReplyComment:Story = {
 
 ReplyComment.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
-  
+    // Waiting for zustand hydration
+  await new Promise((resolve) => setTimeout(resolve, 500));
+
   const replyButton = await canvas.findByRole('button', { name: 'Reply' });
   await userEvent.click(replyButton);
 
-  const form = await canvas.findByRole('form');
-  await expect(form).toBeVisible();
+  const form = await canvas.findByTestId('comment-form');
+  await expect(form).toBeInTheDocument();
 }

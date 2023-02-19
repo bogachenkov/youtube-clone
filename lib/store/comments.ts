@@ -1,49 +1,81 @@
-import { IComment, ICommentThread } from '@ts-types/Comment';
-import CommentThread, { CommentThreadArgs } from '@lib/api/commentThread';
-import Comment, { CommentArgs } from '@lib/api/comment';
-import { createHydratedStore, createPersistedStore } from './utils';
-import { noop } from 'lodash';
+import Comment, { CommentArgs } from "@lib/api/comment";
+import CommentThread, { CommentThreadArgs } from "@lib/api/commentThread";
+import { IComment, ICommentThread } from "@ts-types/Comment";
+import { PersistedStore } from "@ts-types/Store";
+import { makeAutoObservable } from "mobx";
+import { makePersistable } from "mobx-persist-store";
+import GlobalStore from "./index";
 
-interface ICommentsState {
-  threads: ICommentThread[];
-  comments: IComment[],
-  addCommentThread: (...args: CommentThreadArgs) => void;
-  addComment: (...args: CommentArgs) => void;
+export interface ILike {
+  id: string;
+  liked: boolean;
 }
 
-const defaultCommentsState:ICommentsState = {
-  threads: [],
-  comments: [],
-  addCommentThread: noop,
-  addComment: noop
+const toggleLike = (likes: ILike[], id: string, liked: boolean) => {
+  const likeObj = likes.find(l => l.id === id);
+  if (!likeObj) {
+    return [
+      ...likes,
+      {
+        id, liked
+      }
+    ]
+  };
+  if (likeObj && likeObj.liked !== liked) {
+    return likes.map(l => {
+      if (l.id === id) {
+        return {
+          ...l,
+          liked
+        }
+      } else {
+        return l;
+      }
+    })
+  };
+  return likes.filter(l => l.id !== id);
 }
 
-const defaultCommentsStore = createPersistedStore<ICommentsState>(
-  (set, get) => ({
-    threads: [],
-    comments: [],
-  
-    addCommentThread: (...args) => {
-      const { ...newCommentThread } = new CommentThread(...args);
-      set({
-        threads: [
-          ...get().threads, 
-          newCommentThread
-        ]
-      })
-    },
-  
-    addComment: (...args) => {
-      const { ...newComment } = new Comment(...args);
-      set({
-        comments: [...get().comments, newComment]
-      })
-    },
-  }),
-  'comments-store'
-);
+export class CommentsStore implements PersistedStore {
+  threads: ICommentThread[] = [];
+  comments: IComment[] = [];
+  likes: ILike[] = [];
 
-export const useCommentsStore = createHydratedStore(
-  defaultCommentsState, 
-  defaultCommentsStore
-) as typeof defaultCommentsStore;
+  constructor(readonly globalStore: GlobalStore) {
+    makeAutoObservable(this);
+  }
+
+  initPersist = () => {
+    makePersistable(
+      this,
+      {
+        name: 'CommentsStore',
+        properties: ['threads', 'comments', 'likes'],
+      },
+    )
+  }
+
+  addCommentThread = (...args: CommentThreadArgs) => {
+    const { ...newCommentThread } = new CommentThread(...args);
+    this.threads = [
+      ...this.threads,
+      newCommentThread
+    ];
+  }
+
+  addComment = (...args: CommentArgs) => {
+    const { ...newComment } = new Comment(...args);
+    this.comments = [
+      ...this.comments,
+      newComment
+    ]
+  }
+
+  toggleLike = (id: string, liked: boolean) => {
+    this.likes = toggleLike(this.likes, id, liked)
+  }
+
+  isCommentLiked = (id: string) => {
+    return this.likes.find(l => l.id === id) || null;
+  }
+}

@@ -2,10 +2,11 @@ import { dehydrate, QueryClient } from "@tanstack/react-query";
 import { GetStaticProps, GetStaticPaths, NextPage } from "next";
 import { ParsedUrlQuery } from "querystring";
 import { useEffect } from "react";
-import { useHistoryStore } from "@lib/store";
 import { useVideoId } from "@lib/hooks/useVideoId";
 import { homeQuery, watchQuery } from "@const/queries";
 import Watch from "@modules/Watch";
+import { useStore } from "@lib/providers/GlobalStoreProvider";
+import { observer } from "mobx-react-lite";
 
 export interface UrlParams extends ParsedUrlQuery {
   video_id?: string;
@@ -15,9 +16,10 @@ interface VideoPageProps {
 }
 
 const VideoPage:NextPage<VideoPageProps> = () => {
-  const addToHistory = useHistoryStore(store => store.addToHistory);
-  const isWatching = useHistoryStore(store => store.isWatching);
+  const { historyStore } = useStore();
   const id = useVideoId();
+
+  const { isWatching, addToHistory } = historyStore;
 
   useEffect(() => {
     if (isWatching) addToHistory!(id);
@@ -61,4 +63,4 @@ export const getStaticProps: GetStaticProps = async ({
   }
 }
 
-export default VideoPage;
+export default observer(VideoPage);

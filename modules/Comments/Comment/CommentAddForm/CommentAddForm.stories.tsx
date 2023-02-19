@@ -1,7 +1,7 @@
 import CommentAddForm from './CommentAddForm';
 import { Meta, StoryObj } from '@storybook/react';
-import { useAuthStore } from '@lib/store';
 import { useEffect } from 'react';
+import { useStore } from '@lib/providers/GlobalStoreProvider';
 
 const meta:Meta<typeof CommentAddForm> = {
   title: 'Comments/AddForm',
@@ -17,7 +17,7 @@ type Story = StoryObj<typeof CommentAddForm>;
 export const Default:Story = {
   decorators: [
     (Story) => {
-      const signIn = useAuthStore(store => store.signIn);
+      const { authStore: { signIn } } = useStore();
 
       useEffect(() => {
         signIn();

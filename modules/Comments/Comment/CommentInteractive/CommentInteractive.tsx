@@ -20,6 +20,12 @@ const CommentInteractive:React.FC<ICommentInteractiveProps> = ({
   parentId
 }) => {
   const [showForm, toggleShowForm] = useToggle();
+  const [springIsOpen, toggleIsOpen] = useToggle();
+
+  const toggleForm = () => {
+    toggleIsOpen();
+    setTimeout(toggleShowForm, 100);
+  }
 
   return (
     <>
@@ -29,14 +35,18 @@ const CommentInteractive:React.FC<ICommentInteractiveProps> = ({
         canRate={canRate}
         canReply={canReply}
         showForm={showForm}
-        toggleShowForm={toggleShowForm}
+        toggleShowForm={toggleForm}
       />
 
-      <CommentFormAccordion
-        isOpen={showForm}
-        id={parentId || id}
-        onSubmit={toggleShowForm}
-      />
+     {
+      showForm && (
+        <CommentFormAccordion
+          isOpen={springIsOpen}
+          id={parentId || id}
+          onSubmit={toggleForm}
+        />
+      )
+     }
     </>
   );
 }

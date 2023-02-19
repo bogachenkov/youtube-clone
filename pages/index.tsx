@@ -8,8 +8,6 @@ interface HomePageProps {
 }
 
 const HomePage:NextPage<HomePageProps> = () => {
-
-
   return (
     <div>
       <Head>

@@ -1,37 +1,33 @@
-import { noop } from 'lodash';
-import { createHydratedStore, createPersistedStore, IStateCreator } from './utils';
+import { PersistedStore } from "@ts-types/Store";
+import { makeAutoObservable } from "mobx";
+import { makePersistable } from "mobx-persist-store";
+import GlobalStore from "./index";
 
-interface ILikesState {
-  likedIds: string[];
-  lastUpdate: string;
-  toggleLike: (id: string) => void;
+type LikesObjIds = {id: string}[]
+
+export class LikesStore implements PersistedStore {
+  likedIds: string[] = [];
+  lastUpdate: string = '';
+
+  constructor(readonly globalStore: GlobalStore) {
+    makeAutoObservable(this);
+  }
+
+  initPersist = () => {
+    makePersistable(
+      this,
+      {
+        name: 'LikesStore',
+        properties: ['likedIds', 'lastUpdate'],
+      },
+    )
+  }
+
+  get idsAsObjects():LikesObjIds {
+    return this.likedIds.map(id => ({ id }));
+  }
+  
+  toggleLike = (id: string) => {
+    this.likedIds = this.likedIds.includes(id) ? this.likedIds.filter(i => i !== id) : [...this.likedIds, id]
+  }
 }
-
-const toggleLike = (ids: ILikesState['likedIds'], id: string) => {
-  return ids.includes(id) ? ids.filter(i => i !== id) : [...ids, id]
-}
-
-const defaultLikesState:ILikesState = {
-  likedIds: [],
-  lastUpdate: new Date().toISOString(),
-  toggleLike: noop
-}
-
-const storeCreator:IStateCreator<ILikesState> = (set, get) => ({
-  likedIds: defaultLikesState.likedIds,
-  lastUpdate: defaultLikesState.lastUpdate,
-  toggleLike: (id) => set({
-    likedIds: toggleLike(get().likedIds, id),
-    lastUpdate: new Date().toISOString()
-  })
-})
-
-export const defaultLikesStore = createPersistedStore<ILikesState>(
-  storeCreator,
-  'likes-store'
-);
-
-export const useLikesStore = createHydratedStore(
-  defaultLikesState, 
-  defaultLikesStore
-) as typeof defaultLikesStore;

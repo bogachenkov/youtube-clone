@@ -1,6 +1,7 @@
 import { useVideoId } from '@lib/hooks/useVideoId';
-import { usePlaylistStore } from '@lib/store/playlist';
+import { useStore } from '@lib/providers/GlobalStoreProvider';
 import IconButton from '@ui/IconButton';
+import { observer } from 'mobx-react-lite';
 import React from 'react';
 
 interface IVideoPlaylistButtonProps {
@@ -9,15 +10,14 @@ interface IVideoPlaylistButtonProps {
 
 const VideoPlaylistButton:React.FC<IVideoPlaylistButtonProps> = (props) => {
   const videoId = useVideoId();
-  const addToPlaylist = usePlaylistStore(store => store.addVideoToPL);
-  const removeFromPlaylist = usePlaylistStore(store => store.removeVideoFromPL);
-  const playlistCollection = usePlaylistStore(store => store.videos);
+  const { playlistStore } = useStore();
+  const { collection, addVideo, removeVideo } = playlistStore;
 
-  const isInPlaylistCollection = playlistCollection.includes(videoId);
+  const isInPlaylistCollection = collection.includes(videoId);
 
   const onPlaylistClick = () => {
-    if (isInPlaylistCollection) return removeFromPlaylist(videoId);
-    return addToPlaylist(videoId);
+    if (isInPlaylistCollection) return removeVideo(videoId);
+    return addVideo(videoId);
   }
 
   return (
@@ -31,4 +31,4 @@ const VideoPlaylistButton:React.FC<IVideoPlaylistButtonProps> = (props) => {
   );
 }
 
-export default VideoPlaylistButton;
+export default observer(VideoPlaylistButton);

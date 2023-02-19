@@ -1,14 +1,15 @@
-import { useAuthStore } from "@lib/store";
 import Container from "@ui/Container";
 import EmptyScreen from "@ui/EmptyScreen";
 import SignInButton from "@ui/SignInButton";
 import Subscriptions from "@modules/Subscriptions";
 import Head from "next/head";
+import { useStore } from "@lib/providers/GlobalStoreProvider";
+import { observer } from "mobx-react-lite";
 
-export default function SubscriptionsPage() {
-  const user = useAuthStore(store => store.user);
+export default observer(function SubscriptionsPage() {
+  const { authStore } = useStore();
 
-  if (!user) return (
+  if (!authStore.user) return (
     <Container>
       <Head>
         <title>Subscriptions - YouTube Clone</title>
@@ -31,4 +32,4 @@ export default function SubscriptionsPage() {
       <Subscriptions />
     </>
   )
-}
+})

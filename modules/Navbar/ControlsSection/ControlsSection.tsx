@@ -1,20 +1,21 @@
 import React from 'react';
 import { StyledControlsSection } from './styled';
-import { useAuthStore } from '@lib/store';
 import UserSection from '../UserSection';
 import IconButton from '@ui/IconButton';
+import { useStore } from '@lib/providers/GlobalStoreProvider';
+import { observer } from 'mobx-react-lite';
 
 interface IControlsSectionProps {
   children?: React.ReactNode;
 }
 
 const ControlsSection:React.FC<IControlsSectionProps> = (props) => {
-  const user = useAuthStore(store => store.user);
+  const { authStore } = useStore();
 
   return (
     <StyledControlsSection>
       {
-        user ?
+        authStore.isAuthenticated &&
         (
           <IconButton
             size={24}
@@ -22,8 +23,6 @@ const ControlsSection:React.FC<IControlsSectionProps> = (props) => {
             title='Not Implemented'
           />
         )
-        :
-        null
       }
       <IconButton
         icon='GridViewOutlined'
@@ -35,4 +34,4 @@ const ControlsSection:React.FC<IControlsSectionProps> = (props) => {
   );
 }
 
-export default ControlsSection;
+export default observer(ControlsSection);

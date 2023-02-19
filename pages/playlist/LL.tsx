@@ -1,14 +1,15 @@
 import { useLikedCollection } from "@lib/hooks/useLikedCollection";
-import { useAuthStore, useLikesStore } from "@lib/store";
+import { useStore } from "@lib/providers/GlobalStoreProvider";
 import Playlist from "@modules/Playlist";
 import Container from "@ui/Container";
 import EmptyScreen from "@ui/EmptyScreen";
 import SignInButton from "@ui/SignInButton";
+import { observer } from "mobx-react-lite";
 import Head from "next/head";
 
-export default function LikedVideosPage() {
-  const user = useAuthStore(store => store.user);
-  const lastUpdate = useLikesStore(store => store.lastUpdate);
+export default observer(function LikedVideosPage() {
+  const { authStore, likesStore } = useStore();
+  const { user } = authStore;
   const collection = useLikedCollection();
 
   if (!user) return (
@@ -47,8 +48,8 @@ export default function LikedVideosPage() {
       <Playlist
         collection={collection}
         name="Liked Videos"
-        lastUpdate={lastUpdate}
+        lastUpdate={likesStore.lastUpdate}
       />
     </>
   )
-}
+})

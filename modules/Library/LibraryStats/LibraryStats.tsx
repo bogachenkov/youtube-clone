@@ -1,5 +1,6 @@
-import { useLikesStore, useSubscriptionsStore } from '@lib/store';
+import { useStore } from '@lib/providers/GlobalStoreProvider';
 import Text from '@ui/Text';
+import { observer } from 'mobx-react-lite';
 import React from 'react';
 import { StyledLibraryStats, StyledLibraryText } from './styled';
 
@@ -7,15 +8,14 @@ interface ILibraryStatsProps {
   children?: React.ReactNode;
 }
 
-const LibraryStats:React.FC<ILibraryStatsProps> = (props) => {
-  const subs = useSubscriptionsStore(store => store.subscriptions);
-  const likes = useLikesStore(store => store.likedIds);
+const LibraryStats:React.FC<ILibraryStatsProps> = observer((props) => {
+  const { likesStore, subscriptionsStore } = useStore();
 
   return (
     <StyledLibraryStats gap={29}>
       <StyledLibraryText>
         Subscriptions:
-        <span style={{ marginLeft: 8 }}>{subs.length}</span>
+        <span style={{ marginLeft: 8 }}>{subscriptionsStore.subscriptions.length}</span>
       </StyledLibraryText>
       <Text weight='thin' size={16}>|</Text>
       <StyledLibraryText>
@@ -25,10 +25,10 @@ const LibraryStats:React.FC<ILibraryStatsProps> = (props) => {
       <Text weight='thin' size={16}>|</Text>
       <StyledLibraryText>
         Likes:
-        <span style={{ marginLeft: 8 }}>{likes.length}</span>
+        <span style={{ marginLeft: 8 }}>{likesStore.likedIds.length}</span>
       </StyledLibraryText>
     </StyledLibraryStats>
   );
-}
+})
 
 export default React.memo(LibraryStats);
