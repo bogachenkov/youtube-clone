@@ -21,8 +21,8 @@ const VideoElement:React.FC<IVideoElementProps> = (props) => {
 
   return (
     <StyledVideoElement
+      data-testid='video-element'
       playsInline 
-      autoPlay 
       muted={isMuted} 
       ref={video}
       onEnded={handleEnded}

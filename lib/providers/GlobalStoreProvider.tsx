@@ -24,13 +24,15 @@ interface IProps extends React.PropsWithChildren {
 
 export const GlobalStoreProvider:React.FC<IProps> = (props) => {
   _globalStore = setupGlobalStore();
+  const isStorybook = !!process.env.STORYBOOK;
 
   useEffect(() => {
+    if (isStorybook) return;
     _globalStore.initPersist();
   }, []);
 
   return (
-    <GlobalStoreContext.Provider value={_globalStore}>
+    <GlobalStoreContext.Provider value={isStorybook ? (new GlobalStore()) : _globalStore}>
       {props.children}
     </GlobalStoreContext.Provider>
   )

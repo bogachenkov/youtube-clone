@@ -8,5 +8,5 @@ export const usePlaylistCollection = () => {
 
   if (!data || isLoading) return [];
 
-  return intersectionBy(data, playlistStore.collection, 'id');
+  return intersectionBy(data, playlistStore.collectionAsObjects, 'id');
 }

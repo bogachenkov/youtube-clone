@@ -22,6 +22,10 @@ export class PlaylistStore implements PersistedStore {
     )
   }
 
+  get collectionAsObjects() {
+    return this.collection.map(id => ({ id }))
+  }
+
   addVideo = (id: string) => {
     this.collection = Array.from(new Set([...this.collection, id]));
     this.lastUpdate = new Date().toISOString()

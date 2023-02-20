@@ -34,6 +34,7 @@ const VolumeControl:React.FC<IVolumeControlProps> = (props) => {
   return (
     <Row align='stretch' gap={5} onMouseEnter={() => setIsOpen(true)} onMouseLeave={() => setIsOpen(false)}>
       <Button
+        data-testid='mute-button'
         theme='text'
         onClick={toggleMute}
         title={isMuted ? 'Unmute' : 'Mute'}

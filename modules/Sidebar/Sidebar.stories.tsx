@@ -15,8 +15,4 @@ type Story = StoryObj<typeof Sidebar>;
 
 export const Default:Story = {
   render: args => <Sidebar {...args} />,
-  play: async ({ canvasElement }) => {
-    // @ts-ignore
-    await SidebarLink.play!({ canvasElement });
-  }
 };

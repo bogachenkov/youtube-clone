@@ -8,13 +8,13 @@ export const StyledControlsRow = styled(Row)`
   z-index: 1;
 `;
 
-export const StyledVideoCardHover = styled.div`
+export const StyledVideoCardOverlay = styled.div`
   position: absolute;
   top: 0;
   left: 0;
   height: 100%;
   width: 100%;
-  display: none;
+  display: block;
 `;
 
 export const StyledHoverContainer = styled.div`

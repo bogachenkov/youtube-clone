@@ -7,7 +7,7 @@ type LikesObjIds = {id: string}[]
 
 export class LikesStore implements PersistedStore {
   likedIds: string[] = [];
-  lastUpdate: string = '';
+  lastUpdate: string = new Date().toISOString();
 
   constructor(readonly globalStore: GlobalStore) {
     makeAutoObservable(this);
@@ -29,5 +29,6 @@ export class LikesStore implements PersistedStore {
   
   toggleLike = (id: string) => {
     this.likedIds = this.likedIds.includes(id) ? this.likedIds.filter(i => i !== id) : [...this.likedIds, id]
+    this.lastUpdate = new Date().toISOString();
   }
 }

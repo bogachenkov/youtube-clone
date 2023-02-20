@@ -3,25 +3,25 @@ import React from 'react';
 import Blur from '@ui/Blur';
 import Spacer from '@ui/Spacer';
 import Text from '@ui/Text';
-import { StyledControlsRow, StyledHoverContainer, StyledVideoCardHover } from './styled';
+import { StyledControlsRow, StyledHoverContainer, StyledVideoCardOverlay } from './styled';
 
 import { intToString } from '@utils/intToString';
 import Row from '@ui/Row';
 import IconWrapper from '@ui/IconWrapper';
 import CardHoverActions from './CardHoverActions';
 
-interface IVideoCardHoverProps {
+interface IVideoCardOverlayProps {
   children?: React.ReactNode;
   likeCount: number;
   id: string;
 }
 
-const VideoCardHover:React.FC<IVideoCardHoverProps> = ({
+const VideoCardOverlay:React.FC<IVideoCardOverlayProps> = ({
   likeCount,
   id
 }) => {
   return (
-    <StyledVideoCardHover>
+    <StyledVideoCardOverlay data-testid='video-card-overlay'>
       <Blur />
       <Link href={`/watch/${id}`} color='#FFF'>
         <StyledHoverContainer>
@@ -43,8 +43,8 @@ const VideoCardHover:React.FC<IVideoCardHoverProps> = ({
       <StyledControlsRow direction='column' align='flex-end' gap={8}>
         <CardHoverActions id={id} />
       </StyledControlsRow>
-    </StyledVideoCardHover>
+    </StyledVideoCardOverlay>
   );
 }
 
-export default VideoCardHover;
+export default VideoCardOverlay;

@@ -5,6 +5,7 @@ import { userEvent, within } from '@storybook/testing-library';
 import { expect } from '@storybook/jest';
 import { useLayoutEffect } from 'react';
 import { useStore } from '@lib/providers/GlobalStoreProvider';
+import { sleep } from '@lib/utils/sleep';
 
 const meta:Meta<typeof Comment> = {
   title: 'Comments/Comment',
@@ -43,14 +44,13 @@ export const LikeComment:Story = {
 LikeComment.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
 
-  // Waiting for zustand hydration
-  await new Promise((resolve) => setTimeout(resolve, 500));
+  // Waiting for hydration
+  await sleep(200);
 
   const likeButton = await canvas.findByTestId('like-button');
-  const isLiked = likeButton.innerText === '1';
 
   await userEvent.click(likeButton);
-  await expect(likeButton).toHaveTextContent(isLiked ? '0' : '1');
+  await expect(likeButton).toHaveTextContent('1');
 }
 
 export const DislikeComment:Story = {
@@ -62,14 +62,18 @@ export const DislikeComment:Story = {
 DislikeComment.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
 
-  // Waiting for zustand hydration
-  await new Promise((resolve) => setTimeout(resolve, 500));
+  // Waiting for hydration
+  await sleep(200);
 
   const likeButton = await canvas.findByTestId('like-button');
   const dislikeButton = await canvas.findByTestId('dislike-button');
 
   await userEvent.click(dislikeButton);
   await expect(likeButton).toHaveTextContent('0');
+
+  // Transition?
+  await sleep(300);
+  await expect(dislikeButton).toHaveStyle('color: rgb(255, 0, 0)')
 }
 
 export const ReplyComment:Story = {
@@ -80,8 +84,9 @@ export const ReplyComment:Story = {
 
 ReplyComment.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
-    // Waiting for zustand hydration
-  await new Promise((resolve) => setTimeout(resolve, 500));
+
+  // Waiting for hydration
+  await sleep(200);
 
   const replyButton = await canvas.findByRole('button', { name: 'Reply' });
   await userEvent.click(replyButton);

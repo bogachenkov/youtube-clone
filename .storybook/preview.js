@@ -1,4 +1,5 @@
 import GlobalStyle from '../styles/globalStyles';
+import { action } from '@storybook/addon-actions';
 import { initialize, mswDecorator } from 'msw-storybook-addon';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import {
@@ -9,6 +10,7 @@ import {
 } from '../mocks/apiResponses';
 import { rest } from 'msw'
 import 'react-tooltip/dist/react-tooltip.css';
+import { GlobalStoreProvider } from '@lib/providers/GlobalStoreProvider';
 
 initialize({
   // quiet: true
@@ -36,6 +38,10 @@ export const parameters = {
       query: {
         'video_id': 'EUer-Tto1ZA'
       },
+      push(...args) {
+        action('nextRouter.push')(...args);
+        return Promise.resolve(true);
+      }
     },
   },
   msw: {
@@ -82,8 +88,10 @@ export const decorators = [
       <>
         <GlobalStyle />
         <QueryClientProvider client={queryClient}>
-          <GlobalStyle />
-          <Story />
+          <GlobalStoreProvider>
+            <GlobalStyle />
+            <Story />
+          </GlobalStoreProvider>
         </QueryClientProvider>
       </>
     )

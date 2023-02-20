@@ -3,7 +3,6 @@ import Link from 'next/link';
 import styled from 'styled-components';
 import Text from '../../ui/Text';
 import { StyledTitle } from '../../ui/Title/styled';
-import { StyledVideoCardHover } from '../VideoCardHover/styled';
 import { StyledVideoDuration } from '../VideoDuration/styled';
 
 export const StyledVideoCardLink = styled(Link)`
@@ -18,12 +17,6 @@ export const StyledVideoCard = styled.div`
     aspect-ratio: 302 / 175;
     border-radius: 10px;
     overflow: hidden;
-
-    &:hover {
-      & ${StyledVideoCardHover} {
-        display: block;
-      }
-    }
   }
 
   & ${StyledVideoDuration} {

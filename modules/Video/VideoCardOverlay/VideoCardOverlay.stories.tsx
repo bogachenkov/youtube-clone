@@ -1,24 +1,24 @@
-import VideoCardHover from './VideoCardHover';
+import VideoCardOverlay from './VideoCardOverlay';
 import { Meta, StoryObj } from '@storybook/react';
 import { StyledThumb, StyledVideoCard } from '../VideoCard/styled';
 import { getHighResThumb } from '@lib/utils/getHighResThumb';
-import { MockedVideo } from 'mocks/apiResponses';
 import VideoDuration from '../VideoDuration';
+import { Default as DefaultVideoCard } from '../VideoCard/VideoCard.stories';
 
-const meta:Meta<typeof VideoCardHover> = {
-  title: 'Video/CardHover',
-  component: VideoCardHover,
+const meta:Meta<typeof VideoCardOverlay> = {
+  title: 'Video/CardOverlay',
+  component: VideoCardOverlay,
   tags: ['autodocs']
 };
 
 export default meta;
 
-type Story = StoryObj<typeof VideoCardHover>;
+type Story = StoryObj<typeof VideoCardOverlay>;
 
-const videoData = MockedVideo.items[0];
+const videoData = DefaultVideoCard.args?.video!;
 
 export const Default:Story = {
-  render: args => <VideoCardHover {...args} />,
+  render: args => <VideoCardOverlay {...args} />,
   decorators: [
     (Story) => (
       <div style={{ width: 420 }}>

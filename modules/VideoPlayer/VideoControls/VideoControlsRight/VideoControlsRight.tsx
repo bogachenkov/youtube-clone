@@ -27,6 +27,7 @@ const VideoControlsRight:React.FC<IVideoControlsRightProps> = () => {
       </LaptopOnly>
       <Button
         theme='text'
+        data-testid='fullscreen-button'
         onClick={toggleFullscreen}
         title={isFullscreen ? 'Exit Fullscreen' : 'Fullscreen'}
       >

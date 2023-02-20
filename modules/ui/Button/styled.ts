@@ -13,6 +13,7 @@ export const StyledButton = styled.button`
   /* display: inline-flex;
   align-items: center; */
   transition: .2s;
+  white-space: nowrap;
 
   &:hover {
     color: var(--button-hover-color);

@@ -49,7 +49,7 @@ export default class GlobalStore {
     this.playlistStore = new PlaylistStore(this);
   }
 
-  initPersist = async (initialState?: Partial<GlobalStore>) => {
+  initPersist = () => {
     const stores = 
       Object.getOwnPropertyNames(this)
             .filter(property => property.endsWith('Store'))

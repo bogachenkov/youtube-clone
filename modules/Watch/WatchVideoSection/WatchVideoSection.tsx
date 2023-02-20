@@ -15,6 +15,7 @@ const WatchVideoSection:React.FC<IWatchVideoSectionProps> = (props) => {
     <StyledVideoSection>
       <VideoPlayer
         controls
+        autoPlay
         src="https://storage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
       />
       <Spacer vertical={32} />

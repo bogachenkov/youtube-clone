@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { getRelativeDate } from '@utils/getRelativeDate';
 import { intToString } from '@utils/intToString';
 import { IVideoPreview } from '@ts-types/Video';
@@ -8,7 +8,7 @@ import Text from '@ui/Text';
 import Title from '@ui/Title';
 import VideoDuration from '@modules/Video/VideoDuration';
 import { StyledChannelName, StyledThumb, StyledVideoCard } from './styled';
-import VideoCardHover from '../VideoCardHover';
+import VideoCardOverlay from '../VideoCardOverlay';
 import Link from 'next/link';
 
 interface IVideoCardProps {
@@ -34,10 +34,16 @@ const VideoCard:React.FC<IVideoCardProps> = ({
     }
   }
 }) => {
+  const [showOverlay, setShowOverlay] = useState(false);
   const videoHref = `/watch/${id}`;
+
   return (
     <StyledVideoCard>
-      <header>
+      <header
+        onMouseEnter={() => setShowOverlay(true)}
+        onMouseLeave={() => setShowOverlay(false)}
+        data-testid='video-card-header'
+      >
         <StyledThumb 
           alt={title}
           src={thumbnails.medium.url}
@@ -48,7 +54,7 @@ const VideoCard:React.FC<IVideoCardProps> = ({
           placeholder='blur'
           blurDataURL={thumbnails.standart ? thumbnails.standart.url : thumbnails.default.url}
         />
-        <VideoCardHover likeCount={likeCount} id={id} />
+        { showOverlay && <VideoCardOverlay likeCount={likeCount} id={id} /> }
         <VideoDuration duration={duration} />
       </header>
       <Spacer vertical={16} />
