@@ -22,6 +22,7 @@ const VideoPlaylistButton:React.FC<IVideoPlaylistButtonProps> = (props) => {
 
   return (
     <IconButton
+      data-testid='add-to-playlist'
       size={26}
       icon={isInPlaylistCollection ? 'PlaylistRemove' : 'PlaylistAdd'}
       theme='text'

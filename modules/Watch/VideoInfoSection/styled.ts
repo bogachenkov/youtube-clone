@@ -17,7 +17,7 @@ export const StyledVideoInfoGrid = styled.div`
   "description description description"
   ;
   align-items: flex-start;
-  grid-template-columns: auto 1fr auto;
+  grid-template-columns: auto 1fr 130px;
 
 
   @media ${device.tablet} {

@@ -22,6 +22,8 @@ const PlaylistActions:React.FC<IPlaylistActionsProps> = () => {
         title={'Shuffle playlist'}
         fontColor={isShuffled ? 'var(--color-light)' : 'var(--color-grayLight)'}
         hoverable
+        data-testid='shuffle-button'
+        data-shuffled={isShuffled}
       />
       <IconButton
         size={24}
@@ -31,6 +33,8 @@ const PlaylistActions:React.FC<IPlaylistActionsProps> = () => {
         fontColor={isRepeatable ? 'var(--color-light)' : 'var(--color-grayLight)'}
         title='Loop playlist'
         hoverable
+        data-testid='repeat-button'
+        data-repeatable={isRepeatable}
       />
     </Row>
   );
