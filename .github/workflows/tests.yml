@@ -29,6 +29,10 @@ jobs:
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0 # Required to retrieve git history
+        env:
+          NEXT_PUBLIC_YOUTUBE_KEY: ${{ secrets.YOUTUBE_KEY }}
+          NEXT_PUBLIC_REDIS_URL: ${{ secrets.REDIS_URL }}
+          NEXT_PUBLIC_REDIS_TOKEN: ${{ secrets.REDIS_TOKEN }}
       - name: Install dependencies
         run: yarn
       - name: Publish to Chromatic
