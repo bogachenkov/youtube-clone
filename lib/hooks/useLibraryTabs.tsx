@@ -56,10 +56,8 @@ export const useLibraryTabs = () => {
           <EmptyScreen
             emojiCode="270C"
             title="Watch What You Want"
-            text="Sign in to create your own playlists"
-          >
-            <SignInButton fontSize={16} />
-          </EmptyScreen>
+            text="There no videos in your playlist"
+          />
         )
     },
     {
@@ -78,10 +76,8 @@ export const useLibraryTabs = () => {
           <EmptyScreen
             emojiCode="1F44D"
             title="Want To Rewatch?"
-            text="Sign in to access videos thay you've liked"
-          >
-            <SignInButton fontSize={16} />
-          </EmptyScreen>
+            text="There no videos you've liked"
+          />
         )
     },
   ]
