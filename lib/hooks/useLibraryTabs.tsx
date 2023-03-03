@@ -7,6 +7,8 @@ import { useLikedCollection } from "./useLikedCollection";
 import Playlist from "@modules/Playlist";
 import GridContainer from "@ui/GridContainer";
 import { useStore } from "@lib/providers/GlobalStoreProvider";
+import EmptyScreen from "@modules/ui/EmptyScreen";
+import SignInButton from "@modules/ui/SignInButton";
 
 const renderVideoCard = (v: IVideoPreview) => (
   <VideoCard key={v.id} video={v} />
@@ -23,33 +25,64 @@ export const useLibraryTabs = () => {
     {
       id: 'history',
       label: 'History',
-      children: (
-        <GridContainer>
-          {historyCollection.map(renderVideoCard)}
-        </GridContainer>
-      )
+      children: historyCollection.length > 0 ?
+        (
+          <GridContainer>
+            {historyCollection.map(renderVideoCard)}
+          </GridContainer>
+        )
+        :
+        (
+          <EmptyScreen
+            emojiCode='1F627'
+            title='Keep Track Of What You Watch'
+            text={'Your watch history is empty'}
+          />
+        )
     },
     {
       id: 'playlists',
       label: 'Playlists',
-      children: (
-        <Playlist
-          collection={playlistCollection}
-          name="Demo Playlist"
-          lastUpdate={playlistStore.lastUpdate}
-        />
-      )
+      children: playlistCollection.length > 0 ?
+        (
+          <Playlist
+            collection={playlistCollection}
+            name="Demo Playlist"
+            lastUpdate={playlistStore.lastUpdate}
+          />
+        )
+        :
+        (
+          <EmptyScreen
+            emojiCode="270C"
+            title="Watch What You Want"
+            text="Sign in to create your own playlists"
+          >
+            <SignInButton fontSize={16} />
+          </EmptyScreen>
+        )
     },
     {
       id: 'liked',
       label: 'Liked Videos',
-      children: (
-        <Playlist
+      children: likedCollection.length > 0 ?
+        (
+          <Playlist
           collection={likedCollection}
           name="Liked Videos"
           lastUpdate={likesStore.lastUpdate}
         />
-      )
+        )
+        :
+        (
+          <EmptyScreen
+            emojiCode="1F44D"
+            title="Want To Rewatch?"
+            text="Sign in to access videos thay you've liked"
+          >
+            <SignInButton fontSize={16} />
+          </EmptyScreen>
+        )
     },
   ]
 

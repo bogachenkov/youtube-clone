@@ -9,7 +9,7 @@ interface ILogoProps {
 
 const Logo:React.FC<ILogoProps> = (props) => {
   return (
-    <StyledImage src={LogoSvg} alt='YouTube' />
+    <StyledImage loading='eager' src={LogoSvg} alt='YouTube' />
   );
 }
 

@@ -11,5 +11,5 @@ export const StyledEmptyScreen = styled.div`
 
 export const StyledEmptyScreenContent = styled.div`
   text-align: center;
-  padding-bottom: 50px;
+  /* padding-bottom: 50px; */
 `;
