@@ -18,7 +18,7 @@ export const StyledVideoPlayer = styled.div`
 
   &:hover {
     & > ${StyledVideoControls} {
-      bottom: 0;
+      bottom: var(--controls-position, 0);
     }
   }
 

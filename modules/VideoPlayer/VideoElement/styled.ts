@@ -6,6 +6,7 @@ export const StyledVideoElement = styled.video`
   height: 100%;
   width: 100%;
   aspect-ratio: 16 / 9;
+  cursor: var(--cursor-type);
 
   @media ${device.laptop} {
     border-radius: 30px;

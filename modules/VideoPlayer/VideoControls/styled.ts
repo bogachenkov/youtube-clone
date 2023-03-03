@@ -38,7 +38,7 @@ export const StyledVideoControls = styled.div`
   position: absolute;
   left: 0;
   right: 0;
-  bottom: calc(var(--player-controls-height) * -1);
+  bottom: var(--controls-position, calc(var(--player-controls-height) * -1));
   height: var(--player-controls-height);
   display: grid;
   grid-template-areas:
