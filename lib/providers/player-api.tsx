@@ -1,4 +1,5 @@
 import { useToggle } from "@lib/hooks/useToggle";
+import { detectFullScreen } from "@lib/utils/detectFullScreen";
 import { debounce } from "lodash";
 import React, {
   createContext,
@@ -91,7 +92,7 @@ export const PlayerDataProvider = ({ children }: { children: ReactNode }) => {
       if (!containerRef.current) return;
       const element = containerRef.current;
   
-      if (window.screenTop && window.screenY) {
+      if (!detectFullScreen()) {
         if (element.requestFullscreen) {
           element.requestFullscreen();
         } else if (element.mozRequestFullScreen) { /* Firefox */
